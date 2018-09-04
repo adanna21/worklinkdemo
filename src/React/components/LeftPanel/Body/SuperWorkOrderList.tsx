@@ -16,51 +16,21 @@ import Client from '../../../common/AppBody/WorkOrder/Client';
 import ViewMore from '../../../common/AppBody/WorkOrder/ViewMore';
 import Avatar from '../../../common/AppBody/WorkOrder/Avatar';
 
-export default class MyWorkOrderList extends Component<any, any> {
-  state = {
-    flatListId: 0
-  };
+export default class SuperWorkOrderList extends Component<any, any> {
   onViewMore = (workOrder: IWorkOrder) => {
     this.props.navigation.navigate('Details', {
       ...workOrder
     });
   };
-  setFlatListId = (id: number) => {
-    this.setState({
-      flatListId: id
-    });
-    // console.log('state,', this.state.flatListId);
-  };
-  // componentDidMount() {
-  //   const flatListHandle = findNodeHandle(this.mainContainer);
-  //   console.log(flatListHandle);
-  //   this.setState({ flatListId: flatListHandle }, function() {
-  //     // do something with new state
-  //   });
-  //   console.log(this.state.flatListId);
-  // }
+
   render() {
     return (
       <WorkOrderContainer>
         <FlatList
-          ref={ref => (this.mainContainer = ref)}
-          onLayout={() => {
-            const flatListHandle = findNodeHandle(this.mainContainer);
-            console.log(flatListHandle);
-            // this.setFlatListId(1267);
-            this.setState({
-              flatListId: flatListHandle
-            });
-            // console.log('state,', this.state.flatListId);
-          }}
           data={workOrders}
           extraData={[this.props, this.state]}
           renderItem={({ item }) => (
-            <WorkOrderCard
-              setDropZoneValues={this.props.setDropZoneValues}
-              workOrderPanResponder={this.props.workOrderPanResponder}
-              flatListId={this.state.flatListId}
-            >
+            <WorkOrderCard>
               <WorkOrderDetails>
                 <Status>
                   <StatusText>{item.status.toLocaleUpperCase()}</StatusText>

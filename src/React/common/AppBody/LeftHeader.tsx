@@ -10,6 +10,7 @@ export default class LeftHeader extends Component {
 const styles = StyleSheet.create({
   leftHeader: {
     flex: 0.3,
-    paddingLeft: '4%'
+    paddingLeft: '10%',
+    paddingRight: '10%'
   }
 });

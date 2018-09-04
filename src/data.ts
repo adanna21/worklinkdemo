@@ -1,4 +1,5 @@
 interface IMeWorker {
+  id: string;
   name: string;
   email: string;
   registered: string;
@@ -39,6 +40,7 @@ export interface IWorkOrder {
 type AWorkOrder = Array<IWorkOrder>;
 
 export const meWorker: IMeWorker = {
+  id: '94848302',
   name: 'Jennie Johnson',
   email: 'jj@nyu.edu',
   registered: '2010-08-09 13:37:38',
@@ -50,7 +52,7 @@ export const meWorker: IMeWorker = {
 export const workOrders: AWorkOrder = [
   {
     status: 'unassigned',
-    id: '18-000-0987',
+    id: '180000987',
     serviceLocation: '10 Astor Place, Room 722 New York, NY',
     assignedTo: 'Jennie Johnson',
     shop: 'HVAC',
@@ -74,7 +76,7 @@ export const workOrders: AWorkOrder = [
   },
   {
     status: 'unassigned',
-    id: '18-000-0988',
+    id: '180000988',
     serviceLocation: '10 Astor Place, Room 722 New York, NY',
     assignedTo: 'Jennie Johnson',
     shop: 'HVAC',
@@ -98,7 +100,7 @@ export const workOrders: AWorkOrder = [
   },
   {
     status: 'unassigned',
-    id: '18-000-0989',
+    id: '180000989',
     serviceLocation: '10 Astor Place, Room 722 New York, NY',
     assignedTo: 'Jennie Johnson',
     shop: 'HVAC',
@@ -122,7 +124,7 @@ export const workOrders: AWorkOrder = [
   },
   {
     status: 'unassigned',
-    id: '18-000-0990',
+    id: '180000990',
     serviceLocation: '10 Astor Place, Room 722 New York, NY',
     assignedTo: 'Jennie Johnson',
     shop: 'HVAC',
@@ -146,7 +148,7 @@ export const workOrders: AWorkOrder = [
   },
   {
     status: 'unassigned',
-    id: '18-000-0991',
+    id: '180000991',
     serviceLocation: '10 Astor Place, Room 722 New York, NY',
     assignedTo: 'Jennie Johnson',
     shop: 'HVAC',
@@ -170,7 +172,7 @@ export const workOrders: AWorkOrder = [
   },
   {
     status: 'unassigned',
-    id: '18-000-0992',
+    id: '180000992',
     serviceLocation: '10 Astor Place, Room 722 New York, NY',
     assignedTo: 'Jennie Johnson',
     shop: 'HVAC',
@@ -194,7 +196,7 @@ export const workOrders: AWorkOrder = [
   },
   {
     status: 'assigned',
-    id: '18-000-0993',
+    id: '180000993',
     serviceLocation: '10 Astor Place, Room 722 New York, NY',
     assignedTo: 'Jennie Johnson',
     shop: 'HVAC',
@@ -218,7 +220,7 @@ export const workOrders: AWorkOrder = [
   },
   {
     status: 'assigned',
-    id: '18-000-0994',
+    id: '180000994',
     serviceLocation: '10 Astor Place, Room 722 New York, NY',
     assignedTo: 'Jennie Johnson',
     shop: 'HVAC',
@@ -242,7 +244,7 @@ export const workOrders: AWorkOrder = [
   },
   {
     status: 'unassigned',
-    id: '18-000-0995',
+    id: '180000995',
     serviceLocation: '10 Astor Place, Room 722 New York, NY',
     assignedTo: '',
     shop: 'HVAC',

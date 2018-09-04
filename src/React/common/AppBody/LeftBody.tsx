@@ -10,12 +10,12 @@ export default class LeftBody extends Component {
 const styles = StyleSheet.create({
   leftBody: {
     flex: 5,
-    borderWidth: 0.8,
-    borderStyle: 'solid',
-    borderColor: '#BDBDBD',
-    paddingTop: '8%',
-    paddingLeft: '8%',
-    paddingRight: '8%',
-    paddingBottom: '2%'
+    // borderWidth: 0.8,
+    // borderStyle: 'solid',
+    // borderColor: '#BDBDBD',
+    // paddingTop: '5%',
+    paddingLeft: '5%',
+    paddingRight: '5%',
+    paddingBottom: '1%'
   }
 });

@@ -1,120 +1,78 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  PanResponder,
-  Animated,
-  Dimensions,
-  TouchableOpacity,
-  UIManager,
-  findNodeHandle
-} from 'react-native';
-import TeamModal from './TeamModal';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import Draggable from '../../../utils/react-native-drag-drop/Draggable';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
-// const AnimatedModal = Animated.createAnimatedComponent(TeamModal);
 export default class TeamMember extends Component<any, any> {
-  constructor(props: any) {
-    super(props);
-    const { width, height } = Dimensions.get('window');
-    const edgeLength = 100;
+  state = {
+    iconName: 'account-circle',
+    iconColor: '#5eb8ec'
+  };
+  // change icon when teaMember selected or unselected
+  changeIcon = (id: string) => {
+    const memberIdPresent = this.props.teamArray.some(
+      member => member.id === id
+    );
 
-    const axisX = width / 2 - edgeLength / 2;
-    const axisY = height / 2 - edgeLength / 2;
-
-    this.axisX = axisX;
-    this.axisY = axisY;
-    this.state = {
-      edgeLength,
-      // pan: new Animated.ValueXY(),
-      scaleAnimation: new Animated.Value(1)
-    };
-  }
-  // panResponder = {};
-  // componentWillMount() {
-  //   this.panResponder = PanResponder.create({
-  //     onStartShouldSetPanResponder: () => true,
-  //     onPanResponderMove: Animated.event([
-  //       null,
-  //       {
-  //         // <--- When moving
-  //         dx: this.state.pan.x,
-  //         dy: this.state.pan.y
-  //       }
-  //     ]),
-  //     onPanResponderRelease: (e, gesture) => {
-  //       Animated.spring(this.state.pan, {
-  //         toValue: { x: 0, y: 0 },
-  //         friction: 5
-  //       }).start();
-  //     } // <--- callback when dropped
-  //   });
-  // }
-
+    memberIdPresent
+      ? this.setState({
+          iconName: 'check-circle',
+          iconColor: '#c6cacc'
+        })
+      : this.setState({
+          iconName: 'account-circle',
+          iconColor: '#5eb8ec'
+        });
+  };
   render() {
-    const {
-      // locationPressed,
-      // modalVisible,
-      // setModalVisible,
-      getLocation,
-      item
-    } = this.props;
-
-    // const panStyle = {
-    //   position: 'absolute',
-    //   top: locationPressed.y,
-    //   left: locationPressed.x,
-    //   transform: this.state.pan.getTranslateTransform()
-    // };
-
+    const { item, selectTeamMember } = this.props;
     return (
-      <View
-        style={[styles.teamMember]} // onLongPress={evt => {
-        //   console.log('original evt', evt);
-        //   getLocation(evt.nativeEvent);
-        // }}
-        {...this.props.modalPanResponder.panHandlers}
-      >
-        <View style={styles.name}>
-          <Text style={styles.teamMemberText}>{item.client.name}</Text>
+      <Draggable style={[styles.teamMember]}>
+        <View style={styles.user}>
+          <TouchableOpacity
+            onPress={() => {
+              selectTeamMember(item.id);
+              // use setState callback to make component run changeIcon synchronously
+              this.setState({}, () => {
+                this.changeIcon(item.id);
+              });
+            }}
+          >
+            <Icon
+              name={`${this.state.iconName}`}
+              size={30}
+              color={`${this.state.iconColor}`}
+            />
+          </TouchableOpacity>
+          <Text style={styles.name}>{item.client.name}</Text>
         </View>
-        <View style={styles.countIcon}>
-          <Text style={styles.countText}>5</Text>
-        </View>
-      </View>
+        <Text style={styles.countText}>5</Text>
+      </Draggable>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  view: {
-    // backgroundColor: 'yellow'
-  },
   teamMember: {
-    justifyContent: 'space-between',
+    alignItems: 'center',
+    justifyContent: 'center',
     flexDirection: 'row',
     borderBottomWidth: 1,
     borderStyle: 'solid',
-    borderColor: '#BDBDBD',
-    padding: '4%'
+    borderColor: '#c6cacc',
+    paddingTop: '2%',
+    paddingBottom: '10%'
+  },
+  user: {
+    flex: 4,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingLeft: '5%'
   },
   name: {
-    // flexDirection: 'row',
-    // padding: '1%',
-    // backgroundColor: 'red'
-  },
-  teamMemberText: {
-    flex: 1
-  },
-  countIcon: {
-    backgroundColor: '#BDBDBD',
-    borderRadius: 30,
-    height: 25,
-    width: 25,
-    alignItems: 'center',
-    justifyContent: 'center'
+    marginLeft: '3%'
   },
   countText: {
-    // flex: 1
+    flex: 0.5
   }
 });

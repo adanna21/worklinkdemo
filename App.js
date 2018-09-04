@@ -1,45 +1,27 @@
 import React, { Component } from 'react';
-import { Provider } from "react-redux";
-import {
-  createStackNavigator,
-  createMaterialTopTabNavigator
-} from 'react-navigation';
-// import { DragDropStore } from './store';
-// import { StyleSheet, Text, View } from 'react-native';
-import Header from './src/React/components/Header';
-// import NavBar from './src/React/components/NavBar';
-// import Body from './src/React/components/Body/BodyContainer';
-import TabNavigator from './src/config/router';
-// import MyQueue from './src/React/screens/MyQueueScreen';
-// type Props = {};
-// export default class App extends Component<Props> {
+import { Provider } from 'react-redux';
+import { StyleSheet, StatusBar, SafeAreaView } from 'react-native';
+import MainNavigator from './src/config/router';
+import store from './src/Redux';
 
-//   render() {
-//     return (
-//       <View style={styles.container}>
-//         {/* <Header /> */}
-//         {/* <NavBar /> */}
-//         <Body />
-//       </View>
-//     );
-//   }
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1
-//   }
-// });
-export default createStackNavigator(
-  {
-    MainNavigator: TabNavigator
-  },
-  {
-    initialRouteName: 'MainNavigator',
-    headerMode: 'float',
-    /* The header config from HomeScreen is now here */
-    navigationOptions: {
-      headerTitle: <Header />
-    }
+export default class App extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+        {/* SafeAreaView background must be colored to see status bar */}
+        <SafeAreaView
+          style={[styles.container, { backgroundColor: '#590889' }]}
+        >
+          <StatusBar barStyle="light-content" />
+          <MainNavigator />
+        </SafeAreaView>
+      </Provider>
+    );
   }
-);
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  }
+});

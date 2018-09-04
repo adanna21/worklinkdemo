@@ -8,7 +8,7 @@ import RightHeader from '../common/AppBody/RightHeader';
 import RightBody from '../common/AppBody/RightBody';
 import UnassignedHeader from '../components/LeftPanel/Header/UnassignedHeader';
 import MyQueueHeader from '../components/RightPanel/Header/MyQueueHeader';
-import MyWorkOrderList from '../components/LeftPanel/Body/MyWorkOrderList';
+import MyWorkOrderList from '../components/LeftPanel/Body/SuperWorkOrderList';
 import QueueList from '../components/RightPanel/Body/QueueList';
 
 import { NavigationScreenProp } from 'react-navigation';
