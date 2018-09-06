@@ -11,7 +11,7 @@ import ActionHeader from '../components/RightPanel/Header/ActionHeader';
 import SuperWorkOrderList from '../components/LeftPanel/Body/SuperWorkOrderList';
 import TeamList from '../components/RightPanel/Body/TeamList';
 import { NavigationScreenProp } from 'react-navigation';
-import DropContainer from '../utils/react-native-drag-drop/DragContainer';
+import DragContainer from '../utils/react-native-drag-drop/DragContainer';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { allReducers, IState } from '../../../src/Redux';
@@ -33,25 +33,53 @@ export interface ISuperQueueDispatchProps {
 type Props = ISuperQueueProps & ISuperQueueNavProps & ISuperQueueDispatchProps;
 
 class SupervisorQueueScreen extends Component<Props> {
-  // state = {
-  //   scrollEnabled: true
-  // };
+  state = {
+    currentId: null,
+    droppedInZone: null
+  };
+
+  addCurrentId = (id: string) => {
+    console.log('added current Id', id);
+    this.setState({ currentId: id });
+  };
+  removeId = () => {
+    this.setState({ currentId: '' });
+  };
 
   // toggleScroll = (visible: boolean) => {
   //   this.setState({ scrollEnabled: visible });
   // };
   componentDidMount() {
-    const keys = this.props.teamMembers;
-    console.log(keys);
+    const teamArray = this.props.teamMembers;
+    console.log('teamArray', teamArray);
   }
+  isDroppedInZone = () => {
+    this.setState({ droppedInZone: true });
+  };
   render() {
+    const { teamMembers, onTeamMemberClicked, navigation } = this.props;
+    const { currentId } = this.state;
     return (
-      <DropContainer
-        teamArray={this.props.teamMembers}
-        selectTeamMember={this.props.onTeamMemberClicked}
-        // onDragStart={function() {
-        //   console.log(arguments);
-        // }}
+      <DragContainer
+        teamArray={teamMembers}
+        selectTeamMember={onTeamMemberClicked}
+        isDroppedInZone={this.isDroppedInZone}
+        onDragStart={() => {
+          // if only one teamMember is dragged then add them to teamArray
+          // if (currentId) onTeamMemberClicked(currentId);
+          this.setState({ droppedInZone: false });
+        }}
+        onDragEnd={() => {
+          this.setState({}, () => {
+            // was teamMember dropped on workOrder?, if not remove from teamArray
+            if (this.state.droppedInZone == false) {
+              onTeamMemberClicked(currentId);
+              this.removeId();
+            } else {
+              this.removeId();
+            }
+          });
+        }}
       >
         <AppContainer>
           {/* ========
@@ -62,7 +90,10 @@ class SupervisorQueueScreen extends Component<Props> {
               <WorkOrderHeader>My HVAC Queue</WorkOrderHeader>
             </LeftHeader>
             <LeftBody>
-              <SuperWorkOrderList navigation={this.props.navigation} />
+              <SuperWorkOrderList
+                navigation={navigation}
+                droppedInZone={this.isDroppedInZone}
+              />
             </LeftBody>
           </LeftPanel>
           {/* ========
@@ -76,11 +107,13 @@ class SupervisorQueueScreen extends Component<Props> {
               <TeamList
                 selectTeamMember={this.props.onTeamMemberClicked}
                 teamArray={this.props.teamMembers}
+                addCurrentId={this.addCurrentId}
+                currentId={this.state.currentId}
               />
             </RightBody>
           </RightPanel>
         </AppContainer>
-      </DropContainer>
+      </DragContainer>
     );
   }
 }

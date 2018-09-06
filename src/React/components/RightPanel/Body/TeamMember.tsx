@@ -10,10 +10,11 @@ export default class TeamMember extends Component<any, any> {
   };
   // change icon when teaMember selected or unselected
   changeIcon = (id: string) => {
+    console.log('team array', this.props.teamArray);
     const memberIdPresent = this.props.teamArray.some(
       member => member.id === id
     );
-
+    console.log('the id', memberIdPresent);
     memberIdPresent
       ? this.setState({
           iconName: 'check-circle',
@@ -25,9 +26,22 @@ export default class TeamMember extends Component<any, any> {
         });
   };
   render() {
-    const { item, selectTeamMember } = this.props;
+    const {
+      item,
+      selectTeamMember,
+      teamArray,
+      addCurrentId,
+      currentId
+    } = this.props;
     return (
-      <Draggable style={[styles.teamMember]}>
+      <Draggable
+        style={[styles.teamMember]}
+        itemId={item.id}
+        draggableSelectTeamMember={selectTeamMember}
+        draggableChangeIcon={this.changeIcon}
+        teamArray={teamArray}
+        addCurrentId={addCurrentId}
+      >
         <View style={styles.user}>
           <TouchableOpacity
             onPress={() => {

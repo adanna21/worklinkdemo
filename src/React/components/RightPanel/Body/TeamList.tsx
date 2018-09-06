@@ -35,9 +35,10 @@ export default class TeamList extends Component<any, any> {
           renderItem={({ item }) => (
             <TeamMember
               item={item}
-              // getLocation={this.props.getLocation}
               selectTeamMember={this.props.selectTeamMember}
               teamArray={this.props.teamArray}
+              addCurrentId={this.props.addCurrentId}
+              currentId={this.props.currentId}
             />
           )}
           keyExtractor={item => item.id}

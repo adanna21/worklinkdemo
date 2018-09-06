@@ -16,16 +16,17 @@ export default class WorkOrderCard extends Component<any, any> {
     };
     return (
       <DropZone
-        // onEnter={() =>
-        //   this.setState({
-        //     zoneEntered: true
-        //   })
-        // }
-        // onLeave={() =>
-        //   this.setState({
-        //     zoneEntered: false
-        //   })
-        // }
+        onEnter={() =>
+          this.setState({
+            zoneEntered: true
+          })
+        }
+        onLeave={() => {
+          this.setState({
+            zoneEntered: false
+          });
+        }}
+        onDrop={() => this.props.droppedInZone(true)}
         style={styles.dropZone}
       >
         <View

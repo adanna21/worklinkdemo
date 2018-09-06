@@ -30,7 +30,7 @@ export default class SuperWorkOrderList extends Component<any, any> {
           data={workOrders}
           extraData={[this.props, this.state]}
           renderItem={({ item }) => (
-            <WorkOrderCard>
+            <WorkOrderCard droppedInZone={this.props.droppedInZone}>
               <WorkOrderDetails>
                 <Status>
                   <StatusText>{item.status.toLocaleUpperCase()}</StatusText>
