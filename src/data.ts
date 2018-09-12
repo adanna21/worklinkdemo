@@ -1,4 +1,4 @@
-interface IMeWorker {
+export interface IMeWorker {
   id: string;
   name: string;
   email: string;
@@ -37,7 +37,8 @@ export interface IWorkOrder {
   history: IHistory;
 }
 
-type AWorkOrder = Array<IWorkOrder>;
+export type AllWorkOrders = Array<IWorkOrder>;
+export type AllWorkers = Array<IMeWorker>;
 
 export const meWorker: IMeWorker = {
   id: '94848302',
@@ -49,7 +50,7 @@ export const meWorker: IMeWorker = {
   title: 'super'
 };
 
-export const workOrders: AWorkOrder = [
+export const workOrders: AllWorkOrders = [
   {
     status: 'unassigned',
     id: '180000987',

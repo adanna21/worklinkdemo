@@ -251,7 +251,6 @@ class DragContainer extends React.Component {
             location={this.state.location}
             drop={this._handleDrop}
             teamArray={this.props.teamArray}
-            // selectTeamMember={this.props.selectTeamMember}
           />
         ) : null}
       </View>

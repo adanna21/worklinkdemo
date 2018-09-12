@@ -2,7 +2,6 @@ import {
   ActionTypes,
   ISelectTeamMemberAction,
   IUnSelectTeamMemberAction
-  // IAssignTeamAction
 } from './types';
 
 export const selectTeamMember = (memberId: string): ISelectTeamMemberAction => {
@@ -21,9 +20,4 @@ export const unSelectTeamMember = (
   };
 };
 
-// export const assignTeam = (teamMember): IAssignTeamAction => {
-//   return { type: ActionTypes.ASSIGN_TEAM, payload: { teamMember } };
-// };
-
 export type Action = ISelectTeamMemberAction | IUnSelectTeamMemberAction;
-// | IAssignTeamAction;

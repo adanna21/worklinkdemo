@@ -66,7 +66,6 @@ class SupervisorQueueScreen extends Component<Props> {
         isDroppedInZone={this.isDroppedInZone}
         onDragStart={() => {
           // if only one teamMember is dragged then add them to teamArray
-          // if (currentId) onTeamMemberClicked(currentId);
           this.setState({ droppedInZone: false });
         }}
         onDragEnd={() => {

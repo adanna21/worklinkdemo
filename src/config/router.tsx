@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {
   createStackNavigator,
-  createMaterialTopTabNavigator
+  createMaterialTopTabNavigator,
+  createSwitchNavigator
 } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import EmployeeQueue from '../React/screens/EmployeeQueueScreen';
@@ -9,6 +10,7 @@ import SupervisorQueue from '../React/screens/SupervisorQueueScreen';
 import Unassigned from '../React/screens/UnassignedScreen';
 import OrderDetail from '../React/screens/OrderDetail';
 import Calendar from '../React/screens/CalendarScreen';
+import LoginScreen from '../React/screens/LoginScreen';
 import Notices from '../React/screens/Notices';
 import Header from '../React/components/Header';
 
@@ -88,7 +90,7 @@ const TabNavigator = createMaterialTopTabNavigator(
   }
 );
 
-const MainNavigator = createStackNavigator(
+const MainStack = createStackNavigator(
   {
     MainNavigator: TabNavigator
   },
@@ -105,6 +107,34 @@ const MainNavigator = createStackNavigator(
       headerTitle: <Header />
     }
   }
+);
+const AuthStack = createStackNavigator(
+  { Login: LoginScreen },
+  {
+    initialRouteName: 'Login',
+    navigationOptions: {
+      headerTitle: 'NYU WorkLink',
+      headerStyle: {
+        backgroundColor: '#f9f9f9',
+        borderBottomWidth: 0
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+        fontSize: 25,
+        color: '#590889'
+      }
+    }
+  }
+);
+
+const MainNavigator = createSwitchNavigator(
+  {
+    // AuthLoading: AuthLoadingScreen,
+    MainNavigator: MainStack,
+    Auth: AuthStack
+  },
+  { initialRouteName: 'Auth' }
 );
 
 export default MainNavigator;
