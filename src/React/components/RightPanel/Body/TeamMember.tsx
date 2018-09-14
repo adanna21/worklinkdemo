@@ -10,11 +10,9 @@ export default class TeamMember extends Component<any, any> {
   };
   // change icon when teaMember selected or unselected
   changeIcon = (id: string) => {
-    console.log('team array', this.props.teamArray);
     const memberIdPresent = this.props.teamArray.some(
       member => member.id === id
     );
-    console.log('the id', memberIdPresent);
     memberIdPresent
       ? this.setState({
           iconName: 'check-circle',

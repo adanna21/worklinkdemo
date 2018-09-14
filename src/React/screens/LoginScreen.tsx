@@ -5,33 +5,45 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  AsyncStorage,
-  NativeModules
+  TouchableWithoutFeedback,
+  Keyboard
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { IState } from '../../../src/Redux';
 import { IUserLogin } from '../../../src/Redux/login/types';
-import { saveUserInAsync } from '../../Redux/login/actions';
+import { saveUserInAsync, login } from '../../Redux/login/actions';
+import LoginButton from '../components/Buttons/LoginButton';
 
 export interface ILogInProps {
-  status: string;
+  userSaved: boolean;
+  loggedIn: boolean;
+  username: null;
   user: IUserLogin;
   error: string;
 }
 
 export interface ILoginDispatchProps {
   saveUser(user: IUserLogin): void;
+  onLogin(username: string, password: string): void;
 }
 
 type Props = ILogInProps & ILoginDispatchProps;
 
 class LoginScreen extends Component<Props> {
+  state = {
+    username: '',
+    password: ''
+  };
   componentDidMount() {
     const user = { username: 'kevinduran', password: 'thisisus' };
     this.props.saveUser(user);
-    // NativeModules.DevSettings.showAsyncStorageContentInDev();
   }
+  handleLogin = () => {
+    const username = this.state.username;
+    const password = this.state.password;
+    this.props.onLogin(username, password);
+  };
   render() {
     const shadowStyle = {
       backgroundColor: '#fff',
@@ -42,24 +54,33 @@ class LoginScreen extends Component<Props> {
     };
     return (
       <View style={styles.container}>
-        <View style={[styles.loginCard, shadowStyle]}>
-          <Text style={styles.title}>NYU Login</Text>
-          <TextInput
-            style={styles.inputText}
-            placeholder={'Net ID'}
-            placeholderTextColor={'#a4a4a4'}
-            autoCorrect={false}
-          />
-          <TextInput
-            style={styles.inputText}
-            placeholder={'Password'}
-            placeholderTextColor={'#a4a4a4'}
-            autoCorrect={false}
-          />
-          <TouchableOpacity style={styles.loginButton}>
-            <Text style={styles.loginText}>Login</Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View style={[styles.loginCard, shadowStyle]}>
+            <Text style={styles.title}>NYU Login</Text>
+            <TextInput
+              style={styles.inputText}
+              placeholder={'Net ID'}
+              placeholderTextColor={'#a4a4a4'}
+              autoCorrect={false}
+              returnKeyType="next"
+              onSubmitEditing={() => this.txtPassword.focus()}
+              value={this.state.username}
+              onChangeText={text => this.setState({ username: text })}
+            />
+            <TextInput
+              style={styles.inputText}
+              placeholder={'Password'}
+              placeholderTextColor={'#a4a4a4'}
+              autoCorrect={false}
+              returnKeyType="go"
+              secureTextEntry={true}
+              ref={t => (this.txtPassword = t)}
+              value={this.state.password}
+              onChangeText={text => this.setState({ password: text })}
+            />
+            <LoginButton handleLogin={this.handleLogin} />
+          </View>
+        </TouchableWithoutFeedback>
       </View>
     );
   }
@@ -68,7 +89,12 @@ class LoginScreen extends Component<Props> {
 // redux
 const mapStateToProps = (state: IState) => state.login;
 const mapDispatchToProps = (dispatch: Dispatch): ILoginDispatchProps => ({
-  saveUser: (user: IUserLogin) => dispatch(saveUserInAsync(user))
+  saveUser: (user: IUserLogin) => {
+    dispatch(saveUserInAsync(user));
+  },
+  onLogin: (username: string, password: string) => {
+    dispatch(login(username, password));
+  }
 });
 export default connect(
   mapStateToProps,
