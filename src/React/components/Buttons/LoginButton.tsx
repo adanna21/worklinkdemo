@@ -10,7 +10,14 @@ export default class LoginButton extends Component {
     return (
       <TouchableOpacity
         style={[, /*opacityStyle*/ styles.button]}
-        onPress={() => this.props.handleLogin()}
+        onPress={() => {
+          this.props.handleLogin();
+          this.setState({}, () => {
+            if (this.props.loggedIn) {
+              this.props.navigation.navigate('MainNavigator');
+            }
+          });
+        }}
       >
         <Text style={styles.text}>Login</Text>
       </TouchableOpacity>

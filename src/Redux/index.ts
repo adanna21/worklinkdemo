@@ -7,6 +7,7 @@ import { ISuperQueueProps } from '../React/screens/SupervisorQueueScreen';
 import { IMeWorker, IWorkOrder } from '../data';
 import { ILogInProps } from '../React/screens/LoginScreen';
 import { workOrders, employees } from './initialData.json';
+import { nav } from './navigation/reducer';
 
 // root state, contains all state of app, typing
 export interface IState {
@@ -30,6 +31,7 @@ export const allReducers = combineReducers<IState>({
   workOrders: (state = workOrders) => state,
   employees: (state = employees) => state,
   login: fromLogin.reducer
+  // nav: nav
 });
 
 // export store

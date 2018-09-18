@@ -8,6 +8,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard
 } from 'react-native';
+import { NavigationScreenProp } from 'react-navigation';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { IState } from '../../../src/Redux';
@@ -15,10 +16,14 @@ import { IUserLogin } from '../../../src/Redux/login/types';
 import { saveUserInAsync, login } from '../../Redux/login/actions';
 import LoginButton from '../components/Buttons/LoginButton';
 
+export interface ILoginNavProps {
+  navigation: NavigationScreenProp<any, any>;
+}
+
 export interface ILogInProps {
   userSaved: boolean;
   loggedIn: boolean;
-  username: null;
+  username: string | null;
   user: IUserLogin;
   error: string;
 }
@@ -28,7 +33,7 @@ export interface ILoginDispatchProps {
   onLogin(username: string, password: string): void;
 }
 
-type Props = ILogInProps & ILoginDispatchProps;
+type Props = ILogInProps & ILoginDispatchProps & ILoginNavProps;
 
 class LoginScreen extends Component<Props> {
   state = {
@@ -43,6 +48,11 @@ class LoginScreen extends Component<Props> {
     const username = this.state.username;
     const password = this.state.password;
     this.props.onLogin(username, password);
+    // this.setState({}, () => {
+    //   if (this.props.loggedIn) {
+    //     this.props.navigation.navigate('MainNavigator');
+    //   }
+    // });
   };
   render() {
     const shadowStyle = {
@@ -78,7 +88,11 @@ class LoginScreen extends Component<Props> {
               value={this.state.password}
               onChangeText={text => this.setState({ password: text })}
             />
-            <LoginButton handleLogin={this.handleLogin} />
+            <LoginButton
+              handleLogin={this.handleLogin}
+              navigation={this.props.navigation}
+              loggedIn={this.props.loggedIn}
+            />
           </View>
         </TouchableWithoutFeedback>
       </View>

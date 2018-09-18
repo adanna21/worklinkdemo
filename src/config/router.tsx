@@ -4,7 +4,9 @@ import {
   createMaterialTopTabNavigator,
   createSwitchNavigator
 } from 'react-navigation';
+import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { IState } from '../Redux';
 import EmployeeQueue from '../React/screens/EmployeeQueueScreen';
 import SupervisorQueue from '../React/screens/SupervisorQueueScreen';
 import Unassigned from '../React/screens/UnassignedScreen';
@@ -127,8 +129,8 @@ const AuthStack = createStackNavigator(
     }
   }
 );
-
-const MainNavigator = createSwitchNavigator(
+// MainNavigator = Router
+export const MainNavigator = createSwitchNavigator(
   {
     // AuthLoading: AuthLoadingScreen,
     MainNavigator: MainStack,
@@ -137,4 +139,12 @@ const MainNavigator = createSwitchNavigator(
   { initialRouteName: 'Auth' }
 );
 
+// const MainNavWithNavState = (props) => {
+//   <MainNavigator
+//     navigation={{ dispatch: props.dispatch, state: this.props.nav }}
+//   />
+// }
 export default MainNavigator;
+// const mapStateToProps = (state: IState) => state.login;
+// export default connect(mapStateToProps)(MainNavigator);
+// console.log(this.props);
