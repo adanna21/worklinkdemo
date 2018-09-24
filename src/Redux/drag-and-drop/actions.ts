@@ -1,23 +1,21 @@
 import {
   ActionTypes,
-  ISelectTeamMemberAction,
-  IUnSelectTeamMemberAction
+  IToggleTeamMemberAction
+  // IRemoveTeamMemberAction
 } from './types';
 
-export const selectTeamMember = (memberId: string): ISelectTeamMemberAction => {
+export const toggleTeamMember = (memberId: string): IToggleTeamMemberAction => {
   return {
-    type: ActionTypes.SELECT_TEAM_MEMBER,
+    type: ActionTypes.TOGGLE_TEAM_MEMBER,
     payload: { memberId }
   };
 };
 
-export const unSelectTeamMember = (
-  memberId: string
-): IUnSelectTeamMemberAction => {
-  return {
-    type: ActionTypes.UNSELECT_TEAM_MEMBER,
-    payload: { memberId }
-  };
-};
+// export const removeTeamMember = (memberId: string): IRemoveTeamMemberAction => {
+//   return {
+//     type: ActionTypes.REMOVE_TEAM_MEMBER,
+//     payload: { memberId }
+//   };
+// };
 
-export type Action = ISelectTeamMemberAction | IUnSelectTeamMemberAction;
+export type Action = IToggleTeamMemberAction;

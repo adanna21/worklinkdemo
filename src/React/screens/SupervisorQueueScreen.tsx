@@ -16,7 +16,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { allReducers, IState } from '../../../src/Redux';
 import { ITeamMember } from '../../../src/Redux/drag-and-drop/types';
-import { selectTeamMember } from '../../Redux/drag-and-drop/actions';
+import { toggleTeamMember } from '../../Redux/drag-and-drop/actions';
 
 export interface ISuperQueueNavProps {
   navigation: NavigationScreenProp<any, any>;
@@ -120,7 +120,7 @@ class SupervisorQueueScreen extends Component<Props> {
 const mapStateToProps = (state: IState) => state.dragDrop;
 const mapDispatchToProps = (dispatch: Dispatch): ISuperQueueDispatchProps => ({
   onTeamMemberClicked: (memberId: string) =>
-    dispatch(selectTeamMember(memberId))
+    dispatch(toggleTeamMember(memberId))
 });
 export default connect(
   mapStateToProps,

@@ -7,13 +7,13 @@
     "test": "jest"
   },
   "dependencies": {
+    "@redux-offline/redux-offline": "^2.4.0",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-native": "^0.56.0",
     "react-native-vector-icons": "^4.6.0",
     "react-navigation": "^2.7.0",
     "react-navigation-redux-helpers": "^2.0.5",
-    "react-offline": "^0.1.0",
     "react-redux": "^5.0.7",
     "redux": "^4.0.0",
     "redux-logger": "^3.0.6",
@@ -21,6 +21,7 @@
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0-beta.51",
     "@types/jest": "^23.3.0",
     "@types/prop-types": "^15.5.5",
     "@types/react": "^16.4.6",
@@ -31,9 +32,12 @@
     "@types/react-test-renderer": "^16.0.1",
     "@types/redux-logger": "^3.0.6",
     "@types/redux-thunk": "^2.1.0",
+    "babel-core": "^7.0.0-beta.51",
     "babel-jest": "23.4.0",
-    "babel-preset-react-native": "^5.0.1",
+    "babel-preset-react-native": "^5.0.2",
     "jest": "23.4.1",
+    "jest-react-native": "^18.0.0",
+    "react-addons-test-utils": "^15.6.2",
     "react-native-typescript-transformer": "^1.2.10",
     "react-test-renderer": "16.4.1",
     "ts-jest": "^23.0.1",
@@ -48,7 +52,7 @@
     ],
     "transform": {
       "^.+\\.(js)$": "<rootDir>/node_modules/babel-jest",
-      "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+      "\\.(ts|tsx)$": "ts-jest"
     },
     "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
     "testPathIgnorePatterns": [

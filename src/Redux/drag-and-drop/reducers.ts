@@ -12,23 +12,23 @@ export const reducer = (
   action: Action
 ) => {
   const { teamMembers } = state;
-  const SELECT = ActionTypes.SELECT_TEAM_MEMBER;
-  const UNSELECT = ActionTypes.UNSELECT_TEAM_MEMBER;
+  const TOGGLE = ActionTypes.TOGGLE_TEAM_MEMBER;
+  let memberId;
   switch (action.type) {
-    case SELECT || UNSELECT:
-      const memberId = action.payload.memberId;
+    case TOGGLE:
+      memberId = action.payload.memberId;
       // check if member is already in the team
       const memberIdPresent = teamMembers.some(
         member => member.id === memberId
       );
       // add member if not already there
-      if (!memberIdPresent && SELECT) {
+      if (!memberIdPresent) {
         return {
           ...state,
           teamMembers: [...state.teamMembers, { id: action.payload.memberId }]
         };
         // remove member if already there
-      } else if (memberIdPresent && UNSELECT) {
+      } else if (memberIdPresent) {
         return {
           ...state,
           teamMembers: teamMembers.filter(member => member.id !== memberId)
@@ -36,8 +36,6 @@ export const reducer = (
       } else {
         return { ...state, error: 'oops' };
       }
-    // case ActionTypes.ASSIGN_TEAM:
-    //   return state.teamMembers;
     default:
       return state;
   }
