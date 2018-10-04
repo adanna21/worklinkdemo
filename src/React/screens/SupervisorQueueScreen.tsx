@@ -11,7 +11,7 @@ import ActionHeader from '../components/RightPanel/Header/ActionHeader';
 import SuperWorkOrderList from '../components/LeftPanel/Body/SuperWorkOrderList';
 import TeamList from '../components/RightPanel/Body/TeamList';
 import { NavigationScreenProp } from 'react-navigation';
-import { DragContainer } from '../utils/react-native-drag-drop';
+import { DragContainer } from '../utils/react-native-drag-drop/index.js';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { IState } from '../../../src/Redux';
