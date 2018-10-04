@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
-import DropZone from '../../../utils/react-native-drag-drop/DropZone';
+import { DropZone } from './../../../utils/react-native-drag-drop';
 
 export default class WorkOrderCard extends Component<any, any> {
   state = {

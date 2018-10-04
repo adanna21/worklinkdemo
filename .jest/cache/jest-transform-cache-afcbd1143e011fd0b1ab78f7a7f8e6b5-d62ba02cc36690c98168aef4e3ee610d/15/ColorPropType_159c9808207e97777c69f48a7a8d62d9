@@ -1,0 +1,24 @@
+95a1f5a3583ca8b032a7bc1fb439920a
+/**
+ * https://github.com/facebook/react-native/blob/master/Libraries/StyleSheet/ColorPropType.js
+ */
+var ColorPropType = function () {
+  function ColorPropType(props, propName) {
+    var color = props[propName];
+
+    if (color === undefined || color === null) {// return;
+    }
+
+    if (typeof color === 'number') {} // Developers should not use a number, but we are using the prop type
+    // both for user provided colors and for transformed ones. This isn't ideal
+    // and should be fixed but will do for now...
+    // return;
+    // TODO(lmr): test color
+
+  }
+
+  return ColorPropType;
+}();
+
+module.exports = ColorPropType;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkNvbG9yUHJvcFR5cGUuanMiXSwibmFtZXMiOlsiQ29sb3JQcm9wVHlwZSIsInByb3BzIiwicHJvcE5hbWUiLCJjb2xvciIsInVuZGVmaW5lZCIsIm1vZHVsZSIsImV4cG9ydHMiXSwibWFwcGluZ3MiOiJBQUFBOzs7QUFHQSxJQUFJQSxhQUFhLEdBQUMsWUFBVTtBQUFDLFdBQVNBLGFBQVQsQ0FBdUJDLEtBQXZCLEVBQTZCQyxRQUE3QixFQUFzQztBQUNuRSxRQUFJQyxLQUFLLEdBQUNGLEtBQUssQ0FBQ0MsUUFBRCxDQUFmOztBQUNBLFFBQUdDLEtBQUssS0FBR0MsU0FBUixJQUFtQkQsS0FBSyxLQUFHLElBQTlCLEVBQW1DLENBQ25DO0FBQ0M7O0FBRUQsUUFBRyxPQUFPQSxLQUFQLEtBQWUsUUFBbEIsRUFBMkIsQ0FLMUIsQ0FYa0UsQ0FXbEU7QUFDRDtBQUNBO0FBQ0E7QUFDQTs7QUFDQzs7QUFBQSxTQUFPSCxhQUFQO0FBQXNCLENBaEJMLEVBQWxCOztBQWdCMEJLLE1BQU0sQ0FBQ0MsT0FBUCxHQUFlTixhQUFmIiwic291cmNlc0NvbnRlbnQiOlsiLyoqXG4gKiBodHRwczovL2dpdGh1Yi5jb20vZmFjZWJvb2svcmVhY3QtbmF0aXZlL2Jsb2IvbWFzdGVyL0xpYnJhcmllcy9TdHlsZVNoZWV0L0NvbG9yUHJvcFR5cGUuanNcbiAqL1xudmFyIENvbG9yUHJvcFR5cGU9ZnVuY3Rpb24oKXtmdW5jdGlvbiBDb2xvclByb3BUeXBlKHByb3BzLHByb3BOYW1lKXtcbnZhciBjb2xvcj1wcm9wc1twcm9wTmFtZV07XG5pZihjb2xvcj09PXVuZGVmaW5lZHx8Y29sb3I9PT1udWxsKXtcbi8vIHJldHVybjtcbn1cblxuaWYodHlwZW9mIGNvbG9yPT09J251bWJlcicpe1xuXG5cblxuXG59Ly8gRGV2ZWxvcGVycyBzaG91bGQgbm90IHVzZSBhIG51bWJlciwgYnV0IHdlIGFyZSB1c2luZyB0aGUgcHJvcCB0eXBlXG4vLyBib3RoIGZvciB1c2VyIHByb3ZpZGVkIGNvbG9ycyBhbmQgZm9yIHRyYW5zZm9ybWVkIG9uZXMuIFRoaXMgaXNuJ3QgaWRlYWxcbi8vIGFuZCBzaG91bGQgYmUgZml4ZWQgYnV0IHdpbGwgZG8gZm9yIG5vdy4uLlxuLy8gcmV0dXJuO1xuLy8gVE9ETyhsbXIpOiB0ZXN0IGNvbG9yXG59cmV0dXJuIENvbG9yUHJvcFR5cGU7fSgpO21vZHVsZS5leHBvcnRzPUNvbG9yUHJvcFR5cGU7Il19

@@ -1,0 +1,269 @@
+d11502f8d345d0ab8e1fc798d6506e90
+"use strict";Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _react = babelHelpers.interopRequireDefault(require("react"));
+var _reactNative = require("react-native");
+
+
+
+
+
+
+
+
+var _propTypes = babelHelpers.interopRequireDefault(require("prop-types"));
+var _TeamModal = babelHelpers.interopRequireDefault(require("../../components/RightPanel/Body/TeamModal"));
+var _types = require("../../../Redux/drag-and-drop/types");
+var _SupervisorQueueScreen = require("../../screens/SupervisorQueueScreen");var _jsxFileName = "/Users/ao60/Desktop/WorkFiles/WorklinkDemo/src/React/utils/react-native-drag-drop/DragContainer.jsx";
+
+global.Easing = _reactNative.Easing;
+
+var allOrientations = [
+'portrait',
+'portrait-upside-down',
+'landscape',
+'landscape-left',
+'landscape-right'];var
+
+
+
+
+
+
+
+
+
+
+DragModal = function (_React$Component) {function DragModal() {babelHelpers.classCallCheck(this, DragModal);return babelHelpers.possibleConstructorReturn(this, babelHelpers.getPrototypeOf(DragModal).apply(this, arguments));}babelHelpers.createClass(DragModal, [{ key: "render", value: function render()
+    {var
+      startPosition = this.props.content.startPosition;
+      return (
+        _react.default.createElement(_reactNative.Modal, { transparent: true, supportedOrientations: allOrientations, __source: { fileName: _jsxFileName, lineNumber: 38 } },
+        _react.default.createElement(_reactNative.TouchableWithoutFeedback, { onPressIn: this.props.drop, __source: { fileName: _jsxFileName, lineNumber: 39 } },
+        _react.default.createElement(_reactNative.Animated.View, { style: this.props.location.getLayout(), __source: { fileName: _jsxFileName, lineNumber: 40 } },
+        _react.default.createElement(_TeamModal.default, {
+          teamArray: this.props.teamArray,
+          content: this.props.content, __source: { fileName: _jsxFileName, lineNumber: 41 } })))));
+
+
+
+
+
+    } }]);babelHelpers.inherits(DragModal, _React$Component);return DragModal;}(_react.default.Component);var
+
+
+DragContainer = function (_React$Component2) {
+  function DragContainer(props) {var _this;babelHelpers.classCallCheck(this, DragContainer);
+    _this = babelHelpers.possibleConstructorReturn(this, babelHelpers.getPrototypeOf(DragContainer).call(this, props));
+    _this.displayName = 'DragContainer';
+    _this.containerLayout;
+
+    var location = new _reactNative.Animated.ValueXY();
+
+    _this.state = {
+      location: location };
+
+    _this.dropZones = [];
+    _this.draggables = [];
+    _this.onDrag = _this.onDrag.bind(babelHelpers.assertThisInitialized(babelHelpers.assertThisInitialized(_this)));
+    _this._handleDragging = _this._handleDragging.bind(babelHelpers.assertThisInitialized(babelHelpers.assertThisInitialized(_this)));
+    _this._handleDrop = _this._handleDrop.bind(babelHelpers.assertThisInitialized(babelHelpers.assertThisInitialized(_this)));
+    _this._listener = location.addListener(_this._handleDragging);
+    _this.updateZone = _this.updateZone.bind(babelHelpers.assertThisInitialized(babelHelpers.assertThisInitialized(_this)));
+    _this.removeZone = _this.removeZone.bind(babelHelpers.assertThisInitialized(babelHelpers.assertThisInitialized(_this)));return _this;
+  }babelHelpers.createClass(DragContainer, [{ key: "componentWillUnmount", value: function componentWillUnmount()
+
+
+
+
+
+
+    {
+      if (this._listener) this.state.location.removeListener(this._listener);
+    } }, { key: "getDragContext", value: function getDragContext()
+
+    {
+      return {
+        dropZones: this.dropZones,
+        onDrag: this.onDrag,
+        container: this.containerLayout,
+        dragging: this.state.draggingComponent,
+        updateZone: this.updateZone,
+        removeZone: this.removeZone };
+
+    } }, { key: "getChildContext", value: function getChildContext()
+
+    {
+      return { dragContext: this.getDragContext() };
+    } }, { key: "updateZone", value: function updateZone(
+
+
+
+
+
+    details) {
+      var zone = this.dropZones.find(function (x) {return x.ref === details.ref;});
+      if (!zone) {
+        this.dropZones.push(details);
+      } else {
+        var i = this.dropZones.indexOf(zone);
+        this.dropZones.splice(i, 1, details);
+      }
+    } }, { key: "removeZone", value: function removeZone(
+
+    ref) {
+      var i = this.dropZones.find(function (x) {return x.ref === ref;});
+      if (i !== -1) {
+        this.dropZones.splice(i, 1);
+      }
+    } }, { key: "inZone", value: function inZone(_ref,
+
+    zone) {var x = _ref.x,y = _ref.y;
+      return (
+        zone.x <= x &&
+        zone.width + zone.x >= x &&
+        zone.y <= y &&
+        zone.height + zone.y >= y);
+
+    } }, { key: "_addLocationOffset", value: function _addLocationOffset(
+    point) {
+      if (!this.state.draggingComponent) return point;
+      return {
+        x: point.x + this.state.draggingComponent.startPosition.width / 2,
+        y: point.y + this.state.draggingComponent.startPosition.height / 2 };
+
+    } }, { key: "_handleDragging", value: function _handleDragging(
+
+    point) {var _this2 = this;
+      this._point = point;
+      if (this._locked || !point) return;
+      this.dropZones.forEach(function (zone) {
+        if (_this2.inZone(point, zone)) {
+          zone.onEnter(point);
+        } else {
+          zone.onLeave(point);
+        }
+      });
+    } }, { key: "_handleDrop", value: function _handleDrop()
+
+    {var _this3 = this;
+      var hitZones = [];
+      this.dropZones.forEach(function (zone) {
+        if (!_this3._point) return;
+        if (_this3.inZone(_this3._point, zone)) {
+
+          _this3.props.isDroppedInZone();
+          hitZones.push(zone);
+          zone.onDrop(_this3.state.draggingComponent.data);
+        }
+      });
+      if (this.props.onDragEnd) {
+        this.props.onDragEnd(this.state.draggingComponent, hitZones);
+      }
+      if (
+      !hitZones.length &&
+      this.state.draggingComponent &&
+      this.state.draggingComponent.ref)
+      {
+        this._locked = true;
+        return _reactNative.Animated.timing(this.state.location, {
+          duration: 400,
+          easing: _reactNative.Easing.elastic(1),
+          toValue: {
+            x: 0,
+            y: 0 } }).
+
+        start(function () {
+          _this3._locked = false;
+          _this3._handleDragging({ x: -100000, y: -100000 });
+          _this3.setState({
+            draggingComponent: null });
+
+        });
+      }
+      this._handleDragging({ x: -100000, y: -100000 });
+      this.setState({
+        draggingComponent: null });
+
+    } }, { key: "componentWillMount", value: function componentWillMount()
+
+    {var _this4 = this;
+      this._panResponder = _reactNative.PanResponder.create({
+
+        onStartShouldSetPanResponder: function onStartShouldSetPanResponder() {
+          if (_this4.state.draggingComponent) {
+            _this4._handleDrop();
+          }
+          return false;
+        },
+        onMoveShouldSetPanResponder: function onMoveShouldSetPanResponder(evt, gestureState) {return (
+            !!_this4.state.draggingComponent);},
+        onPanResponderMove: function onPanResponderMove() {for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {args[_key] = arguments[_key];}return (
+            _reactNative.Animated.event([
+            null,
+            {
+              dx: _this4.state.location.x,
+              dy: _this4.state.location.y }]).
+
+            apply(_this4, args));},
+        onPanResponderTerminationRequest: function onPanResponderTerminationRequest(evt, gestureState) {return true;},
+        onPanResponderRelease: function onPanResponderRelease(evt, gestureState) {
+          if (!_this4.state.draggingComponent) return;
+
+          _this4._handleDrop();
+        } });
+
+    } }, { key: "onDrag", value: function onDrag(
+
+    id, ref, children, data) {var _this5 = this;
+      ref.measure(function () {
+        if (_this5._listener) _this5.state.location.removeListener(_this5._listener);
+        var location = new _reactNative.Animated.ValueXY();
+        _this5._listener = location.addListener(function (args) {return (
+            _this5._handleDragging(_this5._addLocationOffset(args)));});
+
+        _this5._offset = { x: arguments.length <= 4 ? undefined : arguments[4], y: arguments.length <= 5 ? undefined : arguments[5] };
+        location.setOffset(_this5._offset);
+
+        _this5.setState(
+        {
+          location: location,
+          draggingComponent: {
+            ref: ref,
+            data: data,
+            children: _react.default.Children.map(children, function (child) {
+              return _react.default.cloneElement(child, { dragging: true });
+            }),
+            startPosition: {
+              x: arguments.length <= 4 ? undefined : arguments[4],
+              y: arguments.length <= 5 ? undefined : arguments[5],
+              width: arguments.length <= 2 ? undefined : arguments[2],
+              height: arguments.length <= 3 ? undefined : arguments[3] } } },
+
+
+
+        function () {
+          if (_this5.props.onDragStart)
+          _this5.props.onDragStart(_this5.state.draggingComponent);
+        });
+
+      });
+    } }, { key: "render", value: function render()
+
+    {var _this6 = this;
+      return (
+        _react.default.createElement(_reactNative.View, babelHelpers.extends({
+          style: [{ flex: 1 }, this.props.style],
+          onLayout: function onLayout(e) {return _this6.containerLayout = e.nativeEvent.layout;} },
+        this._panResponder.panHandlers, { __source: { fileName: _jsxFileName, lineNumber: 252 } }),
+
+        this.props.children,
+        this.state.draggingComponent ?
+        _react.default.createElement(DragModal, {
+          content: this.state.draggingComponent,
+          location: this.state.location,
+          drop: this._handleDrop,
+          teamArray: this.props.teamArray, __source: { fileName: _jsxFileName, lineNumber: 259 } }) :
+
+        null));
+
+
+    } }]);babelHelpers.inherits(DragContainer, _React$Component2);return DragContainer;}(_react.default.Component);exports.default = DragContainer;DragContainer.propTypes = { onDragStart: _propTypes.default.func, onDragEnd: _propTypes.default.func };DragContainer.childContextTypes = { dragContext: _propTypes.default.any };

@@ -1,0 +1,49 @@
+5fcd204e21882f2cfbeab63ed89ef28b
+"use strict";
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+const enzyme_1 = require("enzyme");
+
+const react_1 = __importDefault(require("react")); // imported as a connected component!
+
+
+const SupervisorQueueScreen_1 = __importDefault(require("../SupervisorQueueScreen"));
+
+const middlewares = []; // you can mock any middlewares here if necessary
+// const mockStore = configureStore(middlewares);
+
+const initialState = {
+  teamMembers: [],
+  error: ''
+}; // describe('Testing SupervisorQueueScreen', () => {
+//   it('renders as expected', () => {
+//     const wrapper = shallow(
+//       <SupervisorQueueScreen />
+//       // { context: { store: mockStore(initialState) } },
+//     );
+//     expect(wrapper.dive()).toMatchSnapshot();
+//   });
+// });
+// jest.mock('react-native', () => require('react-native-mock'), {
+//   virtual: true
+// });
+
+describe('SupervisorQueueScreen rendering', () => {
+  const container = enzyme_1.shallow(react_1.default.createElement(SupervisorQueueScreen_1.default, null));
+  it('should render a <DragContainer/>', () => {
+    expect(container.find('DragContainer')).toHaveLength(1);
+  }); //   it('renders correctly', () => {
+  //     const tree = renderer.create(<SupervisorQueueScreen />).toJSON();
+  //     expect(tree).toMatchSnapshot();
+  //   });
+}); //# sourceMappingURL=supervisor-queque-tests.js.map
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInN1cGVydmlzb3ItcXVlcXVlLXRlc3RzLnRzeCJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7QUFBQSxNQUFBLFFBQUEsR0FBQSxPQUFBLENBQUEsUUFBQSxDQUFBOztBQUNBLE1BQUEsT0FBQSxHQUFBLGVBQUEsQ0FBQSxPQUFBLENBQUEsT0FBQSxDQUFBLENBQUEsQyxDQUtBOzs7QUFDQSxNQUFBLHVCQUFBLEdBQUEsZUFBQSxDQUFBLE9BQUEsQ0FBQSwwQkFBQSxDQUFBLENBQUE7O0FBRUEsTUFBTSxXQUFXLEdBQUcsRUFBcEIsQyxDQUF3QjtBQUN4Qjs7QUFFQSxNQUFNLFlBQVksR0FBRztBQUNuQixFQUFBLFdBQVcsRUFBRSxFQURNO0FBRW5CLEVBQUEsS0FBSyxFQUFFO0FBRlksQ0FBckIsQyxDQUtBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTs7QUFDQSxRQUFRLENBQUMsaUNBQUQsRUFBb0MsTUFBSztBQUMvQyxRQUFNLFNBQVMsR0FBRyxRQUFBLENBQUEsT0FBQSxDQUFRLE9BQUEsQ0FBQSxPQUFBLENBQUEsYUFBQSxDQUFDLHVCQUFBLENBQUEsT0FBRCxFQUFzQixJQUF0QixDQUFSLENBQWxCO0FBQ0EsRUFBQSxFQUFFLENBQUMsa0NBQUQsRUFBcUMsTUFBSztBQUMxQyxJQUFBLE1BQU0sQ0FBQyxTQUFTLENBQUMsSUFBVixDQUFlLGVBQWYsQ0FBRCxDQUFOLENBQXdDLFlBQXhDLENBQXFELENBQXJEO0FBQ0QsR0FGQyxDQUFGLENBRitDLENBSy9DO0FBQ0E7QUFDQTtBQUNBO0FBQ0QsQ0FUTyxDQUFSLEMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBzaGFsbG93IH0gZnJvbSAnZW56eW1lJztcbmltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCc7XG4vLyBpbXBvcnQgY29uZmlndXJlU3RvcmUgZnJvbSAncmVkdXgtbW9jay1zdG9yZSc7XG5pbXBvcnQge30gZnJvbSAndHMtamVzdCc7XG5pbXBvcnQgcmVuZGVyZXIgZnJvbSAncmVhY3QtdGVzdC1yZW5kZXJlcic7XG5cbi8vIGltcG9ydGVkIGFzIGEgY29ubmVjdGVkIGNvbXBvbmVudCFcbmltcG9ydCBTdXBlcnZpc29yUXVldWVTY3JlZW4gZnJvbSAnLi4vU3VwZXJ2aXNvclF1ZXVlU2NyZWVuJztcblxuY29uc3QgbWlkZGxld2FyZXMgPSBbXTsgLy8geW91IGNhbiBtb2NrIGFueSBtaWRkbGV3YXJlcyBoZXJlIGlmIG5lY2Vzc2FyeVxuLy8gY29uc3QgbW9ja1N0b3JlID0gY29uZmlndXJlU3RvcmUobWlkZGxld2FyZXMpO1xuXG5jb25zdCBpbml0aWFsU3RhdGUgPSB7XG4gIHRlYW1NZW1iZXJzOiBbXSxcbiAgZXJyb3I6ICcnXG59O1xuXG4vLyBkZXNjcmliZSgnVGVzdGluZyBTdXBlcnZpc29yUXVldWVTY3JlZW4nLCAoKSA9PiB7XG4vLyAgIGl0KCdyZW5kZXJzIGFzIGV4cGVjdGVkJywgKCkgPT4ge1xuLy8gICAgIGNvbnN0IHdyYXBwZXIgPSBzaGFsbG93KFxuLy8gICAgICAgPFN1cGVydmlzb3JRdWV1ZVNjcmVlbiAvPlxuLy8gICAgICAgLy8geyBjb250ZXh0OiB7IHN0b3JlOiBtb2NrU3RvcmUoaW5pdGlhbFN0YXRlKSB9IH0sXG4vLyAgICAgKTtcbi8vICAgICBleHBlY3Qod3JhcHBlci5kaXZlKCkpLnRvTWF0Y2hTbmFwc2hvdCgpO1xuLy8gICB9KTtcbi8vIH0pO1xuLy8gamVzdC5tb2NrKCdyZWFjdC1uYXRpdmUnLCAoKSA9PiByZXF1aXJlKCdyZWFjdC1uYXRpdmUtbW9jaycpLCB7XG4vLyAgIHZpcnR1YWw6IHRydWVcbi8vIH0pO1xuZGVzY3JpYmUoJ1N1cGVydmlzb3JRdWV1ZVNjcmVlbiByZW5kZXJpbmcnLCAoKSA9PiB7XG4gIGNvbnN0IGNvbnRhaW5lciA9IHNoYWxsb3coPFN1cGVydmlzb3JRdWV1ZVNjcmVlbiAvPik7XG4gIGl0KCdzaG91bGQgcmVuZGVyIGEgPERyYWdDb250YWluZXIvPicsICgpID0+IHtcbiAgICBleHBlY3QoY29udGFpbmVyLmZpbmQoJ0RyYWdDb250YWluZXInKSkudG9IYXZlTGVuZ3RoKDEpO1xuICB9KTtcbiAgLy8gICBpdCgncmVuZGVycyBjb3JyZWN0bHknLCAoKSA9PiB7XG4gIC8vICAgICBjb25zdCB0cmVlID0gcmVuZGVyZXIuY3JlYXRlKDxTdXBlcnZpc29yUXVldWVTY3JlZW4gLz4pLnRvSlNPTigpO1xuICAvLyAgICAgZXhwZWN0KHRyZWUpLnRvTWF0Y2hTbmFwc2hvdCgpO1xuICAvLyAgIH0pO1xufSk7XG4iXSwic291cmNlUm9vdCI6IiJ9

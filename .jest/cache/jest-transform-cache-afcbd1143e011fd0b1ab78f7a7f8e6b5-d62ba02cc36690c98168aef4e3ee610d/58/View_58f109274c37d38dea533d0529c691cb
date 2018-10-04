@@ -1,0 +1,278 @@
+7c63b1b68abb5c57c5a9e00b0c3f9291
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+
+  return target;
+};
+/**
+* https://github.com/facebook/react-native/blob/master/Libraries/Components/View/View.js
+*/
+
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _StyleSheetPropType = require('../propTypes/StyleSheetPropType');
+
+var _StyleSheetPropType2 = _interopRequireDefault(_StyleSheetPropType);
+
+var _ViewStylePropTypes = require('../propTypes/ViewStylePropTypes');
+
+var _ViewStylePropTypes2 = _interopRequireDefault(_ViewStylePropTypes);
+
+var _NativeMethodsMixin = require('../mixins/NativeMethodsMixin');
+
+var _NativeMethodsMixin2 = _interopRequireDefault(_NativeMethodsMixin);
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : {
+    'default': obj
+  };
+}
+
+var stylePropType = (0, _StyleSheetPropType2['default'])(_ViewStylePropTypes2['default']);
+var PropTypes = _react2['default'].PropTypes;
+var AccessibilityTraits = ['none', 'button', 'link', 'header', 'search', 'image', 'selected', 'plays', 'key', 'text', 'summary', 'disabled', 'frequentUpdates', 'startsMedia', 'adjustable', 'allowsDirectInteraction', 'pageTurn'];
+var AccessibilityComponentType = ['none', 'button', 'radiobutton_checked', 'radiobutton_unchecked']; // TODO(lmr):
+
+var forceTouchAvailable = false;
+var statics = {
+  AccessibilityTraits: AccessibilityTraits,
+  AccessibilityComponentType: AccessibilityComponentType,
+
+  /**
+     * Is 3D Touch / Force Touch available (i.e. will touch events include `force`)
+     * @platform ios
+     */
+  forceTouchAvailable: forceTouchAvailable
+};
+
+var View = _react2['default'].createClass({
+  displayName: 'View',
+  propTypes: {
+    /**
+         * When true, indicates that the view is an accessibility element. By default,
+         * all the touchable elements are accessible.
+         */
+    accessible: PropTypes.bool,
+
+    /**
+         * Overrides the text that's read by the screen reader when the user interacts
+         * with the element. By default, the label is constructed by traversing all the
+         * children and accumulating all the Text nodes separated by space.
+         */
+    accessibilityLabel: PropTypes.string,
+
+    /**
+         * Indicates to accessibility services to treat UI component like a
+         * native one. Works for Android only.
+         * @platform android
+         */
+    accessibilityComponentType: PropTypes.oneOf(AccessibilityComponentType),
+
+    /**
+         * Indicates to accessibility services whether the user should be notified
+         * when this view changes. Works for Android API >= 19 only.
+         * See http://developer.android.com/reference/android/view/View.html#attr_android:accessibilityLiveRegion
+         * for references.
+         * @platform android
+         */
+    accessibilityLiveRegion: PropTypes.oneOf(['none', 'polite', 'assertive']),
+
+    /**
+         * Controls how view is important for accessibility which is if it
+         * fires accessibility events and if it is reported to accessibility services
+         * that query the screen. Works for Android only.
+         * See http://developer.android.com/reference/android/R.attr.html#importantForAccessibility
+         * for references.
+         * Possible values:
+         * 'auto' - The system determines whether the view is important for accessibility -
+         *    default (recommended).
+         * 'yes' - The view is important for accessibility.
+         * 'no' - The view is not important for accessibility.
+         * 'no-hide-descendants' - The view is not important for accessibility,
+         *    nor are any of its descendant views.
+         *
+         * @platform android
+         */
+    importantForAccessibility: PropTypes.oneOf(['auto', 'yes', 'no', 'no-hide-descendants']),
+
+    /**
+         * Provides additional traits to screen reader. By default no traits are
+         * provided unless specified otherwise in element
+         * @platform ios
+         */
+    accessibilityTraits: PropTypes.oneOfType([PropTypes.oneOf(AccessibilityTraits), PropTypes.arrayOf(PropTypes.oneOf(AccessibilityTraits))]),
+
+    /**
+         * When `accessible` is true, the system will try to invoke this function
+         * when the user performs accessibility tap gesture.
+         */
+    onAccessibilityTap: PropTypes.func,
+
+    /**
+         * When `accessible` is true, the system will invoke this function when the
+         * user performs the magic tap gesture.
+         */
+    onMagicTap: PropTypes.func,
+
+    /**
+         * Used to locate this view in end-to-end tests. NB: disables the 'layout-only
+         * view removal' optimization for this view!
+         */
+    testID: PropTypes.string,
+
+    /**
+         * For most touch interactions, you'll simply want to wrap your component in
+         * `TouchableHighlight` or `TouchableOpacity`. Check out `Touchable.js`,
+         * `ScrollResponder.js` and `ResponderEventPlugin.js` for more discussion.
+         */
+    onResponderGrant: PropTypes.func,
+    onResponderMove: PropTypes.func,
+    onResponderReject: PropTypes.func,
+    onResponderRelease: PropTypes.func,
+    onResponderTerminate: PropTypes.func,
+    onResponderTerminationRequest: PropTypes.func,
+    onStartShouldSetResponder: PropTypes.func,
+    onStartShouldSetResponderCapture: PropTypes.func,
+    onMoveShouldSetResponder: PropTypes.func,
+    onMoveShouldSetResponderCapture: PropTypes.func,
+
+    /**
+         * Invoked on mount and layout changes with
+         *
+         *   {nativeEvent: { layout: {x, y, width, height}}}.
+         *
+         * This event is fired immediately once the layout has been calculated, but
+         * the new layout may not yet be reflected on the screen at the time the
+         * event is received, especially if a layout animation is in progress.
+         */
+    onLayout: PropTypes.func,
+
+    /**
+         * In the absence of `auto` property, `none` is much like `CSS`'s `none`
+         * value. `box-none` is as if you had applied the `CSS` class:
+         *
+         * ```
+         * .box-none {
+         *   pointer-events: none;
+         * }
+         * .box-none * {
+         *   pointer-events: all;
+         * }
+         * ```
+         *
+         * `box-only` is the equivalent of
+         *
+         * ```
+         * .box-only {
+         *   pointer-events: all;
+         * }
+         * .box-only * {
+         *   pointer-events: none;
+         * }
+         * ```
+         *
+         * But since `pointerEvents` does not affect layout/appearance, and we are
+         * already deviating from the spec by adding additional modes, we opt to not
+         * include `pointerEvents` on `style`. On some platforms, we would need to
+         * implement it as a `className` anyways. Using `style` or not is an
+         * implementation detail of the platform.
+         */
+    pointerEvents: PropTypes.oneOf(['box-none', 'none', 'box-only', 'auto']),
+    style: stylePropType,
+
+    /**
+         * This is a special performance property exposed by RCTView and is useful
+         * for scrolling content when there are many subviews, most of which are
+         * offscreen. For this property to be effective, it must be applied to a
+         * view that contains many subviews that extend outside its bound. The
+         * subviews must also have overflow: hidden, as should the containing view
+         * (or one of its superviews).
+         */
+    removeClippedSubviews: PropTypes.bool,
+
+    /**
+         * Whether this view should render itself (and all of its children) into a
+         * single hardware texture on the GPU.
+         *
+         * On Android, this is useful for animations and interactions that only
+         * modify opacity, rotation, translation, and/or scale: in those cases, the
+         * view doesn't have to be redrawn and display lists don't need to be
+         * re-executed. The texture can just be re-used and re-composited with
+         * different parameters. The downside is that this can use up limited video
+         * memory, so this prop should be set back to false at the end of the
+         * interaction/animation.
+         * @platform android
+         */
+    renderToHardwareTextureAndroid: PropTypes.bool,
+
+    /**
+         * Whether this view should be rendered as a bitmap before compositing.
+         *
+         * On iOS, this is useful for animations and interactions that do not
+         * modify this component's dimensions nor its children; for example, when
+         * translating the position of a static view, rasterization allows the
+         * renderer to reuse a cached bitmap of a static view and quickly composite
+         * it during each frame.
+         *
+         * Rasterization incurs an off-screen drawing pass and the bitmap consumes
+         * memory. Test and measure when using this property.
+         * @platform ios
+         */
+    shouldRasterizeIOS: PropTypes.bool,
+
+    /**
+         * Views that are only used to layout their children or otherwise don't draw
+         * anything may be automatically removed from the native hierarchy as an
+         * optimization. Set this property to `false` to disable this optimization and
+         * ensure that this View exists in the native view hierarchy.
+         * @platform android
+         */
+    collapsable: PropTypes.bool,
+
+    /**
+         * Whether this view needs to rendered offscreen and composited with an alpha
+         * in order to preserve 100% correct colors and blending behavior. The default
+         * (false) falls back to drawing the component and its children with an alpha
+         * applied to the paint used to draw each element instead of rendering the full
+         * component offscreen and compositing it back with an alpha value. This default
+         * may be noticeable and undesired in the case where the View you are setting
+         * an opacity on has multiple overlapping elements (e.g. multiple overlapping
+         * Views, or text and a background).
+         *
+         * Rendering offscreen to preserve correct alpha behavior is extremely
+         * expensive and hard to debug for non-native developers, which is why it is
+         * not turned on by default. If you do need to enable this property for an
+         * animation, consider combining it with renderToHardwareTextureAndroid if the
+         * view **contents** are static (i.e. it doesn't need to be redrawn each frame).
+         * If that property is enabled, this View will be rendered off-screen once,
+         * saved in a hardware texture, and then composited onto the screen with an alpha
+         * each frame without having to switch rendering targets on the GPU.
+         *
+         * @platform android
+         */
+    needsOffscreenAlphaCompositing: PropTypes.bool
+  },
+  mixins: [_NativeMethodsMixin2['default']],
+  statics: _extends({}, statics),
+  render: function () {
+    function render() {
+      return null;
+    }
+
+    return render;
+  }()
+});
+
+module.exports = View;
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIlZpZXcuanMiXSwibmFtZXMiOlsiX2V4dGVuZHMiLCJPYmplY3QiLCJhc3NpZ24iLCJ0YXJnZXQiLCJpIiwiYXJndW1lbnRzIiwibGVuZ3RoIiwic291cmNlIiwia2V5IiwicHJvdG90eXBlIiwiaGFzT3duUHJvcGVydHkiLCJjYWxsIiwiX3JlYWN0IiwicmVxdWlyZSIsIl9yZWFjdDIiLCJfaW50ZXJvcFJlcXVpcmVEZWZhdWx0IiwiX1N0eWxlU2hlZXRQcm9wVHlwZSIsIl9TdHlsZVNoZWV0UHJvcFR5cGUyIiwiX1ZpZXdTdHlsZVByb3BUeXBlcyIsIl9WaWV3U3R5bGVQcm9wVHlwZXMyIiwiX05hdGl2ZU1ldGhvZHNNaXhpbiIsIl9OYXRpdmVNZXRob2RzTWl4aW4yIiwib2JqIiwiX19lc01vZHVsZSIsInN0eWxlUHJvcFR5cGUiLCJQcm9wVHlwZXMiLCJBY2Nlc3NpYmlsaXR5VHJhaXRzIiwiQWNjZXNzaWJpbGl0eUNvbXBvbmVudFR5cGUiLCJmb3JjZVRvdWNoQXZhaWxhYmxlIiwic3RhdGljcyIsIlZpZXciLCJjcmVhdGVDbGFzcyIsImRpc3BsYXlOYW1lIiwicHJvcFR5cGVzIiwiYWNjZXNzaWJsZSIsImJvb2wiLCJhY2Nlc3NpYmlsaXR5TGFiZWwiLCJzdHJpbmciLCJhY2Nlc3NpYmlsaXR5Q29tcG9uZW50VHlwZSIsIm9uZU9mIiwiYWNjZXNzaWJpbGl0eUxpdmVSZWdpb24iLCJpbXBvcnRhbnRGb3JBY2Nlc3NpYmlsaXR5IiwiYWNjZXNzaWJpbGl0eVRyYWl0cyIsIm9uZU9mVHlwZSIsImFycmF5T2YiLCJvbkFjY2Vzc2liaWxpdHlUYXAiLCJmdW5jIiwib25NYWdpY1RhcCIsInRlc3RJRCIsIm9uUmVzcG9uZGVyR3JhbnQiLCJvblJlc3BvbmRlck1vdmUiLCJvblJlc3BvbmRlclJlamVjdCIsIm9uUmVzcG9uZGVyUmVsZWFzZSIsIm9uUmVzcG9uZGVyVGVybWluYXRlIiwib25SZXNwb25kZXJUZXJtaW5hdGlvblJlcXVlc3QiLCJvblN0YXJ0U2hvdWxkU2V0UmVzcG9uZGVyIiwib25TdGFydFNob3VsZFNldFJlc3BvbmRlckNhcHR1cmUiLCJvbk1vdmVTaG91bGRTZXRSZXNwb25kZXIiLCJvbk1vdmVTaG91bGRTZXRSZXNwb25kZXJDYXB0dXJlIiwib25MYXlvdXQiLCJwb2ludGVyRXZlbnRzIiwic3R5bGUiLCJyZW1vdmVDbGlwcGVkU3Vidmlld3MiLCJyZW5kZXJUb0hhcmR3YXJlVGV4dHVyZUFuZHJvaWQiLCJzaG91bGRSYXN0ZXJpemVJT1MiLCJjb2xsYXBzYWJsZSIsIm5lZWRzT2Zmc2NyZWVuQWxwaGFDb21wb3NpdGluZyIsIm1peGlucyIsInJlbmRlciIsIm1vZHVsZSIsImV4cG9ydHMiXSwibWFwcGluZ3MiOiJBQUFBLElBQUlBLFFBQVEsR0FBQ0MsTUFBTSxDQUFDQyxNQUFQLElBQWUsVUFBU0MsTUFBVCxFQUFnQjtBQUFDLE9BQUksSUFBSUMsQ0FBQyxHQUFDLENBQVYsRUFBWUEsQ0FBQyxHQUFDQyxTQUFTLENBQUNDLE1BQXhCLEVBQStCRixDQUFDLEVBQWhDLEVBQW1DO0FBQUMsUUFBSUcsTUFBTSxHQUFDRixTQUFTLENBQUNELENBQUQsQ0FBcEI7O0FBQXdCLFNBQUksSUFBSUksR0FBUixJQUFlRCxNQUFmLEVBQXNCO0FBQUMsVUFBR04sTUFBTSxDQUFDUSxTQUFQLENBQWlCQyxjQUFqQixDQUFnQ0MsSUFBaEMsQ0FBcUNKLE1BQXJDLEVBQTRDQyxHQUE1QyxDQUFILEVBQW9EO0FBQUNMLFFBQUFBLE1BQU0sQ0FBQ0ssR0FBRCxDQUFOLEdBQVlELE1BQU0sQ0FBQ0MsR0FBRCxDQUFsQjtBQUF5QjtBQUFDO0FBQUM7O0FBQUEsU0FBT0wsTUFBUDtBQUFlLENBQS9OO0FBQWdPOzs7OztBQUdoTyxJQUFJUyxNQUFNLEdBQUNDLE9BQU8sQ0FBQyxPQUFELENBQWxCOztBQUE0QixJQUFJQyxPQUFPLEdBQUNDLHNCQUFzQixDQUFDSCxNQUFELENBQWxDOztBQUM1QixJQUFJSSxtQkFBbUIsR0FBQ0gsT0FBTyxDQUFDLGlDQUFELENB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LElBN0svQjs7QUErS1Y7Ozs7Ozs7Ozs7Ozs7QUFhQTZCLElBQUFBLGtCQUFrQixFQUFDdkMsU0FBUyxDQUFDVSxJQTVMbkI7O0FBOExWOzs7Ozs7O0FBT0E4QixJQUFBQSxXQUFXLEVBQUN4QyxTQUFTLENBQUNVLElBck1aOztBQXVNVjs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBcUJBK0IsSUFBQUEsOEJBQThCLEVBQUN6QyxTQUFTLENBQUNVO0FBNU4vQixHQUQ4QjtBQWdPeENnQyxFQUFBQSxNQUFNLEVBQUMsQ0FBQzlDLG9CQUFvQixDQUFDLFNBQUQsQ0FBckIsQ0FoT2lDO0FBa094Q1EsRUFBQUEsT0FBTyxFQUFDN0IsUUFBUSxDQUFDLEVBQUQsRUFDaEI2QixPQURnQixDQWxPd0I7QUFzT3hDdUMsRUFBQUEsTUFBTSxFQUFDLFlBQVU7QUFBQyxhQUFTQSxNQUFULEdBQWlCO0FBQ25DLGFBQU8sSUFBUDtBQUNDOztBQUFBLFdBQU9BLE1BQVA7QUFBZSxHQUZUO0FBdE9pQyxDQUEvQixDQUFUOztBQTJPQUMsTUFBTSxDQUFDQyxPQUFQLEdBQWV4QyxJQUFmIiwic291cmNlc0NvbnRlbnQiOlsidmFyIF9leHRlbmRzPU9iamVjdC5hc3NpZ258fGZ1bmN0aW9uKHRhcmdldCl7Zm9yKHZhciBpPTE7aTxhcmd1bWVudHMubGVuZ3RoO2krKyl7dmFyIHNvdXJjZT1hcmd1bWVudHNbaV07Zm9yKHZhciBrZXkgaW4gc291cmNlKXtpZihPYmplY3QucHJvdG90eXBlLmhhc093blByb3BlcnR5LmNhbGwoc291cmNlLGtleSkpe3RhcmdldFtrZXldPXNvdXJjZVtrZXldO319fXJldHVybiB0YXJnZXQ7fTsvKipcbiAqIGh0dHBzOi8vZ2l0aHViLmNvbS9mYWNlYm9vay9yZWFjdC1uYXRpdmUvYmxvYi9tYXN0ZXIvTGlicmFyaWVzL0NvbXBvbmVudHMvVmlldy9WaWV3LmpzXG4gKi9cbnZhciBfcmVhY3Q9cmVxdWlyZSgncmVhY3QnKTt2YXIgX3JlYWN0Mj1faW50ZXJvcFJlcXVpcmVEZWZhdWx0KF9yZWFjdCk7XG52YXIgX1N0eWxlU2hlZXRQcm9wVHlwZT1yZXF1aXJlKCcuLi9wcm9wVHlwZXMvU3R5bGVTaGVldFByb3BUeXBlJyk7dmFyIF9TdHlsZVNoZWV0UHJvcFR5cGUyPV9pbnRlcm9wUmVxdWlyZURlZmF1bHQoX1N0eWxlU2hlZXRQcm9wVHlwZSk7XG52YXIgX1ZpZXdTdHlsZVByb3BUeXBlcz1yZXF1aXJlKCcuLi9wcm9wVHlwZXMvVmlld1N0eWxlUHJvcFR5cGVzJyk7dmFyIF9WaWV3U3R5bGVQcm9wVHlwZXMyPV9pbnRlcm9wUmVxdWlyZURlZmF1bHQoX1ZpZXdTdHlsZVByb3BUeXBlcyk7XG52YXIgX05hdGl2ZU1ldGhvZHNNaXhpbj1yZXF1aXJlKCcuLi9taXhpbnMvTmF0aXZlTWV0aG9kc01peGluJyk7dmFyIF9OYXRpdmVNZXRob2RzTWl4aW4yPV9pbnRlcm9wUmVxdWlyZURlZmF1bHQoX05hdGl2ZU1ldGhvZHNNaXhpbik7ZnVuY3Rpb24gX2ludGVyb3BSZXF1aXJlRGVmYXVsdChvYmope3JldHVybiBvYmomJm9iai5fX2VzTW9kdWxlP29iajp7J2RlZmF1bHQnOm9ian07fVxuXG52YXIgc3R5bGVQcm9wVHlwZT0oMCxfU3R5bGVTaGVldFByb3BUeXBlMlsnZGVmYXVsdCddKShfVmlld1N0eWxlUHJvcFR5cGVzMlsnZGVmYXVsdCddKTt2YXJcblxuUHJvcFR5cGVzPV9yZWFjdDJbJ2RlZmF1bHQnXS5Qcm9wVHlwZXM7XG5cbnZhciBBY2Nlc3NpYmlsaXR5VHJhaXRzPVtcbidub25lJyxcbididXR0b24nLFxuJ2xpbmsnLFxuJ2hlYWRlcicsXG4nc2VhcmNoJyxcbidpbWFnZScsXG4nc2VsZWN0ZWQnLFxuJ3BsYXlzJyxcbidrZXknLFxuJ3RleHQnLFxuJ3N1bW1hcnknLFxuJ2Rpc2FibGVkJyxcbidmcmVxdWVudFVwZGF0ZXMnLFxuJ3N0YXJ0c01lZGlhJyxcbidhZGp1c3RhYmxlJyxcbidhbGxvd3NEaXJlY3RJbnRlcmFjdGlvbicsXG4ncGFnZVR1cm4nXTtcblxuXG52YXIgQWNjZXNzaWJpbGl0eUNvbXBvbmVudFR5cGU9W1xuJ25vbmUnLFxuJ2J1dHRvbicsXG4ncmFkaW9idXR0b25fY2hlY2tlZCcsXG4ncmFkaW9idXR0b25fdW5jaGVja2VkJ107XG5cblxuLy8gVE9ETyhsbXIpOlxudmFyIGZvcmNlVG91Y2hBdmFpbGFibGU9ZmFsc2U7XG5cbnZhciBzdGF0aWNzPXtcbkFjY2Vzc2liaWxpdHlUcmFpdHM6QWNjZXNzaWJpbGl0eVRyYWl0cyxcbkFjY2Vzc2liaWxpdHlDb21wb25lbnRUeXBlOkFjY2Vzc2liaWxpdHlDb21wb25lbnRUeXBlLFxuLyoqXG4gICAqIElzIDNEIFRvdWNoIC8gRm9yY2UgVG91Y2ggYXZhaWxhYmxlIChpLmUuIHdpbGwgdG91Y2ggZXZlbnRzIGluY2x1ZGUgYGZvcmNlYClcbiAgICogQHBsYXRmb3JtIGlvc1xuICAgKi9cbmZvcmNlVG91Y2hBdmFpbGFibGU6Zm9yY2VUb3VjaEF2YWlsYWJsZX07XG5cblxudmFyIFZpZXc9X3JlYWN0MlsnZGVmYXVsdCddLmNyZWF0ZUNsYXNzKHtkaXNwbGF5TmFtZTonVmlldycsXG5wcm9wVHlwZXM6e1xuLyoqXG4gICAgICogV2hlbiB0cnVlLCBpbmRpY2F0ZXMgdGhhdCB0aGUgdmlldyBpcyBhbiBhY2Nlc3NpYmlsaXR5IGVsZW1lbnQuIEJ5IGRlZmF1bHQsXG4gICAgICogYWxsIHRoZSB0b3VjaGFibGUgZWxlbWVudHMgYXJlIGFjY2Vzc2libGUuXG4gICAgICovXG5hY2Nlc3NpYmxlOlByb3BUeXBlcy5ib29sLFxuXG4vKipcbiAgICAgKiBPdmVycmlkZXMgdGhlIHRleHQgdGhhdCdzIHJlYWQgYnkgdGhlIHNjcmVlbiByZWFkZXIgd2hlbiB0aGUgdXNlciBpbnRlcmFjdHNcbiAgICAgKiB3aXRoIHRoZSBlbGVtZW50LiBCeSBkZWZhdWx0LCB0aGUgbGFiZWwgaXMgY29uc3RydWN0ZWQgYnkgdHJhdmVyc2luZyBhbGwgdGhlXG4gICAgICogY2hpbGRyZW4gYW5kIGFjY3VtdWxhdGluZyBhbGwgdGhlIFRleHQgbm9kZXMgc2VwYXJhdGVkIGJ5IHNwYWNlLlxuICAgICAqL1xuYWNjZXNzaWJpbGl0eUxhYmVsOlByb3BUeXBlcy5zdHJpbmcsXG5cbi8qKlxuICAgICAqIEluZGljYXRlcyB0byBhY2Nlc3NpYmlsaXR5IHNlcnZpY2VzIHRvIHRyZWF0IFVJIGNvbXBvbmVudCBsaWtlIGFcbiAgICAgKiBuYXRpdmUgb25lLiBXb3JrcyBmb3IgQW5kcm9pZCBvbmx5LlxuICAgICAqIEBwbGF0Zm9ybSBhbmRyb2lkXG4gICAgICovXG5hY2Nlc3NpYmlsaXR5Q29tcG9uZW50VHlwZTpQcm9wVHlwZXMub25lT2YoQWNjZXNzaWJpbGl0eUNvbXBvbmVudFR5cGUpLFxuXG4vKipcbiAgICAgKiBJbmRpY2F0ZXMgdG8gYWNjZXNzaWJpbGl0eSBzZXJ2aWNlcyB3aGV0aGVyIHRoZSB1c2VyIHNob3VsZCBiZSBub3RpZmllZFxuICAgICAqIHdoZW4gdGhpcyB2aWV3IGNoYW5nZXMuIFdvcmtzIGZvciBBbmRyb2lkIEFQSSA+PSAxOSBvbmx5LlxuICAgICAqIFNlZSBodHRwOi8vZGV2ZWxvcGVyLmFuZHJvaWQuY29tL3JlZmVyZW5jZS9hbmRyb2lkL3ZpZXcvVmlldy5odG1sI2F0dHJfYW5kcm9pZDphY2Nlc3NpYmlsaXR5TGl2ZVJlZ2lvblxuICAgICAqIGZvciByZWZlcmVuY2VzLlxuICAgICAqIEBwbGF0Zm9ybSBhbmRyb2lkXG4gICAgICovXG5hY2Nlc3NpYmlsaXR5TGl2ZVJlZ2lvbjpQcm9wVHlwZXMub25lT2YoW1xuJ25vbmUnLFxuJ3BvbGl0ZScsXG4nYXNzZXJ0aXZlJ10pLFxuXG5cbi8qKlxuICAgICAqIENvbnRyb2xzIGhvdyB2aWV3IGlzIGltcG9ydGFudCBmb3IgYWNjZXNzaWJpbGl0eSB3aGljaCBpcyBpZiBpdFxuICAgICAqIGZpcmVzIGFjY2Vzc2liaWxpdHkgZXZlbnRzIGFuZCBpZiBpdCBpcyByZXBvcnRlZCB0byBhY2Nlc3NpYmlsaXR5IHNlcnZpY2VzXG4gICAgICogdGhhdCBxdWVyeSB0aGUgc2NyZWVuLiBXb3JrcyBmb3IgQW5kcm9pZCBvbmx5LlxuICAgICAqIFNlZSBodHRwOi8vZGV2ZWxvcGVyLmFuZHJvaWQuY29tL3JlZmVyZW5jZS9hbmRyb2lkL1IuYXR0ci5odG1sI2ltcG9ydGFudEZvckFjY2Vzc2liaWxpdHlcbiAgICAgKiBmb3IgcmVmZXJlbmNlcy5cbiAgICAgKiBQb3NzaWJsZSB2YWx1ZXM6XG4gICAgICogJ2F1dG8nIC0gVGhlIHN5c3RlbSBkZXRlcm1pbmVzIHdoZXRoZXIgdGhlIHZpZXcgaXMgaW1wb3J0YW50IGZvciBhY2Nlc3NpYmlsaXR5IC1cbiAgICAgKiAgICBkZWZhdWx0IChyZWNvbW1lbmRlZCkuXG4gICAgICogJ3llcycgLSBUaGUgdmlldyBpcyBpbXBvcnRhbnQgZm9yIGFjY2Vzc2liaWxpdHkuXG4gICAgICogJ25vJyAtIFRoZSB2aWV3IGlzIG5vdCBpbXBvcnRhbnQgZm9yIGFjY2Vzc2liaWxpdHkuXG4gICAgICogJ25vLWhpZGUtZGVzY2VuZGFudHMnIC0gVGhlIHZpZXcgaXMgbm90IGltcG9ydGFudCBmb3IgYWNjZXNzaWJpbGl0eSxcbiAgICAgKiAgICBub3IgYXJlIGFueSBvZiBpdHMgZGVzY2VuZGFudCB2aWV3cy5cbiAgICAgKlxuICAgICAqIEBwbGF0Zm9ybSBhbmRyb2lkXG4gICAgICovXG5pbXBvcnRhbnRGb3JBY2Nlc3NpYmlsaXR5OlByb3BUeXBlcy5vbmVPZihbXG4nYXV0bycsXG4neWVzJyxcbidubycsXG4nbm8taGlkZS1kZXNjZW5kYW50cyddKSxcblxuXG4vKipcbiAgICAgKiBQcm92aWRlcyBhZGRpdGlvbmFsIHRyYWl0cyB0byBzY3JlZW4gcmVhZGVyLiBCeSBkZWZhdWx0IG5vIHRyYWl0cyBhcmVcbiAgICAgKiBwcm92aWRlZCB1bmxlc3Mgc3BlY2lmaWVkIG90aGVyd2lzZSBpbiBlbGVtZW50XG4gICAgICogQHBsYXRmb3JtIGlvc1xuICAgICAqL1xuYWNjZXNzaWJpbGl0eVRyYWl0czpQcm9wVHlwZXMub25lT2ZUeXBlKFtcblByb3BUeXBlcy5vbmVPZihBY2Nlc3NpYmlsaXR5VHJhaXRzKSxcblByb3BUeXBlcy5hcnJheU9mKFByb3BUeXBlcy5vbmVPZihBY2Nlc3NpYmlsaXR5VHJhaXRzKSldKSxcblxuXG4vKipcbiAgICAgKiBXaGVuIGBhY2Nlc3NpYmxlYCBpcyB0cnVlLCB0aGUgc3lzdGVtIHdpbGwgdHJ5IHRvIGludm9rZSB0aGlzIGZ1bmN0aW9uXG4gICAgICogd2hlbiB0aGUgdXNlciBwZXJmb3JtcyBhY2Nlc3NpYmlsaXR5IHRhcCBnZXN0dXJlLlxuICAgICAqL1xub25BY2Nlc3NpYmlsaXR5VGFwOlByb3BUeXBlcy5mdW5jLFxuXG4vKipcbiAgICAgKiBXaGVuIGBhY2Nlc3NpYmxlYCBpcyB0cnVlLCB0aGUgc3lzdGVtIHdpbGwgaW52b2tlIHRoaXMgZnVuY3Rpb24gd2hlbiB0aGVcbiAgICAgKiB1c2VyIHBlcmZvcm1zIHRoZSBtYWdpYyB0YXAgZ2VzdHVyZS5cbiAgICAgKi9cbm9uTWFnaWNUYXA6UHJvcFR5cGVzLmZ1bmMsXG5cbi8qKlxuICAgICAqIFVzZWQgdG8gbG9jYXRlIHRoaXMgdmlldyBpbiBlbmQtdG8tZW5kIHRlc3RzLiBOQjogZGlzYWJsZXMgdGhlICdsYXlvdXQtb25seVxuICAgICAqIHZpZXcgcmVtb3ZhbCcgb3B0aW1pemF0aW9uIGZvciB0aGlzIHZpZXchXG4gICAgICovXG50ZXN0SUQ6UHJvcFR5cGVzLnN0cmluZyxcblxuLyoqXG4gICAgICogRm9yIG1vc3QgdG91Y2ggaW50ZXJhY3Rpb25zLCB5b3UnbGwgc2ltcGx5IHdhbnQgdG8gd3JhcCB5b3VyIGNvbXBvbmVudCBpblxuICAgICAqIGBUb3VjaGFibGVIaWdobGlnaHRgIG9yIGBUb3VjaGFibGVPcGFjaXR5YC4gQ2hlY2sgb3V0IGBUb3VjaGFibGUuanNgLFxuICAgICAqIGBTY3JvbGxSZXNwb25kZXIuanNgIGFuZCBgUmVzcG9uZGVyRXZlbnRQbHVnaW4uanNgIGZvciBtb3JlIGRpc2N1c3Npb24uXG4gICAgICovXG5vblJlc3BvbmRlckdyYW50OlByb3BUeXBlcy5mdW5jLFxub25SZXNwb25kZXJNb3ZlOlByb3BUeXBlcy5mdW5jLFxub25SZXNwb25kZXJSZWplY3Q6UHJvcFR5cGVzLmZ1bmMsXG5vblJlc3BvbmRlclJlbGVhc2U6UHJvcFR5cGVzLmZ1bmMsXG5vblJlc3BvbmRlclRlcm1pbmF0ZTpQcm9wVHlwZXMuZnVuYyxcbm9uUmVzcG9uZGVyVGVybWluYXRpb25SZXF1ZXN0OlByb3BUeXBlcy5mdW5jLFxub25TdGFydFNob3VsZFNldFJlc3BvbmRlcjpQcm9wVHlwZXMuZnVuYyxcbm9uU3RhcnRTaG91bGRTZXRSZXNwb25kZXJDYXB0dXJlOlByb3BUeXBlcy5mdW5jLFxub25Nb3ZlU2hvdWxkU2V0UmVzcG9uZGVyOlByb3BUeXBlcy5mdW5jLFxub25Nb3ZlU2hvdWxkU2V0UmVzcG9uZGVyQ2FwdHVyZTpQcm9wVHlwZXMuZnVuYyxcblxuLyoqXG4gICAgICogSW52b2tlZCBvbiBtb3VudCBhbmQgbGF5b3V0IGNoYW5nZXMgd2l0aFxuICAgICAqXG4gICAgICogICB7bmF0aXZlRXZlbnQ6IHsgbGF5b3V0OiB7eCwgeSwgd2lkdGgsIGhlaWdodH19fS5cbiAgICAgKlxuICAgICAqIFRoaXMgZXZlbnQgaXMgZmlyZWQgaW1tZWRpYXRlbHkgb25jZSB0aGUgbGF5b3V0IGhhcyBiZWVuIGNhbGN1bGF0ZWQsIGJ1dFxuICAgICAqIHRoZSBuZXcgbGF5b3V0IG1heSBub3QgeWV0IGJlIHJlZmxlY3RlZCBvbiB0aGUgc2NyZWVuIGF0IHRoZSB0aW1lIHRoZVxuICAgICAqIGV2ZW50IGlzIHJlY2VpdmVkLCBlc3BlY2lhbGx5IGlmIGEgbGF5b3V0IGFuaW1hdGlvbiBpcyBpbiBwcm9ncmVzcy5cbiAgICAgKi9cbm9uTGF5b3V0OlByb3BUeXBlcy5mdW5jLFxuXG4vKipcbiAgICAgKiBJbiB0aGUgYWJzZW5jZSBvZiBgYXV0b2AgcHJvcGVydHksIGBub25lYCBpcyBtdWNoIGxpa2UgYENTU2AncyBgbm9uZWBcbiAgICAgKiB2YWx1ZS4gYGJveC1ub25lYCBpcyBhcyBpZiB5b3UgaGFkIGFwcGxpZWQgdGhlIGBDU1NgIGNsYXNzOlxuICAgICAqXG4gICAgICogYGBgXG4gICAgICogLmJveC1ub25lIHtcbiAgICAgKiAgIHBvaW50ZXItZXZlbnRzOiBub25lO1xuICAgICAqIH1cbiAgICAgKiAuYm94LW5vbmUgKiB7XG4gICAgICogICBwb2ludGVyLWV2ZW50czogYWxsO1xuICAgICAqIH1cbiAgICAgKiBgYGBcbiAgICAgKlxuICAgICAqIGBib3gtb25seWAgaXMgdGhlIGVxdWl2YWxlbnQgb2ZcbiAgICAgKlxuICAgICAqIGBgYFxuICAgICAqIC5ib3gtb25seSB7XG4gICAgICogICBwb2ludGVyLWV2ZW50czogYWxsO1xuICAgICAqIH1cbiAgICAgKiAuYm94LW9ubHkgKiB7XG4gICAgICogICBwb2ludGVyLWV2ZW50czogbm9uZTtcbiAgICAgKiB9XG4gICAgICogYGBgXG4gICAgICpcbiAgICAgKiBCdXQgc2luY2UgYHBvaW50ZXJFdmVudHNgIGRvZXMgbm90IGFmZmVjdCBsYXlvdXQvYXBwZWFyYW5jZSwgYW5kIHdlIGFyZVxuICAgICAqIGFscmVhZHkgZGV2aWF0aW5nIGZyb20gdGhlIHNwZWMgYnkgYWRkaW5nIGFkZGl0aW9uYWwgbW9kZXMsIHdlIG9wdCB0byBub3RcbiAgICAgKiBpbmNsdWRlIGBwb2ludGVyRXZlbnRzYCBvbiBgc3R5bGVgLiBPbiBzb21lIHBsYXRmb3Jtcywgd2Ugd291bGQgbmVlZCB0b1xuICAgICAqIGltcGxlbWVudCBpdCBhcyBhIGBjbGFzc05hbWVgIGFueXdheXMuIFVzaW5nIGBzdHlsZWAgb3Igbm90IGlzIGFuXG4gICAgICogaW1wbGVtZW50YXRpb24gZGV0YWlsIG9mIHRoZSBwbGF0Zm9ybS5cbiAgICAgKi9cbnBvaW50ZXJFdmVudHM6UHJvcFR5cGVzLm9uZU9mKFtcbidib3gtbm9uZScsXG4nbm9uZScsXG4nYm94LW9ubHknLFxuJ2F1dG8nXSksXG5cbnN0eWxlOnN0eWxlUHJvcFR5cGUsXG5cbi8qKlxuICAgICAqIFRoaXMgaXMgYSBzcGVjaWFsIHBlcmZvcm1hbmNlIHByb3BlcnR5IGV4cG9zZWQgYnkgUkNUVmlldyBhbmQgaXMgdXNlZnVsXG4gICAgICogZm9yIHNjcm9sbGluZyBjb250ZW50IHdoZW4gdGhlcmUgYXJlIG1hbnkgc3Vidmlld3MsIG1vc3Qgb2Ygd2hpY2ggYXJlXG4gICAgICogb2Zmc2NyZWVuLiBGb3IgdGhpcyBwcm9wZXJ0eSB0byBiZSBlZmZlY3RpdmUsIGl0IG11c3QgYmUgYXBwbGllZCB0byBhXG4gICAgICogdmlldyB0aGF0IGNvbnRhaW5zIG1hbnkgc3Vidmlld3MgdGhhdCBleHRlbmQgb3V0c2lkZSBpdHMgYm91bmQuIFRoZVxuICAgICAqIHN1YnZpZXdzIG11c3QgYWxzbyBoYXZlIG92ZXJmbG93OiBoaWRkZW4sIGFzIHNob3VsZCB0aGUgY29udGFpbmluZyB2aWV3XG4gICAgICogKG9yIG9uZSBvZiBpdHMgc3VwZXJ2aWV3cykuXG4gICAgICovXG5yZW1vdmVDbGlwcGVkU3Vidmlld3M6UHJvcFR5cGVzLmJvb2wsXG5cbi8qKlxuICAgICAqIFdoZXRoZXIgdGhpcyB2aWV3IHNob3VsZCByZW5kZXIgaXRzZWxmIChhbmQgYWxsIG9mIGl0cyBjaGlsZHJlbikgaW50byBhXG4gICAgICogc2luZ2xlIGhhcmR3YXJlIHRleHR1cmUgb24gdGhlIEdQVS5cbiAgICAgKlxuICAgICAqIE9uIEFuZHJvaWQsIHRoaXMgaXMgdXNlZnVsIGZvciBhbmltYXRpb25zIGFuZCBpbnRlcmFjdGlvbnMgdGhhdCBvbmx5XG4gICAgICogbW9kaWZ5IG9wYWNpdHksIHJvdGF0aW9uLCB0cmFuc2xhdGlvbiwgYW5kL29yIHNjYWxlOiBpbiB0aG9zZSBjYXNlcywgdGhlXG4gICAgICogdmlldyBkb2Vzbid0IGhhdmUgdG8gYmUgcmVkcmF3biBhbmQgZGlzcGxheSBsaXN0cyBkb24ndCBuZWVkIHRvIGJlXG4gICAgICogcmUtZXhlY3V0ZWQuIFRoZSB0ZXh0dXJlIGNhbiBqdXN0IGJlIHJlLXVzZWQgYW5kIHJlLWNvbXBvc2l0ZWQgd2l0aFxuICAgICAqIGRpZmZlcmVudCBwYXJhbWV0ZXJzLiBUaGUgZG93bnNpZGUgaXMgdGhhdCB0aGlzIGNhbiB1c2UgdXAgbGltaXRlZCB2aWRlb1xuICAgICAqIG1lbW9yeSwgc28gdGhpcyBwcm9wIHNob3VsZCBiZSBzZXQgYmFjayB0byBmYWxzZSBhdCB0aGUgZW5kIG9mIHRoZVxuICAgICAqIGludGVyYWN0aW9uL2FuaW1hdGlvbi5cbiAgICAgKiBAcGxhdGZvcm0gYW5kcm9pZFxuICAgICAqL1xucmVuZGVyVG9IYXJkd2FyZVRleHR1cmVBbmRyb2lkOlByb3BUeXBlcy5ib29sLFxuXG4vKipcbiAgICAgKiBXaGV0aGVyIHRoaXMgdmlldyBzaG91bGQgYmUgcmVuZGVyZWQgYXMgYSBiaXRtYXAgYmVmb3JlIGNvbXBvc2l0aW5nLlxuICAgICAqXG4gICAgICogT24gaU9TLCB0aGlzIGlzIHVzZWZ1bCBmb3IgYW5pbWF0aW9ucyBhbmQgaW50ZXJhY3Rpb25zIHRoYXQgZG8gbm90XG4gICAgICogbW9kaWZ5IHRoaXMgY29tcG9uZW50J3MgZGltZW5zaW9ucyBub3IgaXRzIGNoaWxkcmVuOyBmb3IgZXhhbXBsZSwgd2hlblxuICAgICAqIHRyYW5zbGF0aW5nIHRoZSBwb3NpdGlvbiBvZiBhIHN0YXRpYyB2aWV3LCByYXN0ZXJpemF0aW9uIGFsbG93cyB0aGVcbiAgICAgKiByZW5kZXJlciB0byByZXVzZSBhIGNhY2hlZCBiaXRtYXAgb2YgYSBzdGF0aWMgdmlldyBhbmQgcXVpY2tseSBjb21wb3NpdGVcbiAgICAgKiBpdCBkdXJpbmcgZWFjaCBmcmFtZS5cbiAgICAgKlxuICAgICAqIFJhc3Rlcml6YXRpb24gaW5jdXJzIGFuIG9mZi1zY3JlZW4gZHJhd2luZyBwYXNzIGFuZCB0aGUgYml0bWFwIGNvbnN1bWVzXG4gICAgICogbWVtb3J5LiBUZXN0IGFuZCBtZWFzdXJlIHdoZW4gdXNpbmcgdGhpcyBwcm9wZXJ0eS5cbiAgICAgKiBAcGxhdGZvcm0gaW9zXG4gICAgICovXG5zaG91bGRSYXN0ZXJpemVJT1M6UHJvcFR5cGVzLmJvb2wsXG5cbi8qKlxuICAgICAqIFZpZXdzIHRoYXQgYXJlIG9ubHkgdXNlZCB0byBsYXlvdXQgdGhlaXIgY2hpbGRyZW4gb3Igb3RoZXJ3aXNlIGRvbid0IGRyYXdcbiAgICAgKiBhbnl0aGluZyBtYXkgYmUgYXV0b21hdGljYWxseSByZW1vdmVkIGZyb20gdGhlIG5hdGl2ZSBoaWVyYXJjaHkgYXMgYW5cbiAgICAgKiBvcHRpbWl6YXRpb24uIFNldCB0aGlzIHByb3BlcnR5IHRvIGBmYWxzZWAgdG8gZGlzYWJsZSB0aGlzIG9wdGltaXphdGlvbiBhbmRcbiAgICAgKiBlbnN1cmUgdGhhdCB0aGlzIFZpZXcgZXhpc3RzIGluIHRoZSBuYXRpdmUgdmlldyBoaWVyYXJjaHkuXG4gICAgICogQHBsYXRmb3JtIGFuZHJvaWRcbiAgICAgKi9cbmNvbGxhcHNhYmxlOlByb3BUeXBlcy5ib29sLFxuXG4vKipcbiAgICAgKiBXaGV0aGVyIHRoaXMgdmlldyBuZWVkcyB0byByZW5kZXJlZCBvZmZzY3JlZW4gYW5kIGNvbXBvc2l0ZWQgd2l0aCBhbiBhbHBoYVxuICAgICAqIGluIG9yZGVyIHRvIHByZXNlcnZlIDEwMCUgY29ycmVjdCBjb2xvcnMgYW5kIGJsZW5kaW5nIGJlaGF2aW9yLiBUaGUgZGVmYXVsdFxuICAgICAqIChmYWxzZSkgZmFsbHMgYmFjayB0byBkcmF3aW5nIHRoZSBjb21wb25lbnQgYW5kIGl0cyBjaGlsZHJlbiB3aXRoIGFuIGFscGhhXG4gICAgICogYXBwbGllZCB0byB0aGUgcGFpbnQgdXNlZCB0byBkcmF3IGVhY2ggZWxlbWVudCBpbnN0ZWFkIG9mIHJlbmRlcmluZyB0aGUgZnVsbFxuICAgICAqIGNvbXBvbmVudCBvZmZzY3JlZW4gYW5kIGNvbXBvc2l0aW5nIGl0IGJhY2sgd2l0aCBhbiBhbHBoYSB2YWx1ZS4gVGhpcyBkZWZhdWx0XG4gICAgICogbWF5IGJlIG5vdGljZWFibGUgYW5kIHVuZGVzaXJlZCBpbiB0aGUgY2FzZSB3aGVyZSB0aGUgVmlldyB5b3UgYXJlIHNldHRpbmdcbiAgICAgKiBhbiBvcGFjaXR5IG9uIGhhcyBtdWx0aXBsZSBvdmVybGFwcGluZyBlbGVtZW50cyAoZS5nLiBtdWx0aXBsZSBvdmVybGFwcGluZ1xuICAgICAqIFZpZXdzLCBvciB0ZXh0IGFuZCBhIGJhY2tncm91bmQpLlxuICAgICAqXG4gICAgICogUmVuZGVyaW5nIG9mZnNjcmVlbiB0byBwcmVzZXJ2ZSBjb3JyZWN0IGFscGhhIGJlaGF2aW9yIGlzIGV4dHJlbWVseVxuICAgICAqIGV4cGVuc2l2ZSBhbmQgaGFyZCB0byBkZWJ1ZyBmb3Igbm9uLW5hdGl2ZSBkZXZlbG9wZXJzLCB3aGljaCBpcyB3aHkgaXQgaXNcbiAgICAgKiBub3QgdHVybmVkIG9uIGJ5IGRlZmF1bHQuIElmIHlvdSBkbyBuZWVkIHRvIGVuYWJsZSB0aGlzIHByb3BlcnR5IGZvciBhblxuICAgICAqIGFuaW1hdGlvbiwgY29uc2lkZXIgY29tYmluaW5nIGl0IHdpdGggcmVuZGVyVG9IYXJkd2FyZVRleHR1cmVBbmRyb2lkIGlmIHRoZVxuICAgICAqIHZpZXcgKipjb250ZW50cyoqIGFyZSBzdGF0aWMgKGkuZS4gaXQgZG9lc24ndCBuZWVkIHRvIGJlIHJlZHJhd24gZWFjaCBmcmFtZSkuXG4gICAgICogSWYgdGhhdCBwcm9wZXJ0eSBpcyBlbmFibGVkLCB0aGlzIFZpZXcgd2lsbCBiZSByZW5kZXJlZCBvZmYtc2NyZWVuIG9uY2UsXG4gICAgICogc2F2ZWQgaW4gYSBoYXJkd2FyZSB0ZXh0dXJlLCBhbmQgdGhlbiBjb21wb3NpdGVkIG9udG8gdGhlIHNjcmVlbiB3aXRoIGFuIGFscGhhXG4gICAgICogZWFjaCBmcmFtZSB3aXRob3V0IGhhdmluZyB0byBzd2l0Y2ggcmVuZGVyaW5nIHRhcmdldHMgb24gdGhlIEdQVS5cbiAgICAgKlxuICAgICAqIEBwbGF0Zm9ybSBhbmRyb2lkXG4gICAgICovXG5uZWVkc09mZnNjcmVlbkFscGhhQ29tcG9zaXRpbmc6UHJvcFR5cGVzLmJvb2x9LFxuXG5cbm1peGluczpbX05hdGl2ZU1ldGhvZHNNaXhpbjJbJ2RlZmF1bHQnXV0sXG5cbnN0YXRpY3M6X2V4dGVuZHMoe30sXG5zdGF0aWNzKSxcblxuXG5yZW5kZXI6ZnVuY3Rpb24oKXtmdW5jdGlvbiByZW5kZXIoKXtcbnJldHVybiBudWxsO1xufXJldHVybiByZW5kZXI7fSgpfSk7XG5cblxubW9kdWxlLmV4cG9ydHM9VmlldzsiXX0=

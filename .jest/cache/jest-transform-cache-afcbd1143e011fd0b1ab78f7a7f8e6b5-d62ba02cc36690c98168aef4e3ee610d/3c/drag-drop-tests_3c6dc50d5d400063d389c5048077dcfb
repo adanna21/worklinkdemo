@@ -1,0 +1,69 @@
+31d1bc3d7e97a5c5f30b696823596faf
+"use strict";
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+  result["default"] = mod;
+  return result;
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+const actions = __importStar(require("../drag-and-drop/actions"));
+
+const types_1 = require("../drag-and-drop/types"); // export const initialState: ISuperQueueProps = {
+//   teamMembers: [],
+//   error: ''
+// };
+// export const reducer = (
+//   state: ISuperQueueProps = initialState,
+//   action: Action
+// ) => {
+//   const { teamMembers } = state;
+//   const SELECT = ActionTypes.SELECT_TEAM_MEMBER;
+//   const UNSELECT = ActionTypes.UNSELECT_TEAM_MEMBER;
+//   switch (action.type) {
+//     case SELECT || UNSELECT:
+//       const memberId = action.payload.memberId;
+//       // check if member is already in the team
+//       const memberIdPresent = teamMembers.some(
+//         member => member.id === memberId
+//       );
+//       // add member if not already there
+//       if (!memberIdPresent && SELECT) {
+//         return {
+//           ...state,
+//           teamMembers: [...state.teamMembers, { id: action.payload.memberId }]
+//         };
+//         // remove member if already there
+//       } else if (memberIdPresent && UNSELECT) {
+//         return {
+//           ...state,
+//           teamMembers: teamMembers.filter(member => member.id !== memberId)
+//         };
+//       } else {
+//         return { ...state, error: 'oops' };
+//       }
+//     default:
+//       return state;
+//   }
+// };
+
+
+describe('actions', () => {
+  it('should create an action to select a team member id', () => {
+    const memberId = '18000003';
+    const expectedAction = {
+      type: types_1.ActionTypes.SELECT_TEAM_MEMBER,
+      payload: {
+        memberId
+      }
+    };
+    expect(actions.selectTeamMember(memberId)).toEqual(expectedAction); // expect(reducer(initialState, selectTeamMember(memberId))).toMatchSnapshot();
+  });
+}); //# sourceMappingURL=drag-drop-tests.js.map
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRyYWctZHJvcC10ZXN0cy50c3giXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7QUFHQSxNQUFBLE9BQUEsR0FBQSxZQUFBLENBQUEsT0FBQSxDQUFBLDBCQUFBLENBQUEsQ0FBQTs7QUFDQSxNQUFBLE9BQUEsR0FBQSxPQUFBLENBQUEsd0JBQUEsQ0FBQSxDLENBSUE7QUFDQTtBQUNBO0FBQ0E7QUFFQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7OztBQUNBLFFBQVEsQ0FBQyxTQUFELEVBQVksTUFBSztBQUN2QixFQUFBLEVBQUUsQ0FBQyxvREFBRCxFQUF1RCxNQUFLO0FBQzVELFVBQU0sUUFBUSxHQUFHLFVBQWpCO0FBQ0EsVUFBTSxjQUFjLEdBQUc7QUFDckIsTUFBQSxJQUFJLEVBQUUsT0FBQSxDQUFBLFdBQUEsQ0FBWSxrQkFERztBQUVyQixNQUFBLE9BQU8sRUFBRTtBQUFFLFFBQUE7QUFBRjtBQUZZLEtBQXZCO0FBSUEsSUFBQSxNQUFNLENBQUMsT0FBTyxDQUFDLGdCQUFSLENBQXlCLFFBQXpCLENBQUQsQ0FBTixDQUEyQyxPQUEzQyxDQUFtRCxjQUFuRCxFQU40RCxDQU81RDtBQUNELEdBUkMsQ0FBRjtBQVNELENBVk8sQ0FBUixDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0IGZyb20gJ3JlYWN0JztcbmltcG9ydCB7IGluaXRpYWxTdGF0ZSwgcmVkdWNlciB9IGZyb20gJy4uL2RyYWctYW5kLWRyb3AvcmVkdWNlcnMnO1xuaW1wb3J0IHsgc2VsZWN0VGVhbU1lbWJlciwgdW5TZWxlY3RUZWFtTWVtYmVyIH0gZnJvbSAnLi4vZHJhZy1hbmQtZHJvcC9hY3Rpb25zJztcbmltcG9ydCAqIGFzIGFjdGlvbnMgZnJvbSAnLi4vZHJhZy1hbmQtZHJvcC9hY3Rpb25zJztcbmltcG9ydCB7IEFjdGlvblR5cGVzIH0gZnJvbSAnLi4vZHJhZy1hbmQtZHJvcC90eXBlcyc7XG5cbmltcG9ydCB7IHRlYW1NZW1iZXJzLCBtZW1iZXJJZCB9IGZyb20gJy4uLy4uL2NvbmZpZy9qZXN0L21vY2tEYXRhJztcblxuLy8gZXhwb3J0IGNvbnN0IGluaXRpYWxTdGF0ZTogSVN1cGVyUXVldWVQcm9wcyA9IHtcbi8vICAgdGVhbU1lbWJlcnM6IFtdLFxuLy8gICBlcnJvcjogJydcbi8vIH07XG5cbi8vIGV4cG9ydCBjb25zdCByZWR1Y2VyID0gKFxuLy8gICBzdGF0ZTogSVN1cGVyUXVldWVQcm9wcyA9IGluaXRpYWxTdGF0ZSxcbi8vICAgYWN0aW9uOiBBY3Rpb25cbi8vICkgPT4ge1xuLy8gICBjb25zdCB7IHRlYW1NZW1iZXJzIH0gPSBzdGF0ZTtcbi8vICAgY29uc3QgU0VMRUNUID0gQWN0aW9uVHlwZXMuU0VMRUNUX1RFQU1fTUVNQkVSO1xuLy8gICBjb25zdCBVTlNFTEVDVCA9IEFjdGlvblR5cGVzLlVOU0VMRUNUX1RFQU1fTUVNQkVSO1xuLy8gICBzd2l0Y2ggKGFjdGlvbi50eXBlKSB7XG4vLyAgICAgY2FzZSBTRUxFQ1QgfHwgVU5TRUxFQ1Q6XG4vLyAgICAgICBjb25zdCBtZW1iZXJJZCA9IGFjdGlvbi5wYXlsb2FkLm1lbWJlcklkO1xuLy8gICAgICAgLy8gY2hlY2sgaWYgbWVtYmVyIGlzIGFscmVhZHkgaW4gdGhlIHRlYW1cbi8vICAgICAgIGNvbnN0IG1lbWJlcklkUHJlc2VudCA9IHRlYW1NZW1iZXJzLnNvbWUoXG4vLyAgICAgICAgIG1lbWJlciA9PiBtZW1iZXIuaWQgPT09IG1lbWJlcklkXG4vLyAgICAgICApO1xuLy8gICAgICAgLy8gYWRkIG1lbWJlciBpZiBub3QgYWxyZWFkeSB0aGVyZVxuLy8gICAgICAgaWYgKCFtZW1iZXJJZFByZXNlbnQgJiYgU0VMRUNUKSB7XG4vLyAgICAgICAgIHJldHVybiB7XG4vLyAgICAgICAgICAgLi4uc3RhdGUsXG4vLyAgICAgICAgICAgdGVhbU1lbWJlcnM6IFsuLi5zdGF0ZS50ZWFtTWVtYmVycywgeyBpZDogYWN0aW9uLnBheWxvYWQubWVtYmVySWQgfV1cbi8vICAgICAgICAgfTtcbi8vICAgICAgICAgLy8gcmVtb3ZlIG1lbWJlciBpZiBhbHJlYWR5IHRoZXJlXG4vLyAgICAgICB9IGVsc2UgaWYgKG1lbWJlcklkUHJlc2VudCAmJiBVTlNFTEVDVCkge1xuLy8gICAgICAgICByZXR1cm4ge1xuLy8gICAgICAgICAgIC4uLnN0YXRlLFxuLy8gICAgICAgICAgIHRlYW1NZW1iZXJzOiB0ZWFtTWVtYmVycy5maWx0ZXIobWVtYmVyID0+IG1lbWJlci5pZCAhPT0gbWVtYmVySWQpXG4vLyAgICAgICAgIH07XG4vLyAgICAgICB9IGVsc2Uge1xuLy8gICAgICAgICByZXR1cm4geyAuLi5zdGF0ZSwgZXJyb3I6ICdvb3BzJyB9O1xuLy8gICAgICAgfVxuLy8gICAgIGRlZmF1bHQ6XG4vLyAgICAgICByZXR1cm4gc3RhdGU7XG4vLyAgIH1cbi8vIH07XG5kZXNjcmliZSgnYWN0aW9ucycsICgpID0+IHtcbiAgaXQoJ3Nob3VsZCBjcmVhdGUgYW4gYWN0aW9uIHRvIHNlbGVjdCBhIHRlYW0gbWVtYmVyIGlkJywgKCkgPT4ge1xuICAgIGNvbnN0IG1lbWJlcklkID0gJzE4MDAwMDAzJztcbiAgICBjb25zdCBleHBlY3RlZEFjdGlvbiA9IHtcbiAgICAgIHR5cGU6IEFjdGlvblR5cGVzLlNFTEVDVF9URUFNX01FTUJFUixcbiAgICAgIHBheWxvYWQ6IHsgbWVtYmVySWQgfVxuICAgIH07XG4gICAgZXhwZWN0KGFjdGlvbnMuc2VsZWN0VGVhbU1lbWJlcihtZW1iZXJJZCkpLnRvRXF1YWwoZXhwZWN0ZWRBY3Rpb24pO1xuICAgIC8vIGV4cGVjdChyZWR1Y2VyKGluaXRpYWxTdGF0ZSwgc2VsZWN0VGVhbU1lbWJlcihtZW1iZXJJZCkpKS50b01hdGNoU25hcHNob3QoKTtcbiAgfSk7XG59KTtcbiJdLCJzb3VyY2VSb290IjoiIn0=

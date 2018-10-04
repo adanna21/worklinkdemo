@@ -1,0 +1,47 @@
+ad55acc1992bdaca194be5816a06c932
+"use strict";
+
+// describe('Testing SupervisorQueueScreen', () => {
+//   it('renders as expected', () => {
+//     const wrapper = shallow(
+//       <SupervisorQueueScreen />
+//       // { context: { store: mockStore(initialState) } },
+//     );
+//     expect(wrapper.dive()).toMatchSnapshot();
+//   });
+// });
+jest.mock('react-native', () => require('react-native-mock'), {
+  virtual: true
+});
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+const react_native_mock_1 = require("react-native-mock");
+
+const react_1 = __importDefault(require("react")); // imported as a connected component!
+
+
+const SupervisorQueueScreen_1 = __importDefault(require("../SupervisorQueueScreen"));
+
+const middlewares = []; // you can mock any middlewares here if necessary
+// const mockStore = configureStore(middlewares);
+
+const initialState = {
+  teamMembers: [],
+  error: ''
+};
+describe('SupervisorQueueScreen rendering', () => {
+  const container = react_native_mock_1.shallow(react_1.default.createElement(SupervisorQueueScreen_1.default, null));
+  it('should render a <DragContainer/>', () => {
+    expect(container.find('DragContainer')).toHaveLength(1);
+  });
+}); //# sourceMappingURL=supervisor-queque-tests.js.map
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInN1cGVydmlzb3ItcXVlcXVlLXRlc3RzLnRzeCJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQWdCQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSxJQUFJLENBQUMsSUFBTCxDQUFVLGNBQVYsRUFBMEIsTUFBTSxPQUFPLENBQUMsbUJBQUQsQ0FBdkMsRUFBOEQ7QUFDNUQsRUFBQSxPQUFPLEVBQUU7QUFEbUQsQ0FBOUQ7Ozs7Ozs7Ozs7OztBQXpCQSxNQUFBLG1CQUFBLEdBQUEsT0FBQSxDQUFBLG1CQUFBLENBQUE7O0FBQ0EsTUFBQSxPQUFBLEdBQUEsZUFBQSxDQUFBLE9BQUEsQ0FBQSxPQUFBLENBQUEsQ0FBQSxDLENBSUE7OztBQUNBLE1BQUEsdUJBQUEsR0FBQSxlQUFBLENBQUEsT0FBQSxDQUFBLDBCQUFBLENBQUEsQ0FBQTs7QUFFQSxNQUFNLFdBQVcsR0FBRyxFQUFwQixDLENBQXdCO0FBQ3hCOztBQUVBLE1BQU0sWUFBWSxHQUFHO0FBQ25CLEVBQUEsV0FBVyxFQUFFLEVBRE07QUFFbkIsRUFBQSxLQUFLLEVBQUU7QUFGWSxDQUFyQjtBQWlCQSxRQUFRLENBQUMsaUNBQUQsRUFBb0MsTUFBSztBQUMvQyxRQUFNLFNBQVMsR0FBRyxtQkFBQSxDQUFBLE9BQUEsQ0FBUSxPQUFBLENBQUEsT0FBQSxDQUFBLGFBQUEsQ0FBQyx1QkFBQSxDQUFBLE9BQUQsRUFBc0IsSUFBdEIsQ0FBUixDQUFsQjtBQUNBLEVBQUEsRUFBRSxDQUFDLGtDQUFELEVBQXFDLE1BQUs7QUFDMUMsSUFBQSxNQUFNLENBQUMsU0FBUyxDQUFDLElBQVYsQ0FBZSxlQUFmLENBQUQsQ0FBTixDQUF3QyxZQUF4QyxDQUFxRCxDQUFyRDtBQUNELEdBRkMsQ0FBRjtBQUdELENBTE8sQ0FBUixDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgc2hhbGxvdyB9IGZyb20gJ3JlYWN0LW5hdGl2ZS1tb2NrJztcbmltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCc7XG4vLyBpbXBvcnQgY29uZmlndXJlU3RvcmUgZnJvbSAncmVkdXgtbW9jay1zdG9yZSc7XG5pbXBvcnQge30gZnJvbSAndHMtamVzdCc7XG5cbi8vIGltcG9ydGVkIGFzIGEgY29ubmVjdGVkIGNvbXBvbmVudCFcbmltcG9ydCBTdXBlcnZpc29yUXVldWVTY3JlZW4gZnJvbSAnLi4vU3VwZXJ2aXNvclF1ZXVlU2NyZWVuJztcblxuY29uc3QgbWlkZGxld2FyZXMgPSBbXTsgLy8geW91IGNhbiBtb2NrIGFueSBtaWRkbGV3YXJlcyBoZXJlIGlmIG5lY2Vzc2FyeVxuLy8gY29uc3QgbW9ja1N0b3JlID0gY29uZmlndXJlU3RvcmUobWlkZGxld2FyZXMpO1xuXG5jb25zdCBpbml0aWFsU3RhdGUgPSB7XG4gIHRlYW1NZW1iZXJzOiBbXSxcbiAgZXJyb3I6ICcnXG59O1xuXG4vLyBkZXNjcmliZSgnVGVzdGluZyBTdXBlcnZpc29yUXVldWVTY3JlZW4nLCAoKSA9PiB7XG4vLyAgIGl0KCdyZW5kZXJzIGFzIGV4cGVjdGVkJywgKCkgPT4ge1xuLy8gICAgIGNvbnN0IHdyYXBwZXIgPSBzaGFsbG93KFxuLy8gICAgICAgPFN1cGVydmlzb3JRdWV1ZVNjcmVlbiAvPlxuLy8gICAgICAgLy8geyBjb250ZXh0OiB7IHN0b3JlOiBtb2NrU3RvcmUoaW5pdGlhbFN0YXRlKSB9IH0sXG4vLyAgICAgKTtcbi8vICAgICBleHBlY3Qod3JhcHBlci5kaXZlKCkpLnRvTWF0Y2hTbmFwc2hvdCgpO1xuLy8gICB9KTtcbi8vIH0pO1xuamVzdC5tb2NrKCdyZWFjdC1uYXRpdmUnLCAoKSA9PiByZXF1aXJlKCdyZWFjdC1uYXRpdmUtbW9jaycpLCB7XG4gIHZpcnR1YWw6IHRydWVcbn0pO1xuZGVzY3JpYmUoJ1N1cGVydmlzb3JRdWV1ZVNjcmVlbiByZW5kZXJpbmcnLCAoKSA9PiB7XG4gIGNvbnN0IGNvbnRhaW5lciA9IHNoYWxsb3coPFN1cGVydmlzb3JRdWV1ZVNjcmVlbiAvPik7XG4gIGl0KCdzaG91bGQgcmVuZGVyIGEgPERyYWdDb250YWluZXIvPicsICgpID0+IHtcbiAgICBleHBlY3QoY29udGFpbmVyLmZpbmQoJ0RyYWdDb250YWluZXInKSkudG9IYXZlTGVuZ3RoKDEpO1xuICB9KTtcbn0pO1xuIl0sInNvdXJjZVJvb3QiOiIifQ==

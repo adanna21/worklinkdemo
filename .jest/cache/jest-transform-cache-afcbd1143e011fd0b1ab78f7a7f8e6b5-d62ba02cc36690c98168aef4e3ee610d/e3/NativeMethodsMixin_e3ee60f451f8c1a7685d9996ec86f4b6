@@ -1,0 +1,32 @@
+92bf1bedf9d74c3ed7606f9f12d1cb25
+/**
+ * https://github.com/facebook/react-native/blob/master/Libraries/ReactIOS/NativeMethodsMixin.js
+ */
+module.exports = {
+  measure: function () {
+    function measure(callback) {}
+
+    return measure;
+  }(),
+  measureLayout: function () {
+    function measureLayout(relativeToNativeNode, onSuccess, onFail) {}
+
+    return measureLayout;
+  }(),
+  setNativeProps: function () {
+    function setNativeProps(nativeProps) {}
+
+    return setNativeProps;
+  }(),
+  focus: function () {
+    function focus() {}
+
+    return focus;
+  }(),
+  blur: function () {
+    function blur() {}
+
+    return blur;
+  }()
+};
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIk5hdGl2ZU1ldGhvZHNNaXhpbi5qcyJdLCJuYW1lcyI6WyJtb2R1bGUiLCJleHBvcnRzIiwibWVhc3VyZSIsImNhbGxiYWNrIiwibWVhc3VyZUxheW91dCIsInJlbGF0aXZlVG9OYXRpdmVOb2RlIiwib25TdWNjZXNzIiwib25GYWlsIiwic2V0TmF0aXZlUHJvcHMiLCJuYXRpdmVQcm9wcyIsImZvY3VzIiwiYmx1ciJdLCJtYXBwaW5ncyI6IkFBQUE7OztBQUdBQSxNQUFNLENBQUNDLE9BQVAsR0FBZTtBQUNmQyxFQUFBQSxPQUFPLEVBQUMsWUFBVTtBQUFDLGFBQVNBLE9BQVQsQ0FBaUJDLFFBQWpCLEVBQTBCLENBRTVDOztBQUFBLFdBQU9ELE9BQVA7QUFBZ0IsR0FGVCxFQURPO0FBSWZFLEVBQUFBLGFBQWEsRUFBQyxZQUFVO0FBQUMsYUFBU0EsYUFBVCxDQUF1QkMsb0JBQXZCLEVBQTRDQyxTQUE1QyxFQUFzREMsTUFBdEQsRUFBNkQsQ0FFckY7O0FBQUEsV0FBT0gsYUFBUDtBQUFzQixHQUZULEVBSkM7QUFPZkksRUFBQUEsY0FBYyxFQUFDLFlBQVU7QUFBQyxhQUFTQSxjQUFULENBQXdCQyxXQUF4QixFQUFvQyxDQUU3RDs7QUFBQSxXQUFPRCxjQUFQO0FBQXVCLEdBRlQsRUFQQTtBQVVmRSxFQUFBQSxLQUFLLEVBQUMsWUFBVTtBQUFDLGFBQVNBLEtBQVQsR0FBZ0IsQ0FFaEM7O0FBQUEsV0FBT0EsS0FBUDtBQUFjLEdBRlQsRUFWUztBQWFmQyxFQUFBQSxJQUFJLEVBQUMsWUFBVTtBQUFDLGFBQVNBLElBQVQsR0FBZSxDQUU5Qjs7QUFBQSxXQUFPQSxJQUFQO0FBQWEsR0FGVDtBQWJVLENBQWYiLCJzb3VyY2VzQ29udGVudCI6WyIvKipcbiAqIGh0dHBzOi8vZ2l0aHViLmNvbS9mYWNlYm9vay9yZWFjdC1uYXRpdmUvYmxvYi9tYXN0ZXIvTGlicmFyaWVzL1JlYWN0SU9TL05hdGl2ZU1ldGhvZHNNaXhpbi5qc1xuICovXG5tb2R1bGUuZXhwb3J0cz17XG5tZWFzdXJlOmZ1bmN0aW9uKCl7ZnVuY3Rpb24gbWVhc3VyZShjYWxsYmFjayl7XG5cbn1yZXR1cm4gbWVhc3VyZTt9KCksXG5tZWFzdXJlTGF5b3V0OmZ1bmN0aW9uKCl7ZnVuY3Rpb24gbWVhc3VyZUxheW91dChyZWxhdGl2ZVRvTmF0aXZlTm9kZSxvblN1Y2Nlc3Msb25GYWlsKXtcblxufXJldHVybiBtZWFzdXJlTGF5b3V0O30oKSxcbnNldE5hdGl2ZVByb3BzOmZ1bmN0aW9uKCl7ZnVuY3Rpb24gc2V0TmF0aXZlUHJvcHMobmF0aXZlUHJvcHMpe1xuXG59cmV0dXJuIHNldE5hdGl2ZVByb3BzO30oKSxcbmZvY3VzOmZ1bmN0aW9uKCl7ZnVuY3Rpb24gZm9jdXMoKXtcblxufXJldHVybiBmb2N1czt9KCksXG5ibHVyOmZ1bmN0aW9uKCl7ZnVuY3Rpb24gYmx1cigpe1xuXG59cmV0dXJuIGJsdXI7fSgpfTsiXX0=

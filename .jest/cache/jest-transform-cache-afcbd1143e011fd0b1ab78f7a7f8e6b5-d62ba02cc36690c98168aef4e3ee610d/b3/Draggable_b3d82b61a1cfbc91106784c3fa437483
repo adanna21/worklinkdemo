@@ -1,0 +1,80 @@
+810a09ba2cd8a8d20ced9bc02d894139
+"use strict";Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _react = babelHelpers.interopRequireDefault(require("react"));
+var _reactNative = require("react-native");
+var _propTypes = babelHelpers.interopRequireDefault(require("prop-types"));var _jsxFileName = "/Users/ao60/Desktop/WorkFiles/WorklinkDemo/src/React/utils/react-native-drag-drop/Draggable.js";var
+
+Draggable = function (_React$Component) {
+  function Draggable(props) {var _this;babelHelpers.classCallCheck(this, Draggable);
+    _this = babelHelpers.possibleConstructorReturn(this, babelHelpers.getPrototypeOf(Draggable).call(this, props));
+    _this.displayName = 'Draggable';
+    _this._initiateDrag = _this._initiateDrag.bind(babelHelpers.assertThisInitialized(babelHelpers.assertThisInitialized(_this)));return _this;
+  }babelHelpers.createClass(Draggable, [{ key: "_initiateDrag", value: function _initiateDrag()
+
+
+
+
+
+
+
+
+
+    {var _this2 = this;var _this$props =
+
+
+
+
+
+
+
+
+      this.props,disabled = _this$props.disabled,itemId = _this$props.itemId,children = _this$props.children,data = _this$props.data,teamArray = _this$props.teamArray,addCurrentId = _this$props.addCurrentId,changeIcon = _this$props.changeIcon;
+      if (!disabled)
+      this.context.dragContext.onDrag(
+      itemId,
+      this.refs.wrapper,
+      children,
+      data);
+
+
+      if (teamArray.length === 0) {
+
+        this.props.draggableSelectTeamMember(itemId);
+        addCurrentId(itemId);
+        this.setState({}, function () {
+
+          _this2.props.draggableChangeIcon(itemId);
+        });
+      }
+    } }, { key: "render", value: function render()
+
+
+
+
+
+    {
+      var isDragging =
+      this.context.dragContext.dragging &&
+      this.context.dragContext.dragging.ref;
+      isDragging = isDragging && isDragging === this.refs.wrapper;
+      return (
+        _react.default.createElement(_reactNative.TouchableOpacity, {
+          activeOpacity: this.props.activeOpacity,
+          style: this.props.style,
+          onLongPress:
+          this.props.dragOn === 'onLongPress' ? this._initiateDrag : null,
+
+          onPress: this.props.onPress,
+          onPressIn:
+          this.props.dragOn === 'onPressIn' ? this._initiateDrag : null,
+
+          ref: "wrapper", __source: { fileName: _jsxFileName, lineNumber: 59 } },
+
+        _react.default.Children.map(this.props.children, function (child) {
+          return _react.default.cloneElement(child, { ghost: isDragging });
+        })));
+
+
+    } }]);babelHelpers.inherits(Draggable, _React$Component);return Draggable;}(_react.default.Component);Draggable.contextTypes = { dragContext: _propTypes.default.any };Draggable.propTypes = { dragOn: _propTypes.default.oneOf(['onLongPress', 'onPressIn']) };Draggable.defaultProps = { dragOn: 'onLongPress' };var _default =
+
+
+Draggable;exports.default = _default;

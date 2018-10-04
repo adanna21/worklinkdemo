@@ -1,0 +1,64 @@
+f782a556128c466e7647a9767005ef6a
+"use strict";
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+
+var react_1 = __importDefault(require("react"));
+var redux_mock_store_1 = __importDefault(require("redux-mock-store"));
+var enzyme_to_json_1 = __importDefault(require("enzyme-to-json"));
+
+var SupervisorQueueScreen_1 = __importDefault(require("../SupervisorQueueScreen"));
+
+var mockStore = redux_mock_store_1.default();
+var initialState = {
+  teamMembers: [],
+  error: '' };
+
+
+
+
+
+
+
+
+
+
+describe('SupervisorQueueScreen rendering', function () {
+
+
+
+
+  it('renders correctly', function () {
+
+
+    var navigation = {
+      navigate: jest.fn(),
+      dispatch: jest.fn(),
+      state: {},
+      goBack: jest.fn(),
+      dismiss: jest.fn(),
+      openDrawer: jest.fn(),
+      closeDrawer: jest.fn(),
+      toggleDrawer: jest.fn(),
+      getParam: jest.fn(),
+      setParams: jest.fn(),
+      addListener: jest.fn(),
+      push: jest.fn(),
+      replace: jest.fn(),
+      pop: jest.fn(),
+      popToTop: jest.fn(),
+      isFocused: jest.fn() };
+
+    var wrapper = require("enzyme").shallow(react_1.default.createElement(SupervisorQueueScreen_1.default,
+
+
+    {
+
+
+      navigation: navigation }));
+    var component = wrapper.dive();
+    expect(enzyme_to_json_1.default(component)).toMatchSnapshot();
+  });
+});

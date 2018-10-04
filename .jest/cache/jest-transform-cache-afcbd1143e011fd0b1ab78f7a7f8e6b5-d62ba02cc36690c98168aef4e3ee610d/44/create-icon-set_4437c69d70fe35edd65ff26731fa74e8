@@ -1,0 +1,182 @@
+01ac7469b8649edff17b5507a1297470
+"use strict";Object.defineProperty(exports, "__esModule", { value: true });exports.default = createIconSet;var _react = babelHelpers.interopRequireWildcard(require("react"));
+var _propTypes = babelHelpers.interopRequireDefault(require("prop-types"));
+var _reactNative = require("./react-native");
+
+
+
+
+
+
+
+var _iconButton = babelHelpers.interopRequireDefault(require("./icon-button"));
+var _tabBarItemIos = babelHelpers.interopRequireDefault(require("./tab-bar-item-ios"));
+var _toolbarAndroid = babelHelpers.interopRequireDefault(require("./toolbar-android"));var _jsxFileName = "/Users/ao60/Desktop/WorkFiles/WorklinkDemo/node_modules/react-native-vector-icons/lib/create-icon-set.js";
+
+var NativeIconAPI =
+_reactNative.NativeModules.RNVectorIconsManager || _reactNative.NativeModules.RNVectorIconsModule;
+
+var DEFAULT_ICON_SIZE = 12;
+var DEFAULT_ICON_COLOR = 'black';
+
+function createIconSet(glyphMap, fontFamily, fontFile) {
+  var fontReference = fontFamily;
+
+  if (_reactNative.Platform.OS === 'android' && fontFile) {
+    fontReference = fontFile.replace(/\.(otf|ttf)$/, '');
+  }
+
+  if (_reactNative.Platform.OS === 'windows' && fontFile) {
+    fontReference = "Assets/" + fontFile + "#" + fontFamily;
+  }
+
+  var IconNamePropType = _propTypes.default.oneOf(Object.keys(glyphMap));var
+
+  Icon = function (_PureComponent) {function Icon() {var _babelHelpers$getProt;var _temp, _this;babelHelpers.classCallCheck(this, Icon);for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {args[_key] = arguments[_key];}return babelHelpers.possibleConstructorReturn(_this, (_temp = _this = babelHelpers.possibleConstructorReturn(this, (_babelHelpers$getProt = babelHelpers.getPrototypeOf(Icon)).call.apply(_babelHelpers$getProt, [this].concat(args))), _this.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      root = null, _this.
+      handleRef = function (ref) {
+        _this.root = ref;
+      }, _temp));}babelHelpers.createClass(Icon, [{ key: "setNativeProps", value: function setNativeProps(nativeProps) {if (this.root) {this.root.setNativeProps(nativeProps);}} }, { key: "render", value: function render()
+
+      {var _this$props =
+        this.props,name = _this$props.name,size = _this$props.size,color = _this$props.color,style = _this$props.style,props = babelHelpers.objectWithoutProperties(_this$props, ["name", "size", "color", "style"]);
+
+        var glyph = name ? glyphMap[name] || '?' : '';
+        if (typeof glyph === 'number') {
+          glyph = String.fromCharCode(glyph);
+        }
+
+        var styleDefaults = {
+          fontSize: size,
+          color: color };
+
+
+        var styleOverrides = {
+          fontFamily: fontReference,
+          fontWeight: 'normal',
+          fontStyle: 'normal' };
+
+
+        props.style = [styleDefaults, style, styleOverrides];
+        props.ref = this.handleRef;
+
+        return (
+          _react.default.createElement(_reactNative.Text, babelHelpers.extends({}, props, { __source: { fileName: _jsxFileName, lineNumber: 82 } }),
+          glyph,
+          this.props.children));
+
+
+      } }]);babelHelpers.inherits(Icon, _PureComponent);return Icon;}(_react.PureComponent);Icon.propTypes = { name: IconNamePropType, size: _propTypes.default.number, color: _propTypes.default.oneOfType([_propTypes.default.string, _propTypes.default.number]), children: _propTypes.default.node, style: _propTypes.default.any };Icon.defaultProps = { size: DEFAULT_ICON_SIZE, allowFontScaling: false };
+
+
+  var imageSourceCache = {};
+
+  function ensureNativeModuleAvailable() {
+    if (!NativeIconAPI) {
+      if (_reactNative.Platform.OS === 'android') {
+        throw new Error(
+        'RNVectorIconsModule not available, did you properly integrate the module? Try running `react-native link react-native-vector-icons` and recompiling.');
+
+      }
+      throw new Error(
+      'RNVectorIconsManager not available, did you add the library to your project and link with libRNVectorIcons.a? Try running `react-native link react-native-vector-icons` and recompiling.');
+
+    }
+  }
+
+  function getImageSource(
+  name)
+
+
+  {var size = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : DEFAULT_ICON_SIZE;var color = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : DEFAULT_ICON_COLOR;
+    ensureNativeModuleAvailable();
+
+    var glyph = glyphMap[name] || '?';
+    if (typeof glyph === 'number') {
+      glyph = String.fromCharCode(glyph);
+    }
+
+    var processedColor = (0, _reactNative.processColor)(color);
+    var cacheKey = glyph + ":" + size + ":" + processedColor;
+    var scale = _reactNative.PixelRatio.get();
+
+    return new Promise(function (resolve, reject) {
+      var cached = imageSourceCache[cacheKey];
+      if (typeof cached !== 'undefined') {
+        if (!cached || cached instanceof Error) {
+          reject(cached);
+        } else {
+          resolve({ uri: cached, scale: scale });
+        }
+      } else {
+        NativeIconAPI.getImageForFont(
+        fontReference,
+        glyph,
+        size,
+        processedColor,
+        function (err, image) {
+          var error = typeof err === 'string' ? new Error(err) : err;
+          imageSourceCache[cacheKey] = image || error || false;
+          if (!error && image) {
+            resolve({ uri: image, scale: scale });
+          } else {
+            reject(error);
+          }
+        });
+
+      }
+    });
+  }
+
+  function loadFont() {var file = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : fontFile;
+    if (_reactNative.Platform.OS === 'ios') {
+      ensureNativeModuleAvailable();
+      if (!file) {
+        return Promise.reject(
+        new Error('Unable to load font, because no file was specified. '));
+
+      }
+      return NativeIconAPI.loadFontWithFileName.apply(NativeIconAPI, babelHelpers.toConsumableArray(file.split('.')));
+    }
+    return Promise.resolve();
+  }
+
+  function hasIcon(name) {
+    return Object.prototype.hasOwnProperty.call(glyphMap, name);
+  }
+
+  Icon.Button = (0, _iconButton.default)(Icon);
+  Icon.TabBarItem = (0, _tabBarItemIos.default)(
+  IconNamePropType,
+  getImageSource);
+
+  Icon.TabBarItemIOS = Icon.TabBarItem;
+  Icon.ToolbarAndroid = (0, _toolbarAndroid.default)(
+  IconNamePropType,
+  getImageSource);
+
+  Icon.getImageSource = getImageSource;
+  Icon.loadFont = loadFont;
+  Icon.hasIcon = hasIcon;
+
+  return Icon;
+}

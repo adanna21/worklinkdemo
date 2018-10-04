@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SupervisorQueueScreen renders correctly 1`] = `
+<DragContainer
+  isDroppedInZone={[Function]}
+  onDragEnd={[Function]}
+  onDragStart={[Function]}
+>
+  <AppContainer>
+    <LeftPanel>
+      <LeftHeader>
+        <MyWorkOrderHeader>
+          My HVAC Queue
+        </MyWorkOrderHeader>
+      </LeftHeader>
+      <LeftBody>
+        <SuperWorkOrderList
+          droppedInZone={[Function]}
+          navigation={
+            Object {
+              "addListener": [MockFunction],
+              "closeDrawer": [MockFunction],
+              "dismiss": [MockFunction],
+              "dispatch": [MockFunction],
+              "getParam": [MockFunction],
+              "goBack": [MockFunction],
+              "isFocused": [MockFunction],
+              "navigate": [MockFunction],
+              "openDrawer": [MockFunction],
+              "pop": [MockFunction],
+              "popToTop": [MockFunction],
+              "push": [MockFunction],
+              "replace": [MockFunction],
+              "setParams": [MockFunction],
+              "state": Object {},
+              "toggleDrawer": [MockFunction],
+            }
+          }
+        />
+      </LeftBody>
+    </LeftPanel>
+    <RightPanel>
+      <RightHeader>
+        <ActionHeader>
+          HVAC Team
+        </ActionHeader>
+      </RightHeader>
+      <RightBody>
+        <TeamList
+          addCurrentId={[Function]}
+          currentId=""
+          selectTeamMember={[Function]}
+        />
+      </RightBody>
+    </RightPanel>
+  </AppContainer>
+</DragContainer>
+`;

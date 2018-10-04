@@ -1,0 +1,82 @@
+1c52796d81890c83657b426d99840989
+"use strict";
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+  result["default"] = mod;
+  return result;
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+const react_1 = __importStar(require("react"));
+
+const react_native_1 = require("react-native");
+
+const DropZone_1 = __importDefault(require("../../../utils/react-native-drag-drop/DropZone"));
+
+class WorkOrderCard extends react_1.Component {
+  constructor() {
+    super(...arguments);
+    this.state = {
+      zoneEntered: false
+    };
+  }
+
+  render() {
+    const shadowStyle = {
+      backgroundColor: '#fff',
+      shadowOpacity: 0.1,
+      elevation: 4,
+      shadowOffset: {
+        width: -1,
+        height: 3
+      },
+      shadowRadius: 5
+    };
+    return react_1.default.createElement(DropZone_1.default, {
+      onEnter: () => this.setState({
+        zoneEntered: true
+      }),
+      onLeave: () => {
+        this.setState({
+          zoneEntered: false
+        });
+      },
+      onDrop: () => this.props.droppedInZone(true),
+      style: styles.dropZone
+    }, react_1.default.createElement(react_native_1.View, {
+      style: [styles.wordCard, shadowStyle, this.state.zoneEntered && styles.active]
+    }, react_1.default.createElement(react_native_1.View, null), this.props.children));
+  }
+
+}
+
+exports.default = WorkOrderCard;
+const styles = react_native_1.StyleSheet.create({
+  dropZone: {
+    paddingBottom: '3%'
+  },
+  wordCard: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: '3%',
+    paddingBottom: '8%',
+    borderRadius: 3
+  },
+  active: {
+    backgroundColor: '#FFD740'
+  }
+}); //# sourceMappingURL=WorkOrderCard.js.map
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIldvcmtPcmRlckNhcmQudHN4Il0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBQUEsTUFBQSxPQUFBLEdBQUEsWUFBQSxDQUFBLE9BQUEsQ0FBQSxPQUFBLENBQUEsQ0FBQTs7QUFDQSxNQUFBLGNBQUEsR0FBQSxPQUFBLENBQUEsY0FBQSxDQUFBOztBQUNBLE1BQUEsVUFBQSxHQUFBLGVBQUEsQ0FBQSxPQUFBLENBQUEsZ0RBQUEsQ0FBQSxDQUFBOztBQUVBLE1BQUEsYUFBQSxTQUEyQyxPQUFBLENBQUEsU0FBM0MsQ0FBOEQ7QUFBOUQsRUFBQSxXQUFBLEdBQUE7O0FBQ0UsU0FBQSxLQUFBLEdBQVE7QUFDTixNQUFBLFdBQVcsRUFBRTtBQURQLEtBQVI7QUF1Q0Q7O0FBcENDLEVBQUEsTUFBTSxHQUFBO0FBQ0osVUFBTSxXQUFXLEdBQUc7QUFDbEIsTUFBQSxlQUFlLEVBQUUsTUFEQztBQUVsQixNQUFBLGFBQWEsRUFBRSxHQUZHO0FBR2xCLE1BQUEsU0FBUyxFQUFFLENBSE87QUFJbEIsTUFBQSxZQUFZLEVBQUU7QUFBRSxRQUFBLEtBQUssRUFBRSxDQUFDLENBQVY7QUFBYSxRQUFBLE1BQU0sRUFBRTtBQUFyQixPQUpJO0FBS2xCLE1BQUEsWUFBWSxFQUFFO0FBTEksS0FBcEI7QUFPQSxXQUNFLE9BQUEsQ0FBQSxPQUFBLENBQUEsYUFBQSxDQUFDLFVBQUEsQ0FBQSxPQUFELEVBQVM7QUFDUCxNQUFBLE9BQU8sRUFBRSxNQUNQLEtBQUssUUFBTCxDQUFjO0FBQ1osUUFBQSxXQUFXLEVBQUU7QUFERCxPQUFkLENBRks7QUFNUCxNQUFBLE9BQU8sRUFBRSxNQUFLO0FBQ1osYUFBSyxRQUFMLENBQWM7QUFDWixVQUFBLFdBQVcsRUFBRTtBQURELFNBQWQ7QUFHRCxPQVZNO0FBV1AsTUFBQSxNQUFNLEVBQUUsTUFBTSxLQUFLLEtBQUwsQ0FBVyxhQUFYLENBQXlCLElBQXpCLENBWFA7QUFZUCxNQUFBLEtBQUssRUFBRSxNQUFNLENBQUM7QUFaUCxLQUFULEVBY0UsT0FBQSxDQUFBLE9BQUEsQ0FBQSxhQUFBLENBQUMsY0FBQSxDQUFBLElBQUQsRUFBSztBQUNILE1BQUEsS0FBSyxFQUFFLENBQ0wsTUFBTSxDQUFDLFFBREYsRUFFTCxXQUZLLEVBR0wsS0FBSyxLQUFMLENBQVcsV0FBWCxJQUEwQixNQUFNLENBQUMsTUFINUI7QUFESixLQUFMLEVBT0UsT0FBQSxDQUFBLE9BQUEsQ0FBQSxhQUFBLENBQUMsY0FBQSxDQUFBLElBQUQsRUFBSyxJQUFMLENBUEYsRUFRRyxLQUFLLEtBQUwsQ0FBVyxRQVJkLENBZEYsQ0FERjtBQTJCRDs7QUF2QzJEOztBQUE5RCxPQUFBLENBQUEsT0FBQSxHQUFBLGFBQUE7QUEwQ0EsTUFBTSxNQUFNLEdBQUcsY0FBQSxDQUFBLFVBQUEsQ0FBVyxNQUFYLENBQWtCO0FBQy9CLEVBQUEsUUFBUSxFQUFFO0FBQ1IsSUFBQSxhQUFhLEVBQUU7QUFEUCxHQURxQjtBQUkvQixFQUFBLFFBQVEsRUFBRTtBQUNSLElBQUEsSUFBSSxFQUFFLENBREU7QUFFUixJQUFBLGFBQWEsRUFBRSxLQUZQO0FBR1IsSUFBQSxVQUFVLEVBQUUsUUFISjtBQUlSLElBQUEsT0FBTyxFQUFFLElBSkQ7QUFLUixJQUFBLGFBQWEsRUFBRSxJQUxQO0FBTVIsSUFBQSxZQUFZLEVBQUU7QUFOTixHQUpxQjtBQVkvQixFQUFBLE1BQU0sRUFBRTtBQUNOLElBQUEsZUFBZSxFQUFFO0FBRFg7QUFadUIsQ0FBbEIsQ0FBZixDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0LCB7IENvbXBvbmVudCB9IGZyb20gJ3JlYWN0JztcbmltcG9ydCB7IFN0eWxlU2hlZXQsIFZpZXcgfSBmcm9tICdyZWFjdC1uYXRpdmUnO1xuaW1wb3J0IERyb3Bab25lIGZyb20gJy4uLy4uLy4uL3V0aWxzL3JlYWN0LW5hdGl2ZS1kcmFnLWRyb3AvRHJvcFpvbmUnO1xuXG5leHBvcnQgZGVmYXVsdCBjbGFzcyBXb3JrT3JkZXJDYXJkIGV4dGVuZHMgQ29tcG9uZW50PGFueSwgYW55PiB7XG4gIHN0YXRlID0ge1xuICAgIHpvbmVFbnRlcmVkOiBmYWxzZVxuICB9O1xuICByZW5kZXIoKSB7XG4gICAgY29uc3Qgc2hhZG93U3R5bGUgPSB7XG4gICAgICBiYWNrZ3JvdW5kQ29sb3I6ICcjZmZmJyxcbiAgICAgIHNoYWRvd09wYWNpdHk6IDAuMSxcbiAgICAgIGVsZXZhdGlvbjogNCxcbiAgICAgIHNoYWRvd09mZnNldDogeyB3aWR0aDogLTEsIGhlaWdodDogMyB9LFxuICAgICAgc2hhZG93UmFkaXVzOiA1XG4gICAgfTtcbiAgICByZXR1cm4gKFxuICAgICAgPERyb3Bab25lXG4gICAgICAgIG9uRW50ZXI9eygpID0+XG4gICAgICAgICAgdGhpcy5zZXRTdGF0ZSh7XG4gICAgICAgICAgICB6b25lRW50ZXJlZDogdHJ1ZVxuICAgICAgICAgIH0pXG4gICAgICAgIH1cbiAgICAgICAgb25MZWF2ZT17KCkgPT4ge1xuICAgICAgICAgIHRoaXMuc2V0U3RhdGUoe1xuICAgICAgICAgICAgem9uZUVudGVyZWQ6IGZhbHNlXG4gICAgICAgICAgfSk7XG4gICAgICAgIH19XG4gICAgICAgIG9uRHJvcD17KCkgPT4gdGhpcy5wcm9wcy5kcm9wcGVkSW5ab25lKHRydWUpfVxuICAgICAgICBzdHlsZT17c3R5bGVzLmRyb3Bab25lfVxuICAgICAgPlxuICAgICAgICA8Vmlld1xuICAgICAgICAgIHN0eWxlPXtbXG4gICAgICAgICAgICBzdHlsZXMud29yZENhcmQsXG4gICAgICAgICAgICBzaGFkb3dTdHlsZSxcbiAgICAgICAgICAgIHRoaXMuc3RhdGUuem9uZUVudGVyZWQgJiYgc3R5bGVzLmFjdGl2ZVxuICAgICAgICAgIF19XG4gICAgICAgID5cbiAgICAgICAgICA8VmlldyAvPlxuICAgICAgICAgIHt0aGlzLnByb3BzLmNoaWxkcmVufVxuICAgICAgICA8L1ZpZXc+XG4gICAgICA8L0Ryb3Bab25lPlxuICAgICk7XG4gIH1cbn1cblxuY29uc3Qgc3R5bGVzID0gU3R5bGVTaGVldC5jcmVhdGUoe1xuICBkcm9wWm9uZToge1xuICAgIHBhZGRpbmdCb3R0b206ICczJSdcbiAgfSxcbiAgd29yZENhcmQ6IHtcbiAgICBmbGV4OiAxLFxuICAgIGZsZXhEaXJlY3Rpb246ICdyb3cnLFxuICAgIGFsaWduSXRlbXM6ICdjZW50ZXInLFxuICAgIHBhZGRpbmc6ICczJScsXG4gICAgcGFkZGluZ0JvdHRvbTogJzglJyxcbiAgICBib3JkZXJSYWRpdXM6IDNcbiAgfSxcbiAgYWN0aXZlOiB7XG4gICAgYmFja2dyb3VuZENvbG9yOiAnI0ZGRDc0MCdcbiAgfVxufSk7XG4iXSwic291cmNlUm9vdCI6IiJ9

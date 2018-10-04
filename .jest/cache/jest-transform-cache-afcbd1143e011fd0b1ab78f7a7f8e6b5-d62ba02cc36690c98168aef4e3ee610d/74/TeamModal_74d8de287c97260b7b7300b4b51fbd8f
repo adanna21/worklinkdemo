@@ -1,0 +1,56 @@
+f715c0125b785a4210052b293f0aaf46
+"use strict";
+
+var __importStar = this && this.__importStar || function (mod) {
+  if (mod && mod.__esModule) return mod;
+  var result = {};
+  if (mod != null) for (var k in mod) if (Object.hasOwnProperty.call(mod, k)) result[k] = mod[k];
+  result["default"] = mod;
+  return result;
+};
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+const react_1 = __importStar(require("react"));
+
+const react_native_1 = require("react-native");
+
+const MaterialIcons_1 = __importDefault(require("react-native-vector-icons/MaterialIcons"));
+
+class TeamModal extends react_1.Component {
+  render() {
+    const numberOfMembers = this.props.teamArray.length;
+    return react_1.default.createElement(react_native_1.View, Object.assign({
+      style: [styles.modal]
+    }, this.props.style), react_1.default.createElement(react_native_1.View, {
+      style: styles.containerStyle
+    }, react_1.default.createElement(MaterialIcons_1.default, {
+      name: "account-circle",
+      size: 30,
+      color: "#BDBDBD"
+    }), react_1.default.createElement(react_native_1.Text, null, " ", numberOfMembers, " Member(s) Selected")));
+  }
+
+}
+
+exports.default = TeamModal;
+const styles = react_native_1.StyleSheet.create({
+  modal: {
+    height: 50,
+    width: 200,
+    borderRadius: 10,
+    backgroundColor: '#FFF'
+  },
+  containerStyle: {
+    flexDirection: 'row'
+  }
+}); //# sourceMappingURL=TeamModal.js.map
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIlRlYW1Nb2RhbC50c3giXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBQSxNQUFBLE9BQUEsR0FBQSxZQUFBLENBQUEsT0FBQSxDQUFBLE9BQUEsQ0FBQSxDQUFBOztBQUNBLE1BQUEsY0FBQSxHQUFBLE9BQUEsQ0FBQSxjQUFBLENBQUE7O0FBQ0EsTUFBQSxlQUFBLEdBQUEsZUFBQSxDQUFBLE9BQUEsQ0FBQSx5Q0FBQSxDQUFBLENBQUE7O0FBRUEsTUFBQSxTQUFBLFNBQXVDLE9BQUEsQ0FBQSxTQUF2QyxDQUEwRDtBQUN4RCxFQUFBLE1BQU0sR0FBQTtBQUNKLFVBQU0sZUFBZSxHQUFHLEtBQUssS0FBTCxDQUFXLFNBQVgsQ0FBcUIsTUFBN0M7QUFDQSxXQUNFLE9BQUEsQ0FBQSxPQUFBLENBQUEsYUFBQSxDQUFDLGNBQUEsQ0FBQSxJQUFELEVBQUssTUFBQSxDQUFBLE1BQUEsQ0FBQTtBQUFDLE1BQUEsS0FBSyxFQUFFLENBQUMsTUFBTSxDQUFDLEtBQVI7QUFBUixLQUFBLEVBQTRCLEtBQUssS0FBTCxDQUFXLEtBQXZDLENBQUwsRUFDRSxPQUFBLENBQUEsT0FBQSxDQUFBLGFBQUEsQ0FBQyxjQUFBLENBQUEsSUFBRCxFQUFLO0FBQUMsTUFBQSxLQUFLLEVBQUUsTUFBTSxDQUFDO0FBQWYsS0FBTCxFQUNFLE9BQUEsQ0FBQSxPQUFBLENBQUEsYUFBQSxDQUFDLGVBQUEsQ0FBQSxPQUFELEVBQUs7QUFBQyxNQUFBLElBQUksRUFBQyxnQkFBTjtBQUF1QixNQUFBLElBQUksRUFBRSxFQUE3QjtBQUFpQyxNQUFBLEtBQUssRUFBQztBQUF2QyxLQUFMLENBREYsRUFFRSxPQUFBLENBQUEsT0FBQSxDQUFBLGFBQUEsQ0FBQyxjQUFBLENBQUEsSUFBRCxFQUFLLElBQUwsRSxHQUFBLEVBQVEsZUFBUixFQUFrRCxxQkFBbEQsQ0FGRixDQURGLENBREY7QUFRRDs7QUFYdUQ7O0FBQTFELE9BQUEsQ0FBQSxPQUFBLEdBQUEsU0FBQTtBQWNBLE1BQU0sTUFBTSxHQUFHLGNBQUEsQ0FBQSxVQUFBLENBQVcsTUFBWCxDQUFrQjtBQUMvQixFQUFBLEtBQUssRUFBRTtBQUNMLElBQUEsTUFBTSxFQUFFLEVBREg7QUFFTCxJQUFBLEtBQUssRUFBRSxHQUZGO0FBR0wsSUFBQSxZQUFZLEVBQUUsRUFIVDtBQUlMLElBQUEsZUFBZSxFQUFFO0FBSlosR0FEd0I7QUFPL0IsRUFBQSxjQUFjLEVBQUU7QUFDZCxJQUFBLGFBQWEsRUFBRTtBQUREO0FBUGUsQ0FBbEIsQ0FBZixDIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IFJlYWN0LCB7IENvbXBvbmVudCB9IGZyb20gJ3JlYWN0JztcbmltcG9ydCB7IFZpZXcsIFN0eWxlU2hlZXQsIFRleHQgfSBmcm9tICdyZWFjdC1uYXRpdmUnO1xuaW1wb3J0IEljb24gZnJvbSAncmVhY3QtbmF0aXZlLXZlY3Rvci1pY29ucy9NYXRlcmlhbEljb25zJztcblxuZXhwb3J0IGRlZmF1bHQgY2xhc3MgVGVhbU1vZGFsIGV4dGVuZHMgQ29tcG9uZW50PGFueSwgYW55PiB7XG4gIHJlbmRlcigpIHtcbiAgICBjb25zdCBudW1iZXJPZk1lbWJlcnMgPSB0aGlzLnByb3BzLnRlYW1BcnJheS5sZW5ndGg7XG4gICAgcmV0dXJuIChcbiAgICAgIDxWaWV3IHN0eWxlPXtbc3R5bGVzLm1vZGFsXX0gey4uLnRoaXMucHJvcHMuc3R5bGV9PlxuICAgICAgICA8VmlldyBzdHlsZT17c3R5bGVzLmNvbnRhaW5lclN0eWxlfT5cbiAgICAgICAgICA8SWNvbiBuYW1lPVwiYWNjb3VudC1jaXJjbGVcIiBzaXplPXszMH0gY29sb3I9XCIjQkRCREJEXCIgLz5cbiAgICAgICAgICA8VGV4dD4ge251bWJlck9mTWVtYmVyc30gTWVtYmVyKHMpIFNlbGVjdGVkPC9UZXh0PlxuICAgICAgICA8L1ZpZXc+XG4gICAgICA8L1ZpZXc+XG4gICAgKTtcbiAgfVxufVxuXG5jb25zdCBzdHlsZXMgPSBTdHlsZVNoZWV0LmNyZWF0ZSh7XG4gIG1vZGFsOiB7XG4gICAgaGVpZ2h0OiA1MCxcbiAgICB3aWR0aDogMjAwLFxuICAgIGJvcmRlclJhZGl1czogMTAsXG4gICAgYmFja2dyb3VuZENvbG9yOiAnI0ZGRidcbiAgfSxcbiAgY29udGFpbmVyU3R5bGU6IHtcbiAgICBmbGV4RGlyZWN0aW9uOiAncm93J1xuICB9XG59KTtcbiJdLCJzb3VyY2VSb290IjoiIn0=

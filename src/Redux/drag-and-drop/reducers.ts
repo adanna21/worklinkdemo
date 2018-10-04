@@ -13,7 +13,7 @@ export const reducer = (
 ) => {
   const { teamMembers } = state;
   const TOGGLE = ActionTypes.TOGGLE_TEAM_MEMBER;
-  let memberId;
+  let memberId: string;
   switch (action.type) {
     case TOGGLE:
       memberId = action.payload.memberId;

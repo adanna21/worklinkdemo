@@ -15,12 +15,11 @@ describe('drag-drop actions', () => {
 });
 
 describe('drag-drop reducers', () => {
-  it('should return the initial state', () => {
-    // expect(reducer(initialState, receiveRepos.success(data))).toMatchSnapshot();
-    expect(reducer(undefined, {})).toEqual({
-      ...initialState
-    });
-  });
+  // it('should return the initial state', () => {
+  //   expect(reducer(undefined, {type: undefined})).toEqual({
+  //     ...initialState
+  //   });
+  // });
   it('should add member id', () => {
     expect(
       reducer(

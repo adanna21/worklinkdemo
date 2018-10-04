@@ -1,0 +1,45 @@
+9e4d4c66704e0e4ffb84d6c3560cd1b9
+"use strict";
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+const react_1 = __importDefault(require("react"));
+
+const react_native_mock_1 = require("react-native-mock");
+
+const redux_mock_store_1 = __importDefault(require("redux-mock-store")); // imported as a connected component!
+
+
+const SupervisorQueueScreen_1 = __importDefault(require("../SupervisorQueueScreen"));
+
+const middlewares = []; // you can mock any middlewares here if necessary
+
+const mockStore = redux_mock_store_1.default(middlewares);
+const initialState = {
+  teamMembers: [],
+  error: ''
+}; // describe('Testing SupervisorQueueScreen', () => {
+//   it('renders as expected', () => {
+//     const wrapper = shallow(
+//       <SupervisorQueueScreen />
+//       // { context: { store: mockStore(initialState) } },
+//     );
+//     expect(wrapper.dive()).toMatchSnapshot();
+//   });
+// });
+
+describe('SupervisorQueueScreen rendering', () => {
+  const container = react_native_mock_1.shallow(react_1.default.createElement(SupervisorQueueScreen_1.default, null));
+  it('should render a <DragContainer/>', () => {
+    expect(container.find('DragContainer')).toHaveLength(1);
+  });
+}); //# sourceMappingURL=supervisor-queque-tests.js.map
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInN1cGVydmlzb3ItcXVlcXVlLXRlc3RzLnRzeCJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7QUFBQSxNQUFBLE9BQUEsR0FBQSxlQUFBLENBQUEsT0FBQSxDQUFBLE9BQUEsQ0FBQSxDQUFBOztBQUNBLE1BQUEsbUJBQUEsR0FBQSxPQUFBLENBQUEsbUJBQUEsQ0FBQTs7QUFDQSxNQUFBLGtCQUFBLEdBQUEsZUFBQSxDQUFBLE9BQUEsQ0FBQSxrQkFBQSxDQUFBLENBQUEsQyxDQUdBOzs7QUFDQSxNQUFBLHVCQUFBLEdBQUEsZUFBQSxDQUFBLE9BQUEsQ0FBQSwwQkFBQSxDQUFBLENBQUE7O0FBRUEsTUFBTSxXQUFXLEdBQUcsRUFBcEIsQyxDQUF3Qjs7QUFDeEIsTUFBTSxTQUFTLEdBQUcsa0JBQUEsQ0FBQSxPQUFBLENBQWUsV0FBZixDQUFsQjtBQUVBLE1BQU0sWUFBWSxHQUFHO0FBQ25CLEVBQUEsV0FBVyxFQUFFLEVBRE07QUFFbkIsRUFBQSxLQUFLLEVBQUU7QUFGWSxDQUFyQixDLENBS0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBOztBQUVBLFFBQVEsQ0FBQyxpQ0FBRCxFQUFvQyxNQUFLO0FBQy9DLFFBQU0sU0FBUyxHQUFHLG1CQUFBLENBQUEsT0FBQSxDQUFRLE9BQUEsQ0FBQSxPQUFBLENBQUEsYUFBQSxDQUFDLHVCQUFBLENBQUEsT0FBRCxFQUFzQixJQUF0QixDQUFSLENBQWxCO0FBQ0EsRUFBQSxFQUFFLENBQUMsa0NBQUQsRUFBcUMsTUFBSztBQUMxQyxJQUFBLE1BQU0sQ0FBQyxTQUFTLENBQUMsSUFBVixDQUFlLGVBQWYsQ0FBRCxDQUFOLENBQXdDLFlBQXhDLENBQXFELENBQXJEO0FBQ0QsR0FGQyxDQUFGO0FBR0QsQ0FMTyxDQUFSLEMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnO1xuaW1wb3J0IHsgc2hhbGxvdyB9IGZyb20gJ3JlYWN0LW5hdGl2ZS1tb2NrJztcbmltcG9ydCBjb25maWd1cmVTdG9yZSBmcm9tICdyZWR1eC1tb2NrLXN0b3JlJztcbmltcG9ydCB7fSBmcm9tICd0cy1qZXN0JztcblxuLy8gaW1wb3J0ZWQgYXMgYSBjb25uZWN0ZWQgY29tcG9uZW50IVxuaW1wb3J0IFN1cGVydmlzb3JRdWV1ZVNjcmVlbiBmcm9tICcuLi9TdXBlcnZpc29yUXVldWVTY3JlZW4nO1xuXG5jb25zdCBtaWRkbGV3YXJlcyA9IFtdOyAvLyB5b3UgY2FuIG1vY2sgYW55IG1pZGRsZXdhcmVzIGhlcmUgaWYgbmVjZXNzYXJ5XG5jb25zdCBtb2NrU3RvcmUgPSBjb25maWd1cmVTdG9yZShtaWRkbGV3YXJlcyk7XG5cbmNvbnN0IGluaXRpYWxTdGF0ZSA9IHtcbiAgdGVhbU1lbWJlcnM6IFtdLFxuICBlcnJvcjogJydcbn07XG5cbi8vIGRlc2NyaWJlKCdUZXN0aW5nIFN1cGVydmlzb3JRdWV1ZVNjcmVlbicsICgpID0+IHtcbi8vICAgaXQoJ3JlbmRlcnMgYXMgZXhwZWN0ZWQnLCAoKSA9PiB7XG4vLyAgICAgY29uc3Qgd3JhcHBlciA9IHNoYWxsb3coXG4vLyAgICAgICA8U3VwZXJ2aXNvclF1ZXVlU2NyZWVuIC8+XG4vLyAgICAgICAvLyB7IGNvbnRleHQ6IHsgc3RvcmU6IG1vY2tTdG9yZShpbml0aWFsU3RhdGUpIH0gfSxcbi8vICAgICApO1xuLy8gICAgIGV4cGVjdCh3cmFwcGVyLmRpdmUoKSkudG9NYXRjaFNuYXBzaG90KCk7XG4vLyAgIH0pO1xuLy8gfSk7XG5cbmRlc2NyaWJlKCdTdXBlcnZpc29yUXVldWVTY3JlZW4gcmVuZGVyaW5nJywgKCkgPT4ge1xuICBjb25zdCBjb250YWluZXIgPSBzaGFsbG93KDxTdXBlcnZpc29yUXVldWVTY3JlZW4gLz4pO1xuICBpdCgnc2hvdWxkIHJlbmRlciBhIDxEcmFnQ29udGFpbmVyLz4nLCAoKSA9PiB7XG4gICAgZXhwZWN0KGNvbnRhaW5lci5maW5kKCdEcmFnQ29udGFpbmVyJykpLnRvSGF2ZUxlbmd0aCgxKTtcbiAgfSk7XG59KTtcbiJdLCJzb3VyY2VSb290IjoiIn0=

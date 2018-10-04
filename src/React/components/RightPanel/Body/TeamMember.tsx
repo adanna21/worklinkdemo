@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import Draggable from '../../../utils/react-native-drag-drop/Draggable';
+import { Draggable } from '../../../utils/react-native-drag-drop';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { ITeamMember } from '../../../../../src/Redux/drag-and-drop/types';
 
 export default class TeamMember extends Component<any, any> {
   state = {
@@ -11,7 +12,7 @@ export default class TeamMember extends Component<any, any> {
   // change icon when teaMember selected or unselected
   changeIcon = (id: string) => {
     const memberIdPresent = this.props.teamArray.some(
-      member => member.id === id
+      (member: ITeamMember) => member.id === id
     );
     memberIdPresent
       ? this.setState({

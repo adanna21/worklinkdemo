@@ -11,10 +11,10 @@ import ActionHeader from '../components/RightPanel/Header/ActionHeader';
 import SuperWorkOrderList from '../components/LeftPanel/Body/SuperWorkOrderList';
 import TeamList from '../components/RightPanel/Body/TeamList';
 import { NavigationScreenProp } from 'react-navigation';
-import DragContainer from '../utils/react-native-drag-drop/DragContainer';
+import { DragContainer } from '../utils/react-native-drag-drop';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { allReducers, IState } from '../../../src/Redux';
+import { IState } from '../../../src/Redux';
 import { ITeamMember } from '../../../src/Redux/drag-and-drop/types';
 import { toggleTeamMember } from '../../Redux/drag-and-drop/actions';
 
@@ -30,11 +30,13 @@ export interface ISuperQueueDispatchProps {
   onTeamMemberClicked(memberId: string): void;
 }
 
-type Props = ISuperQueueProps & ISuperQueueNavProps & ISuperQueueDispatchProps;
+export type Props = ISuperQueueProps &
+  ISuperQueueNavProps &
+  ISuperQueueDispatchProps;
 
-class SupervisorQueueScreen extends Component<Props> {
+export class SupervisorQueueScreen extends Component<Props> {
   state = {
-    currentId: null,
+    currentId: '',
     droppedInZone: null
   };
 
@@ -62,7 +64,7 @@ class SupervisorQueueScreen extends Component<Props> {
     return (
       <DragContainer
         teamArray={teamMembers}
-        selectTeamMember={onTeamMemberClicked}
+        // selectTeamMember={onTeamMemberClicked}
         isDroppedInZone={this.isDroppedInZone}
         onDragStart={() => {
           // if only one teamMember is dragged then add them to teamArray
@@ -104,8 +106,8 @@ class SupervisorQueueScreen extends Component<Props> {
             </RightHeader>
             <RightBody>
               <TeamList
-                selectTeamMember={this.props.onTeamMemberClicked}
-                teamArray={this.props.teamMembers}
+                selectTeamMember={onTeamMemberClicked}
+                teamArray={teamMembers}
                 addCurrentId={this.addCurrentId}
                 currentId={this.state.currentId}
               />
@@ -117,7 +119,9 @@ class SupervisorQueueScreen extends Component<Props> {
   }
 }
 
-const mapStateToProps = (state: IState) => state.dragDrop;
+const mapStateToProps = (state: IState) => {
+  return { dragDropState: state.dragDrop };
+};
 const mapDispatchToProps = (dispatch: Dispatch): ISuperQueueDispatchProps => ({
   onTeamMemberClicked: (memberId: string) =>
     dispatch(toggleTeamMember(memberId))

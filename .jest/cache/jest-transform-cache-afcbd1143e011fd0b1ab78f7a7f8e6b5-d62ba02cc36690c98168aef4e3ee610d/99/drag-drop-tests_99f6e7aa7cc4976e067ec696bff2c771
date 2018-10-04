@@ -1,0 +1,58 @@
+7086b6c7dc31022905ba93e5082a188f
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+describe('drag-drop actions', function () {
+  it('should create an action to select a team member id', function () {
+
+
+
+
+
+
+
+  });
+});
+describe('drag-drop reducers', function () {
+  it('should return the initial state', function () {
+
+
+
+  });
+  it('should add member id', function () {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  });
+  it('should remove member id', function () {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  });
+});
