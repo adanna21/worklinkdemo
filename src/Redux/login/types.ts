@@ -5,7 +5,7 @@ export interface IUserLogin {
 }
 
 // Constants
-export const enum ActionTypes {
+export enum ActionTypes {
   LOG_IN = '@@login/LOG_IN',
   // SET_LOGGED_IN_STATE = '@@login/SET_LOGGED_IN_STATE',
   SET_SAVED_USER_STATE = '@@login/SET_SAVED_USER_STATE'

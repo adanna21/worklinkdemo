@@ -4,7 +4,7 @@ export interface ITeamMember {
 }
 
 // Constants
-export const enum ActionTypes {
+export enum ActionTypes {
   TOGGLE_TEAM_MEMBER = '@@drag-and-drop/TOGGLE_TEAM_MEMBER',
   // REMOVE_TEAM_MEMBER = '@@drag-and-drop/REMOVE_TEAM_MEMBER',
   ASSIGN_TEAM = '@@drag-and-drop/ASSIGN_TEAM'
