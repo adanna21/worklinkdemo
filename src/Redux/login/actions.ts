@@ -1,6 +1,8 @@
 import { ActionTypes, ILogin, ISaveUserInAsync, IUserLogin } from './types';
 import { setItem, getItem } from '../helpers/async-storage';
 import { Dispatch } from 'redux';
+import NavigationService from '../../config/NavigationService';
+
 
 // Add user to Async Storage
 export const saveUserInAsync = (user: IUserLogin) => {
@@ -24,6 +26,8 @@ export const login = (username: string, password: string) => {
       .then(user => {
         if (username === user.username && password === user.password) {
           dispatch(setLoggedInState(true, user.username));
+          NavigationService.navigateTo('MainNavigator')
+          //this.props.navigation.navigate('MainNavigator');
           return true;
         } else {
           dispatch(setLoggedInState(false, null));
