@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactChildren } from 'react';
 import {
   View,
   PanResponder,
@@ -6,16 +6,19 @@ import {
   Easing,
   Animated,
   TouchableOpacity,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  LayoutRectangle,
+  ModalPropsIOS
 } from 'react-native';
 import PropTypes from 'prop-types';
 import TeamModal from '../../components/RightPanel/Body/TeamModal';
 import { ITeamMember } from '../../../Redux/drag-and-drop/types';
-import { ISuperQueueDispatchProps } from '../../screens/SupervisorQueueScreen';
+import { IZoneDetails, IPosition } from './DropZone';
 
-global.Easing = Easing;
+// let global: any;
+// global.Easing = Easing;
 
-const allOrientations = [
+const allOrientations: ModalPropsIOS['supportedOrientations'] = [
   'portrait',
   'portrait-upside-down',
   'landscape',
@@ -23,15 +26,27 @@ const allOrientations = [
   'landscape-right'
 ];
 
-// interface IDragContainerProps {
-//   teamArray: ITeamMember[];
-//   selectTeamMember(memberId: string): void;
-//   isDroppedInZone: () => any;
-//   onDragStart: () => any;
-//   onDragEnd: () => any;
-// }
+export interface IPosition {
+  x: number;
+  y: number;
+}
 
-class DragModal extends React.Component {
+interface IDragContainerProps {
+  teamArray: ITeamMember[];
+  selectTeamMember(memberId: string): void;
+  isDroppedInZone: () => any;
+  onDragStart: (draggingComponent: any) => any;
+  onDragEnd: (draggingComponent: any, hitZone: any) => any;
+  style: any;
+}
+interface IDragModalProps {
+  content: any;
+  drop: () => any;
+  teamArray: ITeamMember[];
+  location: Animated.ValueXY;
+}
+
+class DragModal extends React.Component<IDragModalProps, any> {
   render() {
     let { startPosition } = this.props.content;
     return (
@@ -49,12 +64,30 @@ class DragModal extends React.Component {
   }
 }
 
-export default class DragContainer extends React.Component {
-  constructor(props) {
+export default class DragContainer extends React.Component<
+  IDragContainerProps,
+  any
+> {
+  displayName: string;
+
+  containerLayout: LayoutRectangle;
+  dropZone: number[];
+  dropZones: IZoneDetails[];
+  draggables: number[];
+  private _listener: string;
+  private _point: IPosition;
+  private _locked: boolean;
+  private _panResponder: any;
+  private _offset: IPosition;
+  constructor(props: any) {
     super(props);
     this.displayName = 'DragContainer';
-    this.containerLayout;
-
+    this.containerLayout = { x: 0, y: 0, width: 0, height: 0 };
+    this.dropZone = [0];
+    this._point = { x: 0, y: 0 };
+    this._locked = false;
+    this._panResponder = undefined;
+    this._offset = { x: 0, y: 0 };
     let location = new Animated.ValueXY();
 
     this.state = {
@@ -98,8 +131,8 @@ export default class DragContainer extends React.Component {
     dragContext: PropTypes.any
   };
 
-  updateZone(details) {
-    let zone = this.dropZones.find(x => x.ref === details.ref);
+  updateZone(details: IZoneDetails) {
+    let zone = this.dropZones.find(item => item.ref === details.ref);
     if (!zone) {
       this.dropZones.push(details);
     } else {
@@ -108,14 +141,14 @@ export default class DragContainer extends React.Component {
     }
   }
 
-  removeZone(ref) {
-    let i = this.dropZones.find(x => x.ref === ref);
+  removeZone(ref: React.RefObject<View>) {
+    let i = this.dropZones.findIndex(x => x.ref === ref);
     if (i !== -1) {
       this.dropZones.splice(i, 1);
     }
   }
 
-  inZone({ x, y }, zone) {
+  inZone({ x, y }: IPosition, zone: IZoneDetails) {
     return (
       zone.x <= x &&
       zone.width + zone.x >= x &&
@@ -123,7 +156,7 @@ export default class DragContainer extends React.Component {
       zone.height + zone.y >= y
     );
   }
-  _addLocationOffset(point) {
+  _addLocationOffset(point: IPosition) {
     if (!this.state.draggingComponent) return point;
     return {
       x: point.x + this.state.draggingComponent.startPosition.width / 2,
@@ -131,20 +164,20 @@ export default class DragContainer extends React.Component {
     };
   }
 
-  _handleDragging(point) {
+  _handleDragging(point: IPosition) {
     this._point = point;
     if (this._locked || !point) return;
     this.dropZones.forEach(zone => {
       if (this.inZone(point, zone)) {
         zone.onEnter(point);
       } else {
-        zone.onLeave(point);
+        zone.onLeave();
       }
     });
   }
 
   _handleDrop() {
-    let hitZones = [];
+    let hitZones: any = [];
     this.dropZones.forEach(zone => {
       if (!this._point) return;
       if (this.inZone(this._point, zone)) {
@@ -195,7 +228,7 @@ export default class DragContainer extends React.Component {
       },
       onMoveShouldSetPanResponder: (evt, gestureState) =>
         !!this.state.draggingComponent,
-      onPanResponderMove: (...args) =>
+      onPanResponderMove: (...args: any[]) =>
         Animated.event([
           null,
           {
@@ -212,39 +245,47 @@ export default class DragContainer extends React.Component {
     });
   }
   // added the 'id' parameter to capture id of team member
-  onDrag(id, ref, children, data) {
-    ref.measure((...args) => {
-      if (this._listener) this.state.location.removeListener(this._listener);
-      let location = new Animated.ValueXY();
-      this._listener = location.addListener(args =>
-        this._handleDragging(this._addLocationOffset(args))
-      );
-      this._offset = { x: args[4], y: args[5] };
-      location.setOffset(this._offset);
+  onDrag(
+    id: string,
+    ref: React.RefObject<TouchableOpacity>,
+    children: ReactChildren,
+    data: any
+  ) {
+    if (ref.current !== null)
+      ref.current.measure((...args: any[]) => {
+        if (this._listener) this.state.location.removeListener(this._listener);
+        let location = new Animated.ValueXY();
+        this._listener = location.addListener(args =>
+          this._handleDragging(this._addLocationOffset(args))
+        );
+        this._offset = { x: args[4], y: args[5] };
+        location.setOffset(this._offset);
 
-      this.setState(
-        {
-          location,
-          draggingComponent: {
-            ref,
-            data,
-            children: React.Children.map(children, child => {
-              return React.cloneElement(child, { dragging: true });
-            }),
-            startPosition: {
-              x: args[4],
-              y: args[5],
-              width: args[2],
-              height: args[3]
+        this.setState(
+          {
+            location,
+            draggingComponent: {
+              ref,
+              data,
+              children: React.Children.map(children, child => {
+                return React.cloneElement(child as React.ReactElement<any>, {
+                  dragging: true
+                });
+              }),
+              startPosition: {
+                x: args[4],
+                y: args[5],
+                width: args[2],
+                height: args[3]
+              }
             }
+          },
+          () => {
+            if (this.props.onDragStart)
+              this.props.onDragStart(this.state.draggingComponent);
           }
-        },
-        () => {
-          if (this.props.onDragStart)
-            this.props.onDragStart(this.state.draggingComponent);
-        }
-      );
-    });
+        );
+      });
   }
 
   render() {

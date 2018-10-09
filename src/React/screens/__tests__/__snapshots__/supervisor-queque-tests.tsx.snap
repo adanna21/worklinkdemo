@@ -1,58 +1,715 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SupervisorQueueScreen renders correctly 1`] = `
-<DragContainer
-  isDroppedInZone={[Function]}
-  onDragEnd={[Function]}
-  onDragStart={[Function]}
->
-  <AppContainer>
-    <LeftPanel>
-      <LeftHeader>
-        <MyWorkOrderHeader>
-          My HVAC Queue
-        </MyWorkOrderHeader>
-      </LeftHeader>
-      <LeftBody>
-        <SuperWorkOrderList
-          droppedInZone={[Function]}
-          navigation={
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <SupervisorQueueScreen
+    navigation={
+      Object {
+        "addListener": [MockFunction],
+        "closeDrawer": [MockFunction],
+        "dismiss": [MockFunction],
+        "dispatch": [MockFunction],
+        "getParam": [MockFunction],
+        "goBack": [MockFunction],
+        "isFocused": [MockFunction],
+        "navigate": [MockFunction],
+        "openDrawer": [MockFunction],
+        "pop": [MockFunction],
+        "popToTop": [MockFunction],
+        "push": [MockFunction],
+        "replace": [MockFunction],
+        "setParams": [MockFunction],
+        "state": Object {},
+        "toggleDrawer": [MockFunction],
+      }
+    }
+    onTeamMemberClicked={[Function]}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": <AppContainer>
+        <LeftPanel>
+          <LeftHeader>
+            <MyWorkOrderHeader>
+              My HVAC Queue
+            </MyWorkOrderHeader>
+          </LeftHeader>
+          <LeftBody>
+            <SuperWorkOrderList
+              droppedInZone={[Function]}
+              navigation={
+                Object {
+                  "addListener": [MockFunction],
+                  "closeDrawer": [MockFunction],
+                  "dismiss": [MockFunction],
+                  "dispatch": [MockFunction],
+                  "getParam": [MockFunction],
+                  "goBack": [MockFunction],
+                  "isFocused": [MockFunction],
+                  "navigate": [MockFunction],
+                  "openDrawer": [MockFunction],
+                  "pop": [MockFunction],
+                  "popToTop": [MockFunction],
+                  "push": [MockFunction],
+                  "replace": [MockFunction],
+                  "setParams": [MockFunction],
+                  "state": Object {},
+                  "toggleDrawer": [MockFunction],
+                }
+              }
+            />
+          </LeftBody>
+        </LeftPanel>
+        <RightPanel>
+          <RightHeader>
+            <ActionHeader>
+              HVAC Team
+            </ActionHeader>
+          </RightHeader>
+          <RightBody>
+            <TeamList
+              addCurrentId={[Function]}
+              currentId=""
+              selectTeamMember={[Function]}
+            />
+          </RightBody>
+        </RightPanel>
+      </AppContainer>,
+      "isDroppedInZone": [Function],
+      "onDragEnd": [Function],
+      "onDragStart": [Function],
+      "teamArray": undefined,
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <LeftPanel>
+            <LeftHeader>
+              <MyWorkOrderHeader>
+                My HVAC Queue
+              </MyWorkOrderHeader>
+            </LeftHeader>
+            <LeftBody>
+              <SuperWorkOrderList
+                droppedInZone={[Function]}
+                navigation={
+                  Object {
+                    "addListener": [MockFunction],
+                    "closeDrawer": [MockFunction],
+                    "dismiss": [MockFunction],
+                    "dispatch": [MockFunction],
+                    "getParam": [MockFunction],
+                    "goBack": [MockFunction],
+                    "isFocused": [MockFunction],
+                    "navigate": [MockFunction],
+                    "openDrawer": [MockFunction],
+                    "pop": [MockFunction],
+                    "popToTop": [MockFunction],
+                    "push": [MockFunction],
+                    "replace": [MockFunction],
+                    "setParams": [MockFunction],
+                    "state": Object {},
+                    "toggleDrawer": [MockFunction],
+                  }
+                }
+              />
+            </LeftBody>
+          </LeftPanel>,
+          <RightPanel>
+            <RightHeader>
+              <ActionHeader>
+                HVAC Team
+              </ActionHeader>
+            </RightHeader>
+            <RightBody>
+              <TeamList
+                addCurrentId={[Function]}
+                currentId=""
+                selectTeamMember={[Function]}
+              />
+            </RightBody>
+          </RightPanel>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <LeftHeader>
+                <MyWorkOrderHeader>
+                  My HVAC Queue
+                </MyWorkOrderHeader>
+              </LeftHeader>,
+              <LeftBody>
+                <SuperWorkOrderList
+                  droppedInZone={[Function]}
+                  navigation={
+                    Object {
+                      "addListener": [MockFunction],
+                      "closeDrawer": [MockFunction],
+                      "dismiss": [MockFunction],
+                      "dispatch": [MockFunction],
+                      "getParam": [MockFunction],
+                      "goBack": [MockFunction],
+                      "isFocused": [MockFunction],
+                      "navigate": [MockFunction],
+                      "openDrawer": [MockFunction],
+                      "pop": [MockFunction],
+                      "popToTop": [MockFunction],
+                      "push": [MockFunction],
+                      "replace": [MockFunction],
+                      "setParams": [MockFunction],
+                      "state": Object {},
+                      "toggleDrawer": [MockFunction],
+                    }
+                  }
+                />
+              </LeftBody>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
             Object {
-              "addListener": [MockFunction],
-              "closeDrawer": [MockFunction],
-              "dismiss": [MockFunction],
-              "dispatch": [MockFunction],
-              "getParam": [MockFunction],
-              "goBack": [MockFunction],
-              "isFocused": [MockFunction],
-              "navigate": [MockFunction],
-              "openDrawer": [MockFunction],
-              "pop": [MockFunction],
-              "popToTop": [MockFunction],
-              "push": [MockFunction],
-              "replace": [MockFunction],
-              "setParams": [MockFunction],
-              "state": Object {},
-              "toggleDrawer": [MockFunction],
-            }
-          }
-        />
-      </LeftBody>
-    </LeftPanel>
-    <RightPanel>
-      <RightHeader>
-        <ActionHeader>
-          HVAC Team
-        </ActionHeader>
-      </RightHeader>
-      <RightBody>
-        <TeamList
-          addCurrentId={[Function]}
-          currentId=""
-          selectTeamMember={[Function]}
-        />
-      </RightBody>
-    </RightPanel>
-  </AppContainer>
-</DragContainer>
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <MyWorkOrderHeader>
+                  My HVAC Queue
+                </MyWorkOrderHeader>,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "My HVAC Queue",
+                },
+                "ref": null,
+                "rendered": "My HVAC Queue",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <SuperWorkOrderList
+                  droppedInZone={[Function]}
+                  navigation={
+                    Object {
+                      "addListener": [MockFunction],
+                      "closeDrawer": [MockFunction],
+                      "dismiss": [MockFunction],
+                      "dispatch": [MockFunction],
+                      "getParam": [MockFunction],
+                      "goBack": [MockFunction],
+                      "isFocused": [MockFunction],
+                      "navigate": [MockFunction],
+                      "openDrawer": [MockFunction],
+                      "pop": [MockFunction],
+                      "popToTop": [MockFunction],
+                      "push": [MockFunction],
+                      "replace": [MockFunction],
+                      "setParams": [MockFunction],
+                      "state": Object {},
+                      "toggleDrawer": [MockFunction],
+                    }
+                  }
+                />,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "droppedInZone": [Function],
+                  "navigation": Object {
+                    "addListener": [MockFunction],
+                    "closeDrawer": [MockFunction],
+                    "dismiss": [MockFunction],
+                    "dispatch": [MockFunction],
+                    "getParam": [MockFunction],
+                    "goBack": [MockFunction],
+                    "isFocused": [MockFunction],
+                    "navigate": [MockFunction],
+                    "openDrawer": [MockFunction],
+                    "pop": [MockFunction],
+                    "popToTop": [MockFunction],
+                    "push": [MockFunction],
+                    "replace": [MockFunction],
+                    "setParams": [MockFunction],
+                    "state": Object {},
+                    "toggleDrawer": [MockFunction],
+                  },
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <RightHeader>
+                <ActionHeader>
+                  HVAC Team
+                </ActionHeader>
+              </RightHeader>,
+              <RightBody>
+                <TeamList
+                  addCurrentId={[Function]}
+                  currentId=""
+                  selectTeamMember={[Function]}
+                />
+              </RightBody>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <ActionHeader>
+                  HVAC Team
+                </ActionHeader>,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "HVAC Team",
+                },
+                "ref": null,
+                "rendered": "HVAC Team",
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <TeamList
+                  addCurrentId={[Function]}
+                  currentId=""
+                  selectTeamMember={[Function]}
+                />,
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "addCurrentId": [Function],
+                  "currentId": "",
+                  "selectTeamMember": [Function],
+                  "teamArray": undefined,
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": <AppContainer>
+          <LeftPanel>
+            <LeftHeader>
+              <MyWorkOrderHeader>
+                My HVAC Queue
+              </MyWorkOrderHeader>
+            </LeftHeader>
+            <LeftBody>
+              <SuperWorkOrderList
+                droppedInZone={[Function]}
+                navigation={
+                  Object {
+                    "addListener": [MockFunction],
+                    "closeDrawer": [MockFunction],
+                    "dismiss": [MockFunction],
+                    "dispatch": [MockFunction],
+                    "getParam": [MockFunction],
+                    "goBack": [MockFunction],
+                    "isFocused": [MockFunction],
+                    "navigate": [MockFunction],
+                    "openDrawer": [MockFunction],
+                    "pop": [MockFunction],
+                    "popToTop": [MockFunction],
+                    "push": [MockFunction],
+                    "replace": [MockFunction],
+                    "setParams": [MockFunction],
+                    "state": Object {},
+                    "toggleDrawer": [MockFunction],
+                  }
+                }
+              />
+            </LeftBody>
+          </LeftPanel>
+          <RightPanel>
+            <RightHeader>
+              <ActionHeader>
+                HVAC Team
+              </ActionHeader>
+            </RightHeader>
+            <RightBody>
+              <TeamList
+                addCurrentId={[Function]}
+                currentId=""
+                selectTeamMember={[Function]}
+              />
+            </RightBody>
+          </RightPanel>
+        </AppContainer>,
+        "isDroppedInZone": [Function],
+        "onDragEnd": [Function],
+        "onDragStart": [Function],
+        "teamArray": undefined,
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <LeftPanel>
+              <LeftHeader>
+                <MyWorkOrderHeader>
+                  My HVAC Queue
+                </MyWorkOrderHeader>
+              </LeftHeader>
+              <LeftBody>
+                <SuperWorkOrderList
+                  droppedInZone={[Function]}
+                  navigation={
+                    Object {
+                      "addListener": [MockFunction],
+                      "closeDrawer": [MockFunction],
+                      "dismiss": [MockFunction],
+                      "dispatch": [MockFunction],
+                      "getParam": [MockFunction],
+                      "goBack": [MockFunction],
+                      "isFocused": [MockFunction],
+                      "navigate": [MockFunction],
+                      "openDrawer": [MockFunction],
+                      "pop": [MockFunction],
+                      "popToTop": [MockFunction],
+                      "push": [MockFunction],
+                      "replace": [MockFunction],
+                      "setParams": [MockFunction],
+                      "state": Object {},
+                      "toggleDrawer": [MockFunction],
+                    }
+                  }
+                />
+              </LeftBody>
+            </LeftPanel>,
+            <RightPanel>
+              <RightHeader>
+                <ActionHeader>
+                  HVAC Team
+                </ActionHeader>
+              </RightHeader>
+              <RightBody>
+                <TeamList
+                  addCurrentId={[Function]}
+                  currentId=""
+                  selectTeamMember={[Function]}
+                />
+              </RightBody>
+            </RightPanel>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <LeftHeader>
+                  <MyWorkOrderHeader>
+                    My HVAC Queue
+                  </MyWorkOrderHeader>
+                </LeftHeader>,
+                <LeftBody>
+                  <SuperWorkOrderList
+                    droppedInZone={[Function]}
+                    navigation={
+                      Object {
+                        "addListener": [MockFunction],
+                        "closeDrawer": [MockFunction],
+                        "dismiss": [MockFunction],
+                        "dispatch": [MockFunction],
+                        "getParam": [MockFunction],
+                        "goBack": [MockFunction],
+                        "isFocused": [MockFunction],
+                        "navigate": [MockFunction],
+                        "openDrawer": [MockFunction],
+                        "pop": [MockFunction],
+                        "popToTop": [MockFunction],
+                        "push": [MockFunction],
+                        "replace": [MockFunction],
+                        "setParams": [MockFunction],
+                        "state": Object {},
+                        "toggleDrawer": [MockFunction],
+                      }
+                    }
+                  />
+                </LeftBody>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": <MyWorkOrderHeader>
+                    My HVAC Queue
+                  </MyWorkOrderHeader>,
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "My HVAC Queue",
+                  },
+                  "ref": null,
+                  "rendered": "My HVAC Queue",
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": <SuperWorkOrderList
+                    droppedInZone={[Function]}
+                    navigation={
+                      Object {
+                        "addListener": [MockFunction],
+                        "closeDrawer": [MockFunction],
+                        "dismiss": [MockFunction],
+                        "dispatch": [MockFunction],
+                        "getParam": [MockFunction],
+                        "goBack": [MockFunction],
+                        "isFocused": [MockFunction],
+                        "navigate": [MockFunction],
+                        "openDrawer": [MockFunction],
+                        "pop": [MockFunction],
+                        "popToTop": [MockFunction],
+                        "push": [MockFunction],
+                        "replace": [MockFunction],
+                        "setParams": [MockFunction],
+                        "state": Object {},
+                        "toggleDrawer": [MockFunction],
+                      }
+                    }
+                  />,
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "droppedInZone": [Function],
+                    "navigation": Object {
+                      "addListener": [MockFunction],
+                      "closeDrawer": [MockFunction],
+                      "dismiss": [MockFunction],
+                      "dispatch": [MockFunction],
+                      "getParam": [MockFunction],
+                      "goBack": [MockFunction],
+                      "isFocused": [MockFunction],
+                      "navigate": [MockFunction],
+                      "openDrawer": [MockFunction],
+                      "pop": [MockFunction],
+                      "popToTop": [MockFunction],
+                      "push": [MockFunction],
+                      "replace": [MockFunction],
+                      "setParams": [MockFunction],
+                      "state": Object {},
+                      "toggleDrawer": [MockFunction],
+                    },
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <RightHeader>
+                  <ActionHeader>
+                    HVAC Team
+                  </ActionHeader>
+                </RightHeader>,
+                <RightBody>
+                  <TeamList
+                    addCurrentId={[Function]}
+                    currentId=""
+                    selectTeamMember={[Function]}
+                  />
+                </RightBody>,
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": <ActionHeader>
+                    HVAC Team
+                  </ActionHeader>,
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "HVAC Team",
+                  },
+                  "ref": null,
+                  "rendered": "HVAC Team",
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": <TeamList
+                    addCurrentId={[Function]}
+                    currentId=""
+                    selectTeamMember={[Function]}
+                  />,
+                },
+                "ref": null,
+                "rendered": Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "addCurrentId": [Function],
+                    "currentId": "",
+                    "selectTeamMember": [Function],
+                    "teamArray": undefined,
+                  },
+                  "ref": null,
+                  "rendered": null,
+                  "type": [Function],
+                },
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "context": Object {
+      "store": Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      },
+    },
+    "hydrateIn": undefined,
+  },
+}
 `;

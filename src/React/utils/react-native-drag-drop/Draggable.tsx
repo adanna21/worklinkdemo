@@ -1,12 +1,31 @@
 import React from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
+import { ITeamMember } from '../../../Redux/drag-and-drop/types';
 
-class Draggable extends React.Component {
-  constructor(props) {
+interface IDraggableProps {
+  itemId: string;
+  data: any;
+  teamArray: ITeamMember[];
+  addCurrentId: (id: IDraggableProps['itemId']) => void;
+  draggableSelectTeamMember: (id: IDraggableProps['itemId']) => void;
+  draggableChangeIcon: (id: IDraggableProps['itemId']) => void;
+  style: any;
+  disabled?: () => any;
+  dragOn: string;
+  onPress: any;
+  activeOpacity: any;
+}
+
+class Draggable extends React.Component<IDraggableProps, any> {
+  displayName: string;
+  private wrapper: React.RefObject<TouchableOpacity>;
+
+  constructor(props: any) {
     super(props);
     this.displayName = 'Draggable';
     this._initiateDrag = this._initiateDrag.bind(this);
+    this.wrapper = React.createRef();
   }
 
   static contextTypes = {
@@ -16,7 +35,9 @@ class Draggable extends React.Component {
   static propTypes = {
     dragOn: PropTypes.oneOf(['onLongPress', 'onPressIn'])
   };
-
+  // componentWillMount () {
+  //   this.props.dragOn = ''
+  // }
   _initiateDrag() {
     const {
       disabled,
@@ -24,16 +45,11 @@ class Draggable extends React.Component {
       children,
       data,
       teamArray,
-      addCurrentId,
-      changeIcon
+      addCurrentId
     } = this.props;
     if (!disabled)
-      this.context.dragContext.onDrag(
-        itemId,
-        this.refs.wrapper,
-        children,
-        data
-      );
+      this.context.dragContext.onDrag(itemId, this.wrapper, children, data);
+
     // if there are no items in the teamArray then you can add one by dragging
     if (teamArray.length === 0) {
       // if only one teamMember is dragged then add them to teamArray
@@ -54,22 +70,24 @@ class Draggable extends React.Component {
     let isDragging =
       this.context.dragContext.dragging &&
       this.context.dragContext.dragging.ref;
-    isDragging = isDragging && isDragging === this.refs.wrapper;
+    isDragging = isDragging && isDragging === this.wrapper;
     return (
       <TouchableOpacity
         activeOpacity={this.props.activeOpacity}
         style={this.props.style}
         onLongPress={
-          this.props.dragOn === 'onLongPress' ? this._initiateDrag : null
+          this.props.dragOn === 'onLongPress' ? this._initiateDrag : undefined
         }
         onPress={this.props.onPress}
         onPressIn={
-          this.props.dragOn === 'onPressIn' ? this._initiateDrag : null
+          this.props.dragOn === 'onPressIn' ? this._initiateDrag : undefined
         }
-        ref="wrapper"
+        ref={this.wrapper}
       >
         {React.Children.map(this.props.children, child => {
-          return React.cloneElement(child, { ghost: isDragging });
+          return React.cloneElement(child as React.ReactElement<any>, {
+            ghost: isDragging
+          });
         })}
       </TouchableOpacity>
     );

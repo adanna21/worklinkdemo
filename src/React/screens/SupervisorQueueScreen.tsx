@@ -11,7 +11,7 @@ import ActionHeader from '../components/RightPanel/Header/ActionHeader';
 import SuperWorkOrderList from '../components/LeftPanel/Body/SuperWorkOrderList';
 import TeamList from '../components/RightPanel/Body/TeamList';
 import { NavigationScreenProp } from 'react-navigation';
-import { DragContainer } from '../utils/react-native-drag-drop/index.js';
+import { DragContainer } from '../utils/react-native-drag-drop';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { IState } from '../../../src/Redux';
@@ -37,7 +37,7 @@ export type Props = ISuperQueueProps &
 export class SupervisorQueueScreen extends Component<Props> {
   state = {
     currentId: '',
-    droppedInZone: null
+    droppedInZone: false
   };
 
   addCurrentId = (id: string) => {
@@ -120,7 +120,7 @@ export class SupervisorQueueScreen extends Component<Props> {
 }
 
 const mapStateToProps = (state: IState) => {
-  return { dragDropState: state.dragDrop };
+  return state.dragDrop;
 };
 const mapDispatchToProps = (dispatch: Dispatch): ISuperQueueDispatchProps => ({
   onTeamMemberClicked: (memberId: string) =>
