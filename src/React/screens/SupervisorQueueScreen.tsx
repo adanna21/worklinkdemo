@@ -34,18 +34,26 @@ export type Props = ISuperQueueProps &
   ISuperQueueNavProps &
   ISuperQueueDispatchProps;
 
-export class SupervisorQueueScreen extends Component<Props> {
-  state = {
-    currentId: '',
-    droppedInZone: false
-  };
+interface State {
+  currentId: string | null;
+  droppedInZone: boolean;
+}
+
+export class SupervisorQueueScreen extends Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      currentId: null,
+      droppedInZone: false
+    };
+  }
 
   addCurrentId = (id: string) => {
     console.log('added current Id', id);
     this.setState({ currentId: id });
   };
   removeId = () => {
-    this.setState({ currentId: '' });
+    this.setState({ currentId: null });
   };
 
   // toggleScroll = (visible: boolean) => {
@@ -64,7 +72,6 @@ export class SupervisorQueueScreen extends Component<Props> {
     return (
       <DragContainer
         teamArray={teamMembers}
-        // selectTeamMember={onTeamMemberClicked}
         isDroppedInZone={this.isDroppedInZone}
         onDragStart={() => {
           // if only one teamMember is dragged then add them to teamArray

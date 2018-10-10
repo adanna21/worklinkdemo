@@ -7,11 +7,11 @@ interface IDraggableProps {
   itemId: string;
   data: any;
   teamArray: ITeamMember[];
-  addCurrentId: (id: IDraggableProps['itemId']) => void;
-  draggableSelectTeamMember: (id: IDraggableProps['itemId']) => void;
-  draggableChangeIcon: (id: IDraggableProps['itemId']) => void;
+  addCurrentId(id: IDraggableProps['itemId']): void;
+  draggableSelectTeamMember(id: IDraggableProps['itemId']): void;
+  draggableChangeIcon(id: IDraggableProps['itemId']): void;
   style: any;
-  disabled?: () => any;
+  disabled?(): void;
   dragOn: string;
   onPress: any;
   activeOpacity: any;

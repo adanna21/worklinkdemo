@@ -15,11 +15,6 @@ describe('drag-drop actions', () => {
 });
 
 describe('drag-drop reducers', () => {
-  // it('should return the initial state', () => {
-  //   expect(reducer(undefined, {type: undefined})).toEqual({
-  //     ...initialState
-  //   });
-  // });
   it('should add member id', () => {
     expect(
       reducer(
@@ -50,6 +45,25 @@ describe('drag-drop reducers', () => {
           type: ActionTypes.TOGGLE_TEAM_MEMBER,
           payload: {
             memberId: '1800008'
+          }
+        }
+      )
+    ).toEqual({
+      teamMembers: [{ id: '1800004' }],
+      error: ''
+    });
+  });
+  it('should not add null member id', () => {
+    expect(
+      reducer(
+        {
+          teamMembers: [{ id: '1800004' }],
+          error: ''
+        },
+        {
+          type: ActionTypes.TOGGLE_TEAM_MEMBER,
+          payload: {
+            memberId: null
           }
         }
       )

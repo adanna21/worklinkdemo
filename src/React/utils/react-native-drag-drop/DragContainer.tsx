@@ -15,9 +15,6 @@ import TeamModal from '../../components/RightPanel/Body/TeamModal';
 import { ITeamMember } from '../../../Redux/drag-and-drop/types';
 import { IZoneDetails, IPosition } from './DropZone';
 
-// let global: any;
-// global.Easing = Easing;
-
 const allOrientations: ModalPropsIOS['supportedOrientations'] = [
   'portrait',
   'portrait-upside-down',

@@ -81,7 +81,7 @@ ShallowWrapper {
           <RightBody>
             <TeamList
               addCurrentId={[Function]}
-              currentId=""
+              currentId={null}
               selectTeamMember={[Function]}
             />
           </RightBody>
@@ -140,7 +140,7 @@ ShallowWrapper {
             <RightBody>
               <TeamList
                 addCurrentId={[Function]}
-                currentId=""
+                currentId={null}
                 selectTeamMember={[Function]}
               />
             </RightBody>
@@ -290,7 +290,7 @@ ShallowWrapper {
               <RightBody>
                 <TeamList
                   addCurrentId={[Function]}
-                  currentId=""
+                  currentId={null}
                   selectTeamMember={[Function]}
                 />
               </RightBody>,
@@ -328,7 +328,7 @@ ShallowWrapper {
               "props": Object {
                 "children": <TeamList
                   addCurrentId={[Function]}
-                  currentId=""
+                  currentId={null}
                   selectTeamMember={[Function]}
                 />,
               },
@@ -339,7 +339,7 @@ ShallowWrapper {
                 "nodeType": "class",
                 "props": Object {
                   "addCurrentId": [Function],
-                  "currentId": "",
+                  "currentId": null,
                   "selectTeamMember": [Function],
                   "teamArray": undefined,
                 },
@@ -405,7 +405,7 @@ ShallowWrapper {
             <RightBody>
               <TeamList
                 addCurrentId={[Function]}
-                currentId=""
+                currentId={null}
                 selectTeamMember={[Function]}
               />
             </RightBody>
@@ -464,7 +464,7 @@ ShallowWrapper {
               <RightBody>
                 <TeamList
                   addCurrentId={[Function]}
-                  currentId=""
+                  currentId={null}
                   selectTeamMember={[Function]}
                 />
               </RightBody>
@@ -614,7 +614,7 @@ ShallowWrapper {
                 <RightBody>
                   <TeamList
                     addCurrentId={[Function]}
-                    currentId=""
+                    currentId={null}
                     selectTeamMember={[Function]}
                   />
                 </RightBody>,
@@ -652,7 +652,7 @@ ShallowWrapper {
                 "props": Object {
                   "children": <TeamList
                     addCurrentId={[Function]}
-                    currentId=""
+                    currentId={null}
                     selectTeamMember={[Function]}
                   />,
                 },
@@ -663,7 +663,7 @@ ShallowWrapper {
                   "nodeType": "class",
                   "props": Object {
                     "addCurrentId": [Function],
-                    "currentId": "",
+                    "currentId": null,
                     "selectTeamMember": [Function],
                     "teamArray": undefined,
                   },

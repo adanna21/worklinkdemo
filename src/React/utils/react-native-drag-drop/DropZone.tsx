@@ -35,7 +35,7 @@ export default class DropZone extends Component<IDropZoneProps, any> {
     super(props);
     this.displayName = 'DropZone';
     this._timer = this.state = {};
-    // most recent way to get create refs
+    // most recent way to create refs
     this.wrapper = React.createRef();
     this.reportMeasurements = this.reportMeasurements.bind(this);
     this.onEnter = this.onEnter.bind(this);
