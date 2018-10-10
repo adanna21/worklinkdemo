@@ -26,8 +26,7 @@ export const login = (username: string, password: string) => {
       .then(user => {
         if (username === user.username && password === user.password) {
           dispatch(setLoggedInState(true, user.username));
-          NavigationService.navigateTo('MainNavigator')
-          //this.props.navigation.navigate('MainNavigator');
+          NavigationService.navigateTo('MainNavigator');
           return true;
         } else {
           dispatch(setLoggedInState(false, null));

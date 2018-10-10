@@ -7,7 +7,7 @@ function setNav(nav : NavigationContainer) {
 }
 
 function navigateTo(route: string, params?: NavigationParams) {
-    _nav.dispatch(NavigationActions.navigate({routeName: route, params })); // tslint-disable-line
+    _nav.dispatch(NavigationActions.navigate({routeName: route, params })); //dispatch actually exists, the types are just out of date i guess?
 }
 
 export default { setNav, navigateTo };

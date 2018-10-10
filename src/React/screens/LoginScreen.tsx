@@ -48,11 +48,6 @@ class LoginScreen extends Component<Props> {
     const username = this.state.username;
     const password = this.state.password;
     this.props.onLogin(username, password);
-    this.setState({}, () => {
-      if (this.props.loggedIn) {
-        this.props.navigation.navigate('MainNavigator');
-      }
-    });
   };
   render() {
     const shadowStyle = {

@@ -132,19 +132,11 @@ const AuthStack = createStackNavigator(
 // MainNavigator = Router
 export const MainNavigator = createSwitchNavigator(
   {
-    // AuthLoading: AuthLoadingScreen,
     MainNavigator: MainStack,
     Auth: AuthStack
   },
   { initialRouteName: 'Auth' }
 );
 
-// const MainNavWithNavState = (props) => {
-//   <MainNavigator
-//     navigation={{ dispatch: props.dispatch, state: this.props.nav }}
-//   />
-// }
+
 export default MainNavigator;
-// const mapStateToProps = (state: IState) => state.login;
-// export default connect(mapStateToProps)(MainNavigator);
-// console.log(this.props);
