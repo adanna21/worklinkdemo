@@ -21,7 +21,7 @@ export const reducer = (
       const memberIdPresent = teamMembers.some(
         member => member.id === memberId
       );
-      // add member if not already there
+      // add member if not already there & not null
       if (!memberIdPresent && action.payload.memberId !== null) {
         return {
           ...state,
@@ -33,7 +33,7 @@ export const reducer = (
           ...state,
           teamMembers: teamMembers.filter(member => member.id !== memberId)
         };
-      } 
+      }
     default:
       return state;
   }
