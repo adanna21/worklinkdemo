@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, RefObject } from 'react';
 import {
   View,
   StyleSheet,
@@ -40,6 +40,8 @@ class LoginScreen extends Component<Props> {
     username: '',
     password: ''
   };
+  txtPassword: RefObject<TextInput> = React.createRef();
+
   componentDidMount() {
     const user = { username: 'Test', password: '1234' };
     this.props.saveUser(user);
@@ -73,7 +75,7 @@ class LoginScreen extends Component<Props> {
               placeholderTextColor={'#a4a4a4'}
               autoCorrect={false}
               returnKeyType="next"
-              onSubmitEditing={() => this.txtPassword.focus()}
+              onSubmitEditing={() => this.txtPassword.current.focus()}
               value={this.state.username}
               onChangeText={text => this.setState({ username: text })}
             />
@@ -84,7 +86,7 @@ class LoginScreen extends Component<Props> {
               autoCorrect={false}
               returnKeyType="go"
               secureTextEntry={true}
-              ref={t => (this.txtPassword = t)}
+              ref={this.txtPassword}
               value={this.state.password}
               onChangeText={text => this.setState({ password: text })}
             />
