@@ -40,13 +40,17 @@ interface State {
 }
 
 export class SupervisorQueueScreen extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      currentId: null,
-      droppedInZone: false
-    };
-  }
+  // constructor(props: Props) {
+  //   super(props);
+  //   this.state = {
+  //     currentId: null,
+  //     droppedInZone: false
+  //   };
+  // }
+  state: State = {
+    currentId: null,
+    droppedInZone: false
+  };
 
   addCurrentId = (id: string) => {
     console.log('added current Id', id);
