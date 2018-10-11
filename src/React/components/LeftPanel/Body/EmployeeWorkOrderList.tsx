@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Text, FlatList } from 'react-native';
 import { workOrders, IWorkOrder } from '../../../../data';
 import WorkOrderContainer from '../../../common/AppBody/WorkOrder/WorkOrderContainer';
-import SuperWorkOrderCard from '../../../common/AppBody/WorkOrder/SuperWorkOrderCard';
+import EmployeeWorkOrderCard from '../../../common/AppBody/WorkOrder/EmployeeWorkOrderCard';
 import WorkOrderDetails from '../../../common/AppBody/WorkOrder/WorkOrderDetails';
 import Status from '../../../common/AppBody/WorkOrder/Status';
 import StatusText from '../../../common/AppBody/WorkOrder/StatusText';
@@ -16,7 +16,7 @@ import Client from '../../../common/AppBody/WorkOrder/Client';
 import ViewMore from '../../../common/AppBody/WorkOrder/ViewMore';
 import Avatar from '../../../common/AppBody/WorkOrder/Avatar';
 
-export default class SuperWorkOrderList extends Component<any, any> {
+export default class EmployeeWorkOrderList extends Component<any, any> {
   onViewMore = (workOrder: IWorkOrder) => {
     this.props.navigation.navigate('Details', {
       ...workOrder
@@ -30,7 +30,7 @@ export default class SuperWorkOrderList extends Component<any, any> {
           data={workOrders}
           extraData={[this.props, this.state]}
           renderItem={({ item }) => (
-            <SuperWorkOrderCard droppedInZone={this.props.droppedInZone}>
+            <EmployeeWorkOrderCard droppedInZone={this.props.droppedInZone}>
               <WorkOrderDetails>
                 <Status>
                   <StatusText>{item.status.toLocaleUpperCase()}</StatusText>
@@ -51,7 +51,7 @@ export default class SuperWorkOrderList extends Component<any, any> {
               <Avatar>
                 <Text>JJ</Text>
               </Avatar>
-            </SuperWorkOrderCard>
+            </EmployeeWorkOrderCard>
           )}
           keyExtractor={item => item.id}
         />

@@ -1,4 +1,4 @@
-export interface IMeWorker {
+export interface IWorker {
   id: string;
   name: string;
   email: string;
@@ -38,17 +38,46 @@ export interface IWorkOrder {
 }
 
 export type AllWorkOrders = Array<IWorkOrder>;
-export type AllWorkers = Array<IMeWorker>;
+export type AllWorkers = Array<IWorker>;
 
-export const meWorker: IMeWorker = {
-  id: '94848302',
-  name: 'Jennie Johnson',
-  email: 'jj@nyu.edu',
-  registered: '2010-08-09 13:37:38',
-  phone: '(589)-070-0928',
-  cell: '(110)-065-6280',
-  title: 'super'
-};
+export const workers: AllWorkers = [
+  {
+    id: '94848302',
+    name: 'Jennie Johnson',
+    email: 'jj@nyu.edu',
+    registered: '2010-08-09 13:37:38',
+    phone: '(589)-070-0928',
+    cell: '(110)-065-6280',
+    title: 'supervisor'
+  },
+  {
+    id: '94848303',
+    name: 'Jennie Baker',
+    email: 'jj@nyu.edu',
+    registered: '2010-08-09 13:37:38',
+    phone: '(589)-070-0928',
+    cell: '(110)-065-6280',
+    title: 'supervisor'
+  },
+  {
+    id: '94848304',
+    name: 'Jennie Thomas',
+    email: 'jj@nyu.edu',
+    registered: '2010-08-09 13:37:38',
+    phone: '(589)-070-0928',
+    cell: '(110)-065-6280',
+    title: 'employee'
+  },
+  {
+    id: '94848305',
+    name: 'Jennie Smith',
+    email: 'jj@nyu.edu',
+    registered: '2010-08-09 13:37:38',
+    phone: '(589)-070-0928',
+    cell: '(110)-065-6280',
+    title: 'supervisor'
+  }
+];
 
 export const workOrders: AllWorkOrders = [
   {

@@ -4,14 +4,14 @@ import {
   StyleSheet,
   Text,
   TextInput,
-  TouchableOpacity,
   TouchableWithoutFeedback,
   Keyboard
 } from 'react-native';
+import { ThunkDispatch } from 'redux-thunk';
 import { NavigationScreenProp } from 'react-navigation';
 import { connect } from 'react-redux';
-import { Dispatch } from 'redux';
 import { IState } from '../../../src/Redux';
+import { Actions } from '../../../src/Redux/login/actions';
 import { IUserLogin } from '../../../src/Redux/login/types';
 import { saveUserInAsync, login } from '../../Redux/login/actions';
 import LoginButton from '../components/Buttons/LoginButton';
@@ -43,18 +43,13 @@ class LoginScreen extends Component<Props> {
   txtPassword: RefObject<TextInput> = React.createRef();
 
   componentDidMount() {
-    const user = { username: 'Test', password: '1234' };
+    const user = { id: '94848303', username: 'Test', password: '1234' };
     this.props.saveUser(user);
   }
   handleLogin = () => {
     const username = this.state.username;
     const password = this.state.password;
     this.props.onLogin(username, password);
-    this.setState({}, () => {
-      if (this.props.loggedIn) {
-        this.props.navigation.navigate('MainNavigator');
-      }
-    });
   };
   render() {
     const shadowStyle = {
@@ -104,7 +99,9 @@ class LoginScreen extends Component<Props> {
 
 // redux
 const mapStateToProps = (state: IState) => state.login;
-const mapDispatchToProps = (dispatch: Dispatch): ILoginDispatchProps => ({
+const mapDispatchToProps = (
+  dispatch: ThunkDispatch<IState, void, Actions>
+): ILoginDispatchProps => ({
   saveUser: (user: IUserLogin) => {
     dispatch(saveUserInAsync(user));
   },

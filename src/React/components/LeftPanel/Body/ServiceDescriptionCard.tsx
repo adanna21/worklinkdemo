@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 export default class ServiceDescription extends Component<any, any> {
   render() {
@@ -29,7 +29,7 @@ export default class ServiceDescription extends Component<any, any> {
         </View>
         <View style={styles.serviceIcons}>
           <View style={styles.image}>
-            <Icon name="ios-image-outline" size={18} color="#424242" />
+            <Icon name="image" size={18} color="#424242" />
             <Text style={styles.imageText}>PNG_01</Text>
           </View>
           <TouchableOpacity>

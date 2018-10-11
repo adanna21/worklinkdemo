@@ -7,7 +7,7 @@ import LeftBody from '../common/AppBody/LeftBody';
 import RightPanel from '../common/AppBody/RightPanel';
 import RightHeader from '../common/AppBody/RightHeader';
 import RightBody from '../common/AppBody/RightBody';
-import Icon from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import ActionHeader from '../components/RightPanel/Header/ActionHeader';
 import ActionsList from '../components/RightPanel/Body/ActionsList';
 import ServiceDetailCard from '../components/LeftPanel/Body/ServiceDetailCard';
@@ -33,8 +33,8 @@ export default class OrderDetail extends Component<any, any> {
               onPress={() => this.props.navigation.goBack()}
             >
               <Icon
-                name="ios-arrow-back"
-                size={20}
+                name="keyboard-arrow-left"
+                size={30}
                 color="black"
                 style={styles.backArrow}
               />
@@ -63,7 +63,7 @@ export default class OrderDetail extends Component<any, any> {
                 }}
               >
                 <Icon
-                  name="ios-arrow-dropup-outline"
+                  name="arrow-drop-up"
                   size={30}
                   color="black"
                   style={styles.upArrow}
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     marginTop: '2.5%'
   },
   backArrow: {
-    paddingTop: '.5%',
+    paddingTop: '.1%',
     paddingRight: '2%'
   },
   backText: {
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     paddingBottom: '3%'
   },
   upArrow: {
-    marginBottom: '8%',
+    marginBottom: '9%',
     color: '#757575',
     alignSelf: 'flex-end',
     alignItems: 'flex-start'

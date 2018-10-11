@@ -1,0 +1,110 @@
+import React, { Component } from 'react';
+import {
+  createStackNavigator,
+  createMaterialTopTabNavigator
+} from 'react-navigation';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import EmployeeQueue from '../../React/screens/EmployeeQueueScreen';
+import SupervisorQueue from '../../React/screens/SupervisorQueueScreen';
+import Unassigned from '../../React/screens/UnassignedScreen';
+import OrderDetail from '../../React/screens/OrderDetail';
+import Calendar from '../../React/screens/CalendarScreen';
+import LoginScreen from '../../React/screens/LoginScreen';
+import Notices from '../../React/screens/Notices';
+import Header from '../../React/components/Header';
+
+// Stack Nav for Supervisor screens
+const EmployeeWorkOrderListStack = createStackNavigator(
+  {
+    Feed: {
+      screen: EmployeeQueue
+    },
+    Details: {
+      screen: OrderDetail,
+      navigationOptions: {
+        title: null
+      }
+    }
+  },
+  {
+    mode: 'modal',
+    headerMode: 'none'
+  }
+);
+
+const UnassignedListStack = createStackNavigator(
+  {
+    Feed: {
+      screen: Unassigned
+    },
+    Details: {
+      screen: OrderDetail,
+      navigationOptions: {
+        title: null
+      }
+    }
+  },
+  {
+    mode: 'modal',
+    headerMode: 'none'
+  }
+);
+
+const EmployeeTabNavigator = createMaterialTopTabNavigator(
+  {
+    'MY QUEUE': { screen: EmployeeWorkOrderListStack },
+    UNASSIGNED: { screen: UnassignedListStack },
+    CALENDAR: { screen: EmployeeWorkOrderListStack },
+    NOTICES: { screen: Notices }
+  },
+  {
+    tabBarOptions: {
+      activeTintColor: '#590889',
+      inactiveTintColor: '#233e4a',
+      style: {
+        backgroundColor: 'white'
+      },
+      indicatorStyle: {
+        backgroundColor: '#590889'
+      },
+      showIcon: true
+    },
+    swipeEnabled: false,
+    navigationOptions: ({ navigation }) => ({
+      tabBarIcon: ({ tintColor }) => {
+        const { routeName } = navigation.state;
+        let iconName;
+        if (routeName === 'MY QUEUE') {
+          iconName = 'format-list-bulleted';
+        } else if (routeName === 'UNASSIGNED') {
+          iconName = 'account';
+        } else if (routeName === 'CALENDAR') {
+          iconName = 'calendar-clock';
+        } else {
+          iconName = 'bullhorn';
+        }
+        return <Icon name={iconName} size={25} color={`${tintColor}`} />;
+      }
+    })
+  }
+);
+
+const EmployeeMainStack = createStackNavigator(
+  {
+    MainNavigator: EmployeeTabNavigator
+  },
+  {
+    initialRouteName: 'MainNavigator',
+    headerMode: 'float',
+    navigationOptions: {
+      // headerForceInset gets rid of 20px padding caused by SafeAreaView
+      headerForceInset: { top: 'never', bottom: 'never' },
+      headerStyle: {
+        height: 60,
+        backgroundColor: '#590889'
+      },
+      headerTitle: <Header />
+    }
+  }
+);
+export default EmployeeMainStack;

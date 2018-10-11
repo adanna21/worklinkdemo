@@ -6,9 +6,9 @@ import LeftBody from '../common/AppBody/LeftBody';
 import RightPanel from '../common/AppBody/RightPanel';
 import RightHeader from '../common/AppBody/RightHeader';
 import RightBody from '../common/AppBody/RightBody';
-import WorkOrderHeader from '../components/LeftPanel/Header/MyWorkOrderHeader';
+import EmployeeWorkOrderHeader from '../components/LeftPanel/Header/EmployeeWorkOrderHeader';
 import ActionHeader from '../components/RightPanel/Header/ActionHeader';
-import MyWorkOrderList from '../components/LeftPanel/Body/SuperWorkOrderList';
+import EmployeeWorkOrderList from '../components/LeftPanel/Body/EmployeeWorkOrderList';
 import ActionsList from '../components/RightPanel/Body/ActionsList';
 
 import { NavigationScreenProp } from 'react-navigation';
@@ -28,10 +28,10 @@ export default class EmployeeQueueScreen extends Component<
         ======== */}
         <LeftPanel>
           <LeftHeader>
-            <WorkOrderHeader>My Work Orders</WorkOrderHeader>
+            <EmployeeWorkOrderHeader>My Work Orders</EmployeeWorkOrderHeader>
           </LeftHeader>
           <LeftBody>
-            {/* <MyWorkOrderList navigation={this.props.navigation} /> */}
+            <EmployeeWorkOrderList navigation={this.props.navigation} />
           </LeftBody>
         </LeftPanel>
         {/* ========
