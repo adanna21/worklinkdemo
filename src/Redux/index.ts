@@ -1,19 +1,19 @@
 import { applyMiddleware, combineReducers, createStore } from 'redux'; // 1. import store
 import logger from 'redux-logger';
-import thunk from 'redux-thunk';
+import thunk, { ThunkMiddleware } from 'redux-thunk';
+import { Actions } from './login/actions';
 import * as fromDragDrop from './drag-and-drop/reducers';
 import * as fromLogin from './login/reducers';
 import { ISuperQueueProps } from '../React/screens/SupervisorQueueScreen';
-import { IMeWorker, IWorkOrder } from '../data';
+import { IWorker, IWorkOrder } from '../data';
 import { ILogInProps } from '../React/screens/LoginScreen';
 import { workOrders, employees } from './initialData.json';
-import { nav } from './navigation/reducer';
 
 // root state, contains all state of app, typing
 export interface IState {
   dragDrop: ISuperQueueProps;
-  workOrders: IWorkOrder;
-  employees: IMeWorker;
+  workOrders: Array<IWorkOrder>;
+  employees: Array<IWorker>;
   login: ILogInProps;
 }
 

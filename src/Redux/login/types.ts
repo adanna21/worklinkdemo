@@ -1,5 +1,7 @@
+import { IWorker } from '../../data';
 // user Object
 export interface IUserLogin {
+  id: string;
   username: string;
   password: string;
 }
@@ -14,7 +16,7 @@ export enum ActionTypes {
 export interface ILogin {
   type: ActionTypes.LOG_IN;
   loggedIn: boolean;
-  username: string | null;
+  user: IWorker[] | string | null;
 }
 
 export interface ISaveUserInAsync {

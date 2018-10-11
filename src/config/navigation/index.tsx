@@ -4,17 +4,16 @@ import {
   createMaterialTopTabNavigator,
   createSwitchNavigator
 } from 'react-navigation';
-import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { IState } from '../Redux';
-import EmployeeQueue from '../React/screens/EmployeeQueueScreen';
-import SupervisorQueue from '../React/screens/SupervisorQueueScreen';
-import Unassigned from '../React/screens/UnassignedScreen';
-import OrderDetail from '../React/screens/OrderDetail';
-import Calendar from '../React/screens/CalendarScreen';
-import LoginScreen from '../React/screens/LoginScreen';
-import Notices from '../React/screens/Notices';
-import Header from '../React/components/Header';
+import EmployeeMainStack from './EmployeeNav';
+import EmployeeQueue from '../../React/screens/EmployeeQueueScreen';
+import SupervisorQueue from '../../React/screens/SupervisorQueueScreen';
+import Unassigned from '../../React/screens/UnassignedScreen';
+import OrderDetail from '../../React/screens/OrderDetail';
+import Calendar from '../../React/screens/CalendarScreen';
+import LoginScreen from '../../React/screens/LoginScreen';
+import Notices from '../../React/screens/Notices';
+import Header from '../../React/components/Header';
 
 // Stack Nav for Supervisor screens
 const SuperWorkOrderListStack = createStackNavigator(
@@ -53,7 +52,7 @@ const UnassignedListStack = createStackNavigator(
   }
 );
 
-const TabNavigator = createMaterialTopTabNavigator(
+const SuperTabNavigator = createMaterialTopTabNavigator(
   {
     'MY QUEUE': { screen: SuperWorkOrderListStack },
     UNASSIGNED: { screen: UnassignedListStack },
@@ -92,12 +91,12 @@ const TabNavigator = createMaterialTopTabNavigator(
   }
 );
 
-const MainStack = createStackNavigator(
+const SuperMainStack = createStackNavigator(
   {
-    MainNavigator: TabNavigator
+    SuperNavigator: SuperTabNavigator
   },
   {
-    initialRouteName: 'MainNavigator',
+    initialRouteName: 'SuperNavigator',
     headerMode: 'float',
     navigationOptions: {
       // headerForceInset gets rid of 20px padding caused by SafeAreaView
@@ -132,11 +131,11 @@ const AuthStack = createStackNavigator(
 // MainNavigator = Router
 export const MainNavigator = createSwitchNavigator(
   {
-    MainNavigator: MainStack,
+    SuperNavigator: SuperMainStack,
+    EmployeeNavigator: EmployeeMainStack,
     Auth: AuthStack
   },
   { initialRouteName: 'Auth' }
 );
-
 
 export default MainNavigator;

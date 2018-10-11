@@ -34,7 +34,7 @@ export type Props = ISuperQueueProps &
   ISuperQueueNavProps &
   ISuperQueueDispatchProps;
 
-export class SupervisorQueueScreen extends Component<Props> {
+export class SupervisorQueueScreen extends Component<Props, any> {
   state = {
     currentId: '',
     droppedInZone: false

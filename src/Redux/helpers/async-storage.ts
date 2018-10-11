@@ -9,19 +9,6 @@ export const setItem = async (key: string, value: any) => {
 };
 
 export const getItem = async (key: string) => {
-  //   return await AsyncStorage.getItem(key).then(result => {
-  //     if (result) {
-  //       try {
-  //         result = JSON.parse(result);
-  //       } catch (e) {
-  //         console.error(
-  //           'AsyncStorage#getItem error deserializing JSON for key: ' + key,
-  //           e.message
-  //         );
-  //       }
-  //     }
-  //     return result;
-  //   });
   try {
     return await AsyncStorage.getItem(key).then(result => {
       if (result) {
@@ -36,6 +23,6 @@ export const getItem = async (key: string) => {
   }
 };
 
-const removeItem = async (key: string) => {
+export const removeItem = async (key: string) => {
   return await AsyncStorage.removeItem(key);
 };

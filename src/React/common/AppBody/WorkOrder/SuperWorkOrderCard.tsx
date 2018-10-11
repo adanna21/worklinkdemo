@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
-import { DropZone } from './../../../utils/react-native-drag-drop/';
+import { DropZone } from '../../../utils/react-native-drag-drop';
 
-export default class WorkOrderCard extends Component<any, any> {
+export default class SuperWorkOrderCard extends Component<any, any> {
   state = {
     zoneEntered: false
   };
