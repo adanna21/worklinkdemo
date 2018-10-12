@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
-
-export default class LoginButton extends Component {
+import { ILoginNavProps } from '../../screens/LoginScreen';
+interface ILoginBottom {
+  handleLogin?(): void;
+  loggedIn: boolean;
+  // style: any;
+}
+type Props = ILoginBottom & ILoginNavProps;
+export default class LoginButton extends Component<Props, any> {
   render() {
     // const { disabled } = this.props;
     // const opacityStyle = disabled

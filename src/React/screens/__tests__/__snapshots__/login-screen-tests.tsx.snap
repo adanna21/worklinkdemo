@@ -1,0 +1,974 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login Screen renders as expected 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <LoginScreen
+    navigation={
+      Object {
+        "addListener": [MockFunction],
+        "closeDrawer": [MockFunction],
+        "dismiss": [MockFunction],
+        "dispatch": [MockFunction],
+        "getParam": [MockFunction],
+        "goBack": [MockFunction],
+        "isFocused": [MockFunction],
+        "navigate": [MockFunction],
+        "openDrawer": [MockFunction],
+        "pop": [MockFunction],
+        "popToTop": [MockFunction],
+        "push": [MockFunction],
+        "replace": [MockFunction],
+        "setParams": [MockFunction],
+        "state": Object {},
+        "toggleDrawer": [MockFunction],
+      }
+    }
+    onLogin={[Function]}
+    saveUser={[Function]}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": <TouchableWithoutFeedback
+        onPress={[Function]}
+      >
+        <Component
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#fff",
+                "borderRadius": 6,
+                "flex": 0.3,
+                "justifyContent": "space-evenly",
+                "width": "50%",
+              },
+              Object {
+                "backgroundColor": "#fff",
+                "elevation": 4,
+                "shadowOffset": Object {
+                  "height": 3,
+                  "width": -1,
+                },
+                "shadowOpacity": 0.1,
+                "shadowRadius": 5,
+              },
+            ]
+          }
+        >
+          <Component
+            style={
+              Object {
+                "fontSize": 16,
+                "paddingLeft": "5%",
+              }
+            }
+          >
+            NYU Login
+          </Component>
+          <TextInput
+            allowFontScaling={true}
+            autoCorrect={false}
+            onChangeText={[Function]}
+            onSubmitEditing={[Function]}
+            placeholder="Net ID"
+            placeholderTextColor="#a4a4a4"
+            returnKeyType="next"
+            style={
+              Object {
+                "alignSelf": "center",
+                "borderColor": "#a4a4a4",
+                "borderRadius": 5,
+                "borderStyle": "solid",
+                "borderWidth": 1,
+                "height": "20%",
+                "paddingLeft": "4%",
+                "width": "85%",
+              }
+            }
+            underlineColorAndroid="transparent"
+            value=""
+          />
+          <TextInput
+            allowFontScaling={true}
+            autoCorrect={false}
+            onChangeText={[Function]}
+            placeholder="Password"
+            placeholderTextColor="#a4a4a4"
+            returnKeyType="go"
+            secureTextEntry={true}
+            style={
+              Object {
+                "alignSelf": "center",
+                "borderColor": "#a4a4a4",
+                "borderRadius": 5,
+                "borderStyle": "solid",
+                "borderWidth": 1,
+                "height": "20%",
+                "paddingLeft": "4%",
+                "width": "85%",
+              }
+            }
+            underlineColorAndroid="transparent"
+            value=""
+          />
+          <LoginButton
+            handleLogin={[Function]}
+            navigation={
+              Object {
+                "addListener": [MockFunction],
+                "closeDrawer": [MockFunction],
+                "dismiss": [MockFunction],
+                "dispatch": [MockFunction],
+                "getParam": [MockFunction],
+                "goBack": [MockFunction],
+                "isFocused": [MockFunction],
+                "navigate": [MockFunction],
+                "openDrawer": [MockFunction],
+                "pop": [MockFunction],
+                "popToTop": [MockFunction],
+                "push": [MockFunction],
+                "replace": [MockFunction],
+                "setParams": [MockFunction],
+                "state": Object {},
+                "toggleDrawer": [MockFunction],
+              }
+            }
+          />
+        </Component>
+      </TouchableWithoutFeedback>,
+      "style": Object {
+        "alignItems": "center",
+        "backgroundColor": "#f8f8f8",
+        "flex": 1,
+        "justifyContent": "center",
+        "paddingBottom": "20%",
+      },
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": <Component
+          style={
+            Array [
+              Object {
+                "backgroundColor": "#fff",
+                "borderRadius": 6,
+                "flex": 0.3,
+                "justifyContent": "space-evenly",
+                "width": "50%",
+              },
+              Object {
+                "backgroundColor": "#fff",
+                "elevation": 4,
+                "shadowOffset": Object {
+                  "height": 3,
+                  "width": -1,
+                },
+                "shadowOpacity": 0.1,
+                "shadowRadius": 5,
+              },
+            ]
+          }
+        >
+          <Component
+            style={
+              Object {
+                "fontSize": 16,
+                "paddingLeft": "5%",
+              }
+            }
+          >
+            NYU Login
+          </Component>
+          <TextInput
+            allowFontScaling={true}
+            autoCorrect={false}
+            onChangeText={[Function]}
+            onSubmitEditing={[Function]}
+            placeholder="Net ID"
+            placeholderTextColor="#a4a4a4"
+            returnKeyType="next"
+            style={
+              Object {
+                "alignSelf": "center",
+                "borderColor": "#a4a4a4",
+                "borderRadius": 5,
+                "borderStyle": "solid",
+                "borderWidth": 1,
+                "height": "20%",
+                "paddingLeft": "4%",
+                "width": "85%",
+              }
+            }
+            underlineColorAndroid="transparent"
+            value=""
+          />
+          <TextInput
+            allowFontScaling={true}
+            autoCorrect={false}
+            onChangeText={[Function]}
+            placeholder="Password"
+            placeholderTextColor="#a4a4a4"
+            returnKeyType="go"
+            secureTextEntry={true}
+            style={
+              Object {
+                "alignSelf": "center",
+                "borderColor": "#a4a4a4",
+                "borderRadius": 5,
+                "borderStyle": "solid",
+                "borderWidth": 1,
+                "height": "20%",
+                "paddingLeft": "4%",
+                "width": "85%",
+              }
+            }
+            underlineColorAndroid="transparent"
+            value=""
+          />
+          <LoginButton
+            handleLogin={[Function]}
+            navigation={
+              Object {
+                "addListener": [MockFunction],
+                "closeDrawer": [MockFunction],
+                "dismiss": [MockFunction],
+                "dispatch": [MockFunction],
+                "getParam": [MockFunction],
+                "goBack": [MockFunction],
+                "isFocused": [MockFunction],
+                "navigate": [MockFunction],
+                "openDrawer": [MockFunction],
+                "pop": [MockFunction],
+                "popToTop": [MockFunction],
+                "push": [MockFunction],
+                "replace": [MockFunction],
+                "setParams": [MockFunction],
+                "state": Object {},
+                "toggleDrawer": [MockFunction],
+              }
+            }
+          />
+        </Component>,
+        "onPress": [Function],
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <Component
+              style={
+                Object {
+                  "fontSize": 16,
+                  "paddingLeft": "5%",
+                }
+              }
+            >
+              NYU Login
+            </Component>,
+            <TextInput
+              allowFontScaling={true}
+              autoCorrect={false}
+              onChangeText={[Function]}
+              onSubmitEditing={[Function]}
+              placeholder="Net ID"
+              placeholderTextColor="#a4a4a4"
+              returnKeyType="next"
+              style={
+                Object {
+                  "alignSelf": "center",
+                  "borderColor": "#a4a4a4",
+                  "borderRadius": 5,
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "height": "20%",
+                  "paddingLeft": "4%",
+                  "width": "85%",
+                }
+              }
+              underlineColorAndroid="transparent"
+              value=""
+            />,
+            <TextInput
+              allowFontScaling={true}
+              autoCorrect={false}
+              onChangeText={[Function]}
+              placeholder="Password"
+              placeholderTextColor="#a4a4a4"
+              returnKeyType="go"
+              secureTextEntry={true}
+              style={
+                Object {
+                  "alignSelf": "center",
+                  "borderColor": "#a4a4a4",
+                  "borderRadius": 5,
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "height": "20%",
+                  "paddingLeft": "4%",
+                  "width": "85%",
+                }
+              }
+              underlineColorAndroid="transparent"
+              value=""
+            />,
+            <LoginButton
+              handleLogin={[Function]}
+              navigation={
+                Object {
+                  "addListener": [MockFunction],
+                  "closeDrawer": [MockFunction],
+                  "dismiss": [MockFunction],
+                  "dispatch": [MockFunction],
+                  "getParam": [MockFunction],
+                  "goBack": [MockFunction],
+                  "isFocused": [MockFunction],
+                  "navigate": [MockFunction],
+                  "openDrawer": [MockFunction],
+                  "pop": [MockFunction],
+                  "popToTop": [MockFunction],
+                  "push": [MockFunction],
+                  "replace": [MockFunction],
+                  "setParams": [MockFunction],
+                  "state": Object {},
+                  "toggleDrawer": [MockFunction],
+                }
+              }
+            />,
+          ],
+          "style": Array [
+            Object {
+              "backgroundColor": "#fff",
+              "borderRadius": 6,
+              "flex": 0.3,
+              "justifyContent": "space-evenly",
+              "width": "50%",
+            },
+            Object {
+              "backgroundColor": "#fff",
+              "elevation": 4,
+              "shadowOffset": Object {
+                "height": 3,
+                "width": -1,
+              },
+              "shadowOpacity": 0.1,
+              "shadowRadius": 5,
+            },
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": "NYU Login",
+              "style": Object {
+                "fontSize": 16,
+                "paddingLeft": "5%",
+              },
+            },
+            "ref": null,
+            "rendered": "NYU Login",
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "allowFontScaling": true,
+              "autoCorrect": false,
+              "onChangeText": [Function],
+              "onSubmitEditing": [Function],
+              "placeholder": "Net ID",
+              "placeholderTextColor": "#a4a4a4",
+              "returnKeyType": "next",
+              "style": Object {
+                "alignSelf": "center",
+                "borderColor": "#a4a4a4",
+                "borderRadius": 5,
+                "borderStyle": "solid",
+                "borderWidth": 1,
+                "height": "20%",
+                "paddingLeft": "4%",
+                "width": "85%",
+              },
+              "underlineColorAndroid": "transparent",
+              "value": "",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "allowFontScaling": true,
+              "autoCorrect": false,
+              "onChangeText": [Function],
+              "placeholder": "Password",
+              "placeholderTextColor": "#a4a4a4",
+              "returnKeyType": "go",
+              "secureTextEntry": true,
+              "style": Object {
+                "alignSelf": "center",
+                "borderColor": "#a4a4a4",
+                "borderRadius": 5,
+                "borderStyle": "solid",
+                "borderWidth": 1,
+                "height": "20%",
+                "paddingLeft": "4%",
+                "width": "85%",
+              },
+              "underlineColorAndroid": "transparent",
+              "value": "",
+            },
+            "ref": Object {
+              "current": null,
+            },
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "handleLogin": [Function],
+              "loggedIn": undefined,
+              "navigation": Object {
+                "addListener": [MockFunction],
+                "closeDrawer": [MockFunction],
+                "dismiss": [MockFunction],
+                "dispatch": [MockFunction],
+                "getParam": [MockFunction],
+                "goBack": [MockFunction],
+                "isFocused": [MockFunction],
+                "navigate": [MockFunction],
+                "openDrawer": [MockFunction],
+                "pop": [MockFunction],
+                "popToTop": [MockFunction],
+                "push": [MockFunction],
+                "replace": [MockFunction],
+                "setParams": [MockFunction],
+                "state": Object {},
+                "toggleDrawer": [MockFunction],
+              },
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      "type": [Function],
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": <TouchableWithoutFeedback
+          onPress={[Function]}
+        >
+          <Component
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#fff",
+                  "borderRadius": 6,
+                  "flex": 0.3,
+                  "justifyContent": "space-evenly",
+                  "width": "50%",
+                },
+                Object {
+                  "backgroundColor": "#fff",
+                  "elevation": 4,
+                  "shadowOffset": Object {
+                    "height": 3,
+                    "width": -1,
+                  },
+                  "shadowOpacity": 0.1,
+                  "shadowRadius": 5,
+                },
+              ]
+            }
+          >
+            <Component
+              style={
+                Object {
+                  "fontSize": 16,
+                  "paddingLeft": "5%",
+                }
+              }
+            >
+              NYU Login
+            </Component>
+            <TextInput
+              allowFontScaling={true}
+              autoCorrect={false}
+              onChangeText={[Function]}
+              onSubmitEditing={[Function]}
+              placeholder="Net ID"
+              placeholderTextColor="#a4a4a4"
+              returnKeyType="next"
+              style={
+                Object {
+                  "alignSelf": "center",
+                  "borderColor": "#a4a4a4",
+                  "borderRadius": 5,
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "height": "20%",
+                  "paddingLeft": "4%",
+                  "width": "85%",
+                }
+              }
+              underlineColorAndroid="transparent"
+              value=""
+            />
+            <TextInput
+              allowFontScaling={true}
+              autoCorrect={false}
+              onChangeText={[Function]}
+              placeholder="Password"
+              placeholderTextColor="#a4a4a4"
+              returnKeyType="go"
+              secureTextEntry={true}
+              style={
+                Object {
+                  "alignSelf": "center",
+                  "borderColor": "#a4a4a4",
+                  "borderRadius": 5,
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "height": "20%",
+                  "paddingLeft": "4%",
+                  "width": "85%",
+                }
+              }
+              underlineColorAndroid="transparent"
+              value=""
+            />
+            <LoginButton
+              handleLogin={[Function]}
+              navigation={
+                Object {
+                  "addListener": [MockFunction],
+                  "closeDrawer": [MockFunction],
+                  "dismiss": [MockFunction],
+                  "dispatch": [MockFunction],
+                  "getParam": [MockFunction],
+                  "goBack": [MockFunction],
+                  "isFocused": [MockFunction],
+                  "navigate": [MockFunction],
+                  "openDrawer": [MockFunction],
+                  "pop": [MockFunction],
+                  "popToTop": [MockFunction],
+                  "push": [MockFunction],
+                  "replace": [MockFunction],
+                  "setParams": [MockFunction],
+                  "state": Object {},
+                  "toggleDrawer": [MockFunction],
+                }
+              }
+            />
+          </Component>
+        </TouchableWithoutFeedback>,
+        "style": Object {
+          "alignItems": "center",
+          "backgroundColor": "#f8f8f8",
+          "flex": 1,
+          "justifyContent": "center",
+          "paddingBottom": "20%",
+        },
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <Component
+            style={
+              Array [
+                Object {
+                  "backgroundColor": "#fff",
+                  "borderRadius": 6,
+                  "flex": 0.3,
+                  "justifyContent": "space-evenly",
+                  "width": "50%",
+                },
+                Object {
+                  "backgroundColor": "#fff",
+                  "elevation": 4,
+                  "shadowOffset": Object {
+                    "height": 3,
+                    "width": -1,
+                  },
+                  "shadowOpacity": 0.1,
+                  "shadowRadius": 5,
+                },
+              ]
+            }
+          >
+            <Component
+              style={
+                Object {
+                  "fontSize": 16,
+                  "paddingLeft": "5%",
+                }
+              }
+            >
+              NYU Login
+            </Component>
+            <TextInput
+              allowFontScaling={true}
+              autoCorrect={false}
+              onChangeText={[Function]}
+              onSubmitEditing={[Function]}
+              placeholder="Net ID"
+              placeholderTextColor="#a4a4a4"
+              returnKeyType="next"
+              style={
+                Object {
+                  "alignSelf": "center",
+                  "borderColor": "#a4a4a4",
+                  "borderRadius": 5,
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "height": "20%",
+                  "paddingLeft": "4%",
+                  "width": "85%",
+                }
+              }
+              underlineColorAndroid="transparent"
+              value=""
+            />
+            <TextInput
+              allowFontScaling={true}
+              autoCorrect={false}
+              onChangeText={[Function]}
+              placeholder="Password"
+              placeholderTextColor="#a4a4a4"
+              returnKeyType="go"
+              secureTextEntry={true}
+              style={
+                Object {
+                  "alignSelf": "center",
+                  "borderColor": "#a4a4a4",
+                  "borderRadius": 5,
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "height": "20%",
+                  "paddingLeft": "4%",
+                  "width": "85%",
+                }
+              }
+              underlineColorAndroid="transparent"
+              value=""
+            />
+            <LoginButton
+              handleLogin={[Function]}
+              navigation={
+                Object {
+                  "addListener": [MockFunction],
+                  "closeDrawer": [MockFunction],
+                  "dismiss": [MockFunction],
+                  "dispatch": [MockFunction],
+                  "getParam": [MockFunction],
+                  "goBack": [MockFunction],
+                  "isFocused": [MockFunction],
+                  "navigate": [MockFunction],
+                  "openDrawer": [MockFunction],
+                  "pop": [MockFunction],
+                  "popToTop": [MockFunction],
+                  "push": [MockFunction],
+                  "replace": [MockFunction],
+                  "setParams": [MockFunction],
+                  "state": Object {},
+                  "toggleDrawer": [MockFunction],
+                }
+              }
+            />
+          </Component>,
+          "onPress": [Function],
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <Component
+                style={
+                  Object {
+                    "fontSize": 16,
+                    "paddingLeft": "5%",
+                  }
+                }
+              >
+                NYU Login
+              </Component>,
+              <TextInput
+                allowFontScaling={true}
+                autoCorrect={false}
+                onChangeText={[Function]}
+                onSubmitEditing={[Function]}
+                placeholder="Net ID"
+                placeholderTextColor="#a4a4a4"
+                returnKeyType="next"
+                style={
+                  Object {
+                    "alignSelf": "center",
+                    "borderColor": "#a4a4a4",
+                    "borderRadius": 5,
+                    "borderStyle": "solid",
+                    "borderWidth": 1,
+                    "height": "20%",
+                    "paddingLeft": "4%",
+                    "width": "85%",
+                  }
+                }
+                underlineColorAndroid="transparent"
+                value=""
+              />,
+              <TextInput
+                allowFontScaling={true}
+                autoCorrect={false}
+                onChangeText={[Function]}
+                placeholder="Password"
+                placeholderTextColor="#a4a4a4"
+                returnKeyType="go"
+                secureTextEntry={true}
+                style={
+                  Object {
+                    "alignSelf": "center",
+                    "borderColor": "#a4a4a4",
+                    "borderRadius": 5,
+                    "borderStyle": "solid",
+                    "borderWidth": 1,
+                    "height": "20%",
+                    "paddingLeft": "4%",
+                    "width": "85%",
+                  }
+                }
+                underlineColorAndroid="transparent"
+                value=""
+              />,
+              <LoginButton
+                handleLogin={[Function]}
+                navigation={
+                  Object {
+                    "addListener": [MockFunction],
+                    "closeDrawer": [MockFunction],
+                    "dismiss": [MockFunction],
+                    "dispatch": [MockFunction],
+                    "getParam": [MockFunction],
+                    "goBack": [MockFunction],
+                    "isFocused": [MockFunction],
+                    "navigate": [MockFunction],
+                    "openDrawer": [MockFunction],
+                    "pop": [MockFunction],
+                    "popToTop": [MockFunction],
+                    "push": [MockFunction],
+                    "replace": [MockFunction],
+                    "setParams": [MockFunction],
+                    "state": Object {},
+                    "toggleDrawer": [MockFunction],
+                  }
+                }
+              />,
+            ],
+            "style": Array [
+              Object {
+                "backgroundColor": "#fff",
+                "borderRadius": 6,
+                "flex": 0.3,
+                "justifyContent": "space-evenly",
+                "width": "50%",
+              },
+              Object {
+                "backgroundColor": "#fff",
+                "elevation": 4,
+                "shadowOffset": Object {
+                  "height": 3,
+                  "width": -1,
+                },
+                "shadowOpacity": 0.1,
+                "shadowRadius": 5,
+              },
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "NYU Login",
+                "style": Object {
+                  "fontSize": 16,
+                  "paddingLeft": "5%",
+                },
+              },
+              "ref": null,
+              "rendered": "NYU Login",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "allowFontScaling": true,
+                "autoCorrect": false,
+                "onChangeText": [Function],
+                "onSubmitEditing": [Function],
+                "placeholder": "Net ID",
+                "placeholderTextColor": "#a4a4a4",
+                "returnKeyType": "next",
+                "style": Object {
+                  "alignSelf": "center",
+                  "borderColor": "#a4a4a4",
+                  "borderRadius": 5,
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "height": "20%",
+                  "paddingLeft": "4%",
+                  "width": "85%",
+                },
+                "underlineColorAndroid": "transparent",
+                "value": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "allowFontScaling": true,
+                "autoCorrect": false,
+                "onChangeText": [Function],
+                "placeholder": "Password",
+                "placeholderTextColor": "#a4a4a4",
+                "returnKeyType": "go",
+                "secureTextEntry": true,
+                "style": Object {
+                  "alignSelf": "center",
+                  "borderColor": "#a4a4a4",
+                  "borderRadius": 5,
+                  "borderStyle": "solid",
+                  "borderWidth": 1,
+                  "height": "20%",
+                  "paddingLeft": "4%",
+                  "width": "85%",
+                },
+                "underlineColorAndroid": "transparent",
+                "value": "",
+              },
+              "ref": Object {
+                "current": null,
+              },
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "handleLogin": [Function],
+                "loggedIn": undefined,
+                "navigation": Object {
+                  "addListener": [MockFunction],
+                  "closeDrawer": [MockFunction],
+                  "dismiss": [MockFunction],
+                  "dispatch": [MockFunction],
+                  "getParam": [MockFunction],
+                  "goBack": [MockFunction],
+                  "isFocused": [MockFunction],
+                  "navigate": [MockFunction],
+                  "openDrawer": [MockFunction],
+                  "pop": [MockFunction],
+                  "popToTop": [MockFunction],
+                  "push": [MockFunction],
+                  "replace": [MockFunction],
+                  "setParams": [MockFunction],
+                  "state": Object {},
+                  "toggleDrawer": [MockFunction],
+                },
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getDerivedStateFromProps": true,
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+    "attachTo": undefined,
+    "context": Object {
+      "store": Object {
+        "clearActions": [Function],
+        "dispatch": [Function],
+        "getActions": [Function],
+        "getState": [Function],
+        "replaceReducer": [Function],
+        "subscribe": [Function],
+      },
+    },
+    "hydrateIn": undefined,
+  },
+}
+`;

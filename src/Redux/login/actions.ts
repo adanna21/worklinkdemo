@@ -2,7 +2,7 @@ import { ActionTypes, ILogin, ISaveUserInAsync, IUserLogin } from './types';
 import { setItem, getItem } from '../helpers/async-storage';
 import { Dispatch } from 'redux';
 import NavigationService from '../../config/navigation/NavigationService';
-import store from '../index';
+import store, { IState } from '../index';
 import { IWorker } from '../../data';
 
 // Add user to Async Storage
@@ -27,9 +27,11 @@ export const login = (username: string, password: string) => {
       .then(user => {
         if (username === user.username && password === user.password) {
           // get current user from store
-          const employees = store.getState().employees;
+          const state: IState = store.getState();
+          const employees = state.employees;
+          console.log('employees', employees);
           const currentUser = employees.filter(
-            employee => employee.id.toString() === user.id
+            (employee: IWorker) => employee.id.toString() === user.id
           );
           dispatch(setLoggedInState(true, currentUser));
           const title = currentUser[0].title;

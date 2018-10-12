@@ -40,6 +40,7 @@ class LoginScreen extends Component<Props> {
     username: '',
     password: ''
   };
+
   txtPassword: RefObject<TextInput> = React.createRef();
 
   componentDidMount() {

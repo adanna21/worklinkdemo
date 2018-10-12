@@ -42,9 +42,9 @@ ShallowWrapper {
       "children": <AppContainer>
         <LeftPanel>
           <LeftHeader>
-            <MyWorkOrderHeader>
+            <SuperWorkOrderHeader>
               My HVAC Queue
-            </MyWorkOrderHeader>
+            </SuperWorkOrderHeader>
           </LeftHeader>
           <LeftBody>
             <SuperWorkOrderList
@@ -101,9 +101,9 @@ ShallowWrapper {
         "children": Array [
           <LeftPanel>
             <LeftHeader>
-              <MyWorkOrderHeader>
+              <SuperWorkOrderHeader>
                 My HVAC Queue
-              </MyWorkOrderHeader>
+              </SuperWorkOrderHeader>
             </LeftHeader>
             <LeftBody>
               <SuperWorkOrderList
@@ -156,9 +156,9 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <LeftHeader>
-                <MyWorkOrderHeader>
+                <SuperWorkOrderHeader>
                   My HVAC Queue
-                </MyWorkOrderHeader>
+                </SuperWorkOrderHeader>
               </LeftHeader>,
               <LeftBody>
                 <SuperWorkOrderList
@@ -194,9 +194,9 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": <MyWorkOrderHeader>
+                "children": <SuperWorkOrderHeader>
                   My HVAC Queue
-                </MyWorkOrderHeader>,
+                </SuperWorkOrderHeader>,
               },
               "ref": null,
               "rendered": Object {
@@ -366,9 +366,9 @@ ShallowWrapper {
         "children": <AppContainer>
           <LeftPanel>
             <LeftHeader>
-              <MyWorkOrderHeader>
+              <SuperWorkOrderHeader>
                 My HVAC Queue
-              </MyWorkOrderHeader>
+              </SuperWorkOrderHeader>
             </LeftHeader>
             <LeftBody>
               <SuperWorkOrderList
@@ -425,9 +425,9 @@ ShallowWrapper {
           "children": Array [
             <LeftPanel>
               <LeftHeader>
-                <MyWorkOrderHeader>
+                <SuperWorkOrderHeader>
                   My HVAC Queue
-                </MyWorkOrderHeader>
+                </SuperWorkOrderHeader>
               </LeftHeader>
               <LeftBody>
                 <SuperWorkOrderList
@@ -480,9 +480,9 @@ ShallowWrapper {
             "props": Object {
               "children": Array [
                 <LeftHeader>
-                  <MyWorkOrderHeader>
+                  <SuperWorkOrderHeader>
                     My HVAC Queue
-                  </MyWorkOrderHeader>
+                  </SuperWorkOrderHeader>
                 </LeftHeader>,
                 <LeftBody>
                   <SuperWorkOrderList
@@ -518,9 +518,9 @@ ShallowWrapper {
                 "key": undefined,
                 "nodeType": "class",
                 "props": Object {
-                  "children": <MyWorkOrderHeader>
+                  "children": <SuperWorkOrderHeader>
                     My HVAC Queue
-                  </MyWorkOrderHeader>,
+                  </SuperWorkOrderHeader>,
                 },
                 "ref": null,
                 "rendered": Object {

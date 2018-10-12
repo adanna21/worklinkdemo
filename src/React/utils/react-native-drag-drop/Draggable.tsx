@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { ITeamMember } from '../../../Redux/drag-and-drop/types';
@@ -17,7 +17,7 @@ interface IDraggableProps {
   activeOpacity: any;
 }
 
-class Draggable extends React.Component<IDraggableProps, any> {
+class Draggable extends Component<IDraggableProps, any> {
   displayName: string;
   private wrapper: React.RefObject<TouchableOpacity>;
 

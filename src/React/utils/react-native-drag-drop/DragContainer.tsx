@@ -1,4 +1,4 @@
-import React, { ReactChildren } from 'react';
+import React, { Component, ReactChildren } from 'react';
 import {
   View,
   PanResponder,
@@ -43,7 +43,7 @@ interface IDragModalProps {
   location: Animated.ValueXY;
 }
 
-class DragModal extends React.Component<IDragModalProps, any> {
+class DragModal extends Component<IDragModalProps, any> {
   render() {
     let { startPosition } = this.props.content;
     return (
@@ -61,10 +61,7 @@ class DragModal extends React.Component<IDragModalProps, any> {
   }
 }
 
-export default class DragContainer extends React.Component<
-  IDragContainerProps,
-  any
-> {
+export default class DragContainer extends Component<IDragContainerProps, any> {
   displayName: string;
 
   containerLayout: LayoutRectangle;
