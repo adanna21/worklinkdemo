@@ -5,7 +5,8 @@ import {
   Text,
   TextInput,
   TouchableWithoutFeedback,
-  Keyboard
+  Keyboard,
+  AsyncStorage
 } from 'react-native';
 import { ThunkDispatch } from 'redux-thunk';
 import { NavigationScreenProp } from 'react-navigation';
@@ -15,6 +16,7 @@ import { Actions } from '../../../src/Redux/login/actions';
 import { IUserLogin } from '../../../src/Redux/login/types';
 import { saveUserInAsync, login } from '../../Redux/login/actions';
 import LoginButton from '../components/Buttons/LoginButton';
+import { IWorker } from '../../data';
 
 export interface ILoginNavProps {
   navigation: NavigationScreenProp<any, any>;
@@ -24,7 +26,8 @@ export interface ILogInProps {
   userSaved: boolean;
   loggedIn: boolean;
   username: string | null;
-  user: IUserLogin;
+  user: IWorker[];
+  userLogin: IUserLogin;
   error: string;
 }
 
@@ -43,9 +46,21 @@ class LoginScreen extends Component<Props> {
 
   txtPassword: RefObject<TextInput> = React.createRef();
 
-  componentDidMount() {
+  componentWillMount() {
     const user = { id: '94848303', username: 'Test', password: '1234' };
     this.props.saveUser(user);
+
+    const fetchAllItems = async () => {
+      try {
+        const keys = await AsyncStorage.getAllKeys();
+        const items = await AsyncStorage.multiGet(keys);
+        console.log('all asyn items', items);
+        return items;
+      } catch (error) {
+        console.log(error, 'problemo');
+      }
+    };
+    fetchAllItems();
   }
   handleLogin = () => {
     const username = this.state.username;
@@ -90,7 +105,6 @@ class LoginScreen extends Component<Props> {
             />
             <LoginButton
               handleLogin={this.handleLogin}
-              navigation={this.props.navigation}
               loggedIn={this.props.loggedIn}
             />
           </View>

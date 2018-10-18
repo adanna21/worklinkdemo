@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { ILoginNavProps } from '../../screens/LoginScreen';
+
 interface ILoginBottom {
   handleLogin?(): void;
   loggedIn: boolean;
   // style: any;
 }
-type Props = ILoginBottom & ILoginNavProps;
-export default class LoginButton extends Component<Props, any> {
+
+export default class LoginButton extends Component<ILoginBottom, any> {
   render() {
     // const { disabled } = this.props;
     // const opacityStyle = disabled
@@ -18,11 +18,6 @@ export default class LoginButton extends Component<Props, any> {
         style={[, /*opacityStyle*/ styles.button]}
         onPress={() => {
           this.props.handleLogin();
-          // this.setState({}, () => {
-          //   if (this.props.loggedIn) {
-          //     this.props.navigation.navigate('MainNavigator');
-          //   }
-          // });
         }}
       >
         <Text style={styles.text}>Login</Text>

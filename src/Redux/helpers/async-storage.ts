@@ -23,6 +23,20 @@ export const getItem = async (key: string) => {
   }
 };
 
+export const fetchAllItems = async () => {
+  try {
+    const keys = await AsyncStorage.getAllKeys();
+    const items = await AsyncStorage.multiGet(keys);
+    return items;
+  } catch (error) {
+    console.log(error, 'problemo');
+  }
+};
+
 export const removeItem = async (key: string) => {
   return await AsyncStorage.removeItem(key);
+};
+
+export const clearAsyncStorage = async () => {
+  AsyncStorage.clear();
 };

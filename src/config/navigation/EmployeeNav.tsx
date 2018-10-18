@@ -1,17 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   createStackNavigator,
   createMaterialTopTabNavigator
 } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import EmployeeQueue from '../../React/screens/EmployeeQueueScreen';
-import SupervisorQueue from '../../React/screens/SupervisorQueueScreen';
 import Unassigned from '../../React/screens/UnassignedScreen';
 import OrderDetail from '../../React/screens/OrderDetail';
-import Calendar from '../../React/screens/CalendarScreen';
-import LoginScreen from '../../React/screens/LoginScreen';
 import Notices from '../../React/screens/Notices';
-import Header from '../../React/components/Header';
+import Header from '../../React/components/Header/Header';
 
 // Stack Nav for Supervisor screens
 const EmployeeWorkOrderListStack = createStackNavigator(

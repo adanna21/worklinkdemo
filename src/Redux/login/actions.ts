@@ -1,5 +1,11 @@
-import { ActionTypes, ILogin, ISaveUserInAsync, IUserLogin } from './types';
-import { setItem, getItem } from '../helpers/async-storage';
+import {
+  ActionTypes,
+  ILogin,
+  ISaveUserInAsync,
+  IUserLogin,
+  ILogout
+} from './types';
+import { setItem, getItem, removeItem } from '../helpers/async-storage';
 import { Dispatch } from 'redux';
 import NavigationService from '../../config/navigation/NavigationService';
 import store, { IState } from '../index';
@@ -33,32 +39,49 @@ export const login = (username: string, password: string) => {
           const currentUser = employees.filter(
             (employee: IWorker) => employee.id.toString() === user.id
           );
-          dispatch(setLoggedInState(true, currentUser));
+          dispatch(setLoggedInState(true, currentUser, username));
           const title = currentUser[0].title;
           if (title === 'employee') {
             NavigationService.navigateTo('EmployeeNavigator');
           } else if (title === 'supervisor') {
-            NavigationService.navigateTo('EmployeeNavigator');
+            NavigationService.navigateTo('SuperNavigator');
           }
           return true;
         } else {
-          dispatch(setLoggedInState(false, 'user not found'));
+          dispatch(setLoggedInState(false, 'user not found', 'not found'));
           return false;
         }
       })
-      .catch(() => dispatch(setLoggedInState(false, null)));
+      .catch(() => dispatch(setLoggedInState(false, null, 'none')));
   };
 };
 
 export const setLoggedInState = (
   loggedInState: boolean,
-  user: IWorker[] | string | null
+  user: IWorker[] | string | null,
+  username: string
 ): ILogin => {
   return {
     type: ActionTypes.LOG_IN,
     loggedIn: loggedInState,
-    user: user
+    user: user,
+    username: username
   };
 };
 
-export type Actions = ILogin | ISaveUserInAsync;
+// LogOut
+export const logout = (username: string) => {
+  return async (dispatch: Dispatch) => {
+    await removeItem(username)
+      .then(() => {
+        dispatch(setLoggedOutState(false));
+        NavigationService.navigateTo('Auth');
+      })
+      .catch(() => dispatch(setLoggedOutState(true)));
+  };
+};
+export const setLoggedOutState = (loggedInState: boolean): ILogout => ({
+  type: ActionTypes.LOGOUT,
+  loggedIn: loggedInState
+});
+export type Actions = ILogin | ISaveUserInAsync | ILogout;

@@ -1,8 +1,25 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import DropDown from '../Header/DropDown';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { ThunkDispatch } from 'redux-thunk';
+import { connect } from 'react-redux';
+import { IState } from '../../../../src/Redux';
+import { ILogInProps } from '../../../React/screens/LoginScreen';
+import { Actions } from '../../../../src/Redux/login/actions';
+import { logout } from '../../../Redux/login/actions';
 
-export default class Header extends Component {
+export interface ILogoutDispatchProps {
+  onLogout(username: string): void;
+}
+
+type Props = ILogInProps & ILogoutDispatchProps;
+
+export class Header extends Component<Props, any> {
+  handleLogout = () => {
+    const username = this.props.username;
+    this.props.onLogout(username);
+  };
   render() {
     return (
       <View style={styles.container}>
@@ -16,18 +33,34 @@ export default class Header extends Component {
           <TouchableOpacity>
             <Icon name="notifications" size={20} color="#FFF" />
           </TouchableOpacity>
-          <TouchableOpacity>
+          {/* <TouchableOpacity>
             <Icon name="settings" size={20} color="#FFF" />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.user}>
-            <Text style={styles.userName}>Alex Warren</Text>
-            <Icon name="arrow-drop-down" size={25} color="#FFF" />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
+
+          {/* <TouchableOpacity style={styles.user}> */}
+          <Text style={styles.userName}>{this.props.user[0].name}</Text>
+          {/* <Icon name="arrow-drop-down" size={25} color="#FFF" />
+          </TouchableOpacity> */}
+          <DropDown handleLogout={this.handleLogout} />
         </View>
       </View>
     );
   }
 }
+
+// redux
+const mapStateToProps = (state: IState) => state.login;
+const mapDispatchToProps = (
+  dispatch: ThunkDispatch<IState, void, Actions>
+): ILogoutDispatchProps => ({
+  onLogout: (username: string) => {
+    dispatch(logout(username));
+  }
+});
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Header);
 
 const styles = StyleSheet.create({
   container: {
