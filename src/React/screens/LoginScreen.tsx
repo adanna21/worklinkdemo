@@ -66,6 +66,7 @@ class LoginScreen extends Component<Props> {
           <View style={[styles.loginCard, shadowStyle]}>
             <Text style={styles.title}>NYU Login</Text>
             <TextInput
+              testID={'usernameInput'}
               style={styles.inputText}
               placeholder={'Net ID'}
               placeholderTextColor={'#a4a4a4'}
@@ -76,6 +77,7 @@ class LoginScreen extends Component<Props> {
               onChangeText={text => this.setState({ username: text })}
             />
             <TextInput
+              testID={'passwordInput'}
               style={styles.inputText}
               placeholder={'Password'}
               placeholderTextColor={'#a4a4a4'}

@@ -76,6 +76,7 @@
       "ts-jest": {
         "tsConfig": "<rootDir>/tsconfig.json"
       }
-    }
+    },
+    "collectCoverage": true
   }
 }
