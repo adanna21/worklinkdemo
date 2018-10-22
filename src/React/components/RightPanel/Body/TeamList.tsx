@@ -10,8 +10,23 @@ import {
 import { workOrders } from '../../../../data';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import TeamMember from './TeamMember';
+import TeamMemberOffline from './TeamMemberOffline';
 
 export default class TeamList extends Component<any, any> {
+  state = {
+    isReady: false
+  };
+  renderOffline = () => {
+    const { isReady } = this.state;
+    return (
+      <View style={styles.teamContainer}>
+        <TeamMemberOffline isReady={isReady} />
+        <TeamMemberOffline isReady={isReady} />
+        <TeamMemberOffline isReady={isReady} />
+        <TeamMemberOffline isReady={isReady} />
+      </View>
+    );
+  };
   render() {
     return (
       <View style={styles.container}>
@@ -27,7 +42,8 @@ export default class TeamList extends Component<any, any> {
             <Icon name="search" size={18} color="#BDBDBD" />
           </View>
         </View>
-        <FlatList
+        {this.renderOffline()}
+        {/* <FlatList
           scrollEnabled={this.props.scrollEnabled}
           style={styles.teamContainer}
           data={workOrders}
@@ -42,7 +58,7 @@ export default class TeamList extends Component<any, any> {
             />
           )}
           keyExtractor={item => item.id}
-        />
+        /> */}
         <View style={styles.addGroups}>
           <TouchableOpacity style={styles.addGroupButton}>
             <Text style={styles.addGroupText}>+ Add Groups or People</Text>
@@ -58,7 +74,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   teamSearch: {
-    flex: 0.1,
+    flex: 0.2,
     borderBottomWidth: 1,
     borderStyle: 'solid',
     borderColor: '#c6cacc',

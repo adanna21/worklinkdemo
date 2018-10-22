@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, FlatList } from 'react-native';
+import { Text, FlatList, View } from 'react-native';
 import { workOrders, IWorkOrder } from '../../../../data';
 import WorkOrderContainer from '../../../common/AppBody/WorkOrder/WorkOrderContainer';
 import SuperWorkOrderCard from '../../../common/AppBody/WorkOrder/SuperWorkOrderCard';
@@ -15,8 +15,22 @@ import LocationText from '../../../common/AppBody/WorkOrder/LocationText';
 import Client from '../../../common/AppBody/WorkOrder/Client';
 import ViewMore from '../../../common/AppBody/WorkOrder/ViewMore';
 import Avatar from '../../../common/AppBody/WorkOrder/Avatar';
-
+import WorkOrderOffline from './WorkOrderOffline';
 export default class SuperWorkOrderList extends Component<any, any> {
+  state = {
+    isReady: false
+  };
+  renderOffline = () => {
+    const { isReady } = this.state;
+    return (
+      <View>
+        <WorkOrderOffline isReady={isReady} />
+        <WorkOrderOffline isReady={isReady} />
+        <WorkOrderOffline isReady={isReady} />
+        <WorkOrderOffline isReady={isReady} />
+      </View>
+    );
+  };
   onViewMore = (workOrder: IWorkOrder) => {
     this.props.navigation.navigate('Details', {
       ...workOrder
@@ -26,7 +40,8 @@ export default class SuperWorkOrderList extends Component<any, any> {
   render() {
     return (
       <WorkOrderContainer>
-        <FlatList
+        {this.renderOffline()}
+        {/* <FlatList
           data={workOrders}
           extraData={[this.props, this.state]}
           renderItem={({ item }) => (
@@ -54,7 +69,7 @@ export default class SuperWorkOrderList extends Component<any, any> {
             </SuperWorkOrderCard>
           )}
           keyExtractor={item => item.id}
-        />
+        /> */}
       </WorkOrderContainer>
     );
   }

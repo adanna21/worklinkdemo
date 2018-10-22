@@ -18,6 +18,8 @@ type Props = ILogInProps & ILogoutDispatchProps;
 export class Header extends Component<Props, any> {
   handleLogout = () => {
     const username = this.props.username;
+    console.log('username', username);
+
     this.props.onLogout(username);
   };
   render() {
@@ -38,7 +40,9 @@ export class Header extends Component<Props, any> {
           </TouchableOpacity> */}
 
           {/* <TouchableOpacity style={styles.user}> */}
-          <Text style={styles.userName}>{this.props.user[0].name}</Text>
+          <Text style={styles.userName}>
+            {this.props.user ? this.props.user[0].name : `user unavailable`}
+          </Text>
           {/* <Icon name="arrow-drop-down" size={25} color="#FFF" />
           </TouchableOpacity> */}
           <DropDown handleLogout={this.handleLogout} />

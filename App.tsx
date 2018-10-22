@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, RefObject } from 'react';
 import { Provider } from 'react-redux';
 import { StyleSheet, StatusBar, SafeAreaView } from 'react-native';
 import MainNavigator from './src/config/navigation';
@@ -6,6 +6,7 @@ import store from './src/Redux';
 import NavigationService from './src/config/navigation/NavigationService';
 
 export default class App extends Component {
+  // navigatorRef: RefObject<NavigationContainerComponent> = React.createRef();
   render() {
     return (
       <Provider store={store}>
@@ -15,7 +16,7 @@ export default class App extends Component {
         >
           <StatusBar barStyle="light-content" />
           <MainNavigator
-            ref={navigatorRef => {
+            ref={(navigatorRef: any) => {
               NavigationService.setNav(navigatorRef);
             }}
           />

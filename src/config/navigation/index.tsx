@@ -29,7 +29,7 @@ export const MainNavigator = createSwitchNavigator(
     EmployeeNavigator: EmployeeMainStack,
     Auth: AuthStack
   },
-  { initialRouteName: 'Auth' }
+  { initialRouteName: 'SuperNavigator' }
 );
 
 export default MainNavigator;

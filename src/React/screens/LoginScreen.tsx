@@ -47,9 +47,10 @@ class LoginScreen extends Component<Props> {
   txtPassword: RefObject<TextInput> = React.createRef();
 
   componentWillMount() {
-    const user = { id: '94848303', username: 'Test', password: '1234' };
-    this.props.saveUser(user);
-
+    const testUser = { id: '94848303', username: 'Test', password: '1234' };
+    this.props.saveUser(testUser);
+    const otherUser = { id: '94848304', username: 'Test2', password: '1234' };
+    this.props.saveUser(otherUser);
     const fetchAllItems = async () => {
       try {
         const keys = await AsyncStorage.getAllKeys();
