@@ -3,15 +3,23 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Draggable } from '../../../utils/react-native-drag-drop';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { ITeamMember } from '../../../../../src/Redux/drag-and-drop/types';
+import { IWorker } from '../../../../data';
 
-export default class TeamMember extends Component<any, any> {
+interface ITeamMemberProps {
+  teamMemberTeamArray: ITeamMember[];
+  teamMemberItem: IWorker;
+  teamMemberSelectTeamMember: (memberId: string) => void;
+  teamMemberAddCurrentId: (id: string) => void;
+}
+
+export default class TeamMember extends Component<ITeamMemberProps, any> {
   state = {
     iconName: 'account-circle',
     iconColor: '#5eb8ec'
   };
   // change icon when teaMember selected or unselected
   changeIcon = (id: string) => {
-    const memberIdPresent = this.props.teamArray.some(
+    const memberIdPresent = this.props.teamMemberTeamArray.some(
       (member: ITeamMember) => member.id === id
     );
     memberIdPresent
@@ -26,28 +34,28 @@ export default class TeamMember extends Component<any, any> {
   };
   render() {
     const {
-      item,
-      selectTeamMember,
-      teamArray,
-      addCurrentId,
-      currentId
+      teamMemberItem,
+      teamMemberSelectTeamMember,
+      teamMemberTeamArray,
+      teamMemberAddCurrentId
+      // currentId
     } = this.props;
     return (
       <Draggable
         style={[styles.teamMember]}
-        itemId={item.id}
-        draggableSelectTeamMember={selectTeamMember}
+        itemId={teamMemberItem.id}
+        draggableSelectTeamMember={teamMemberSelectTeamMember}
         draggableChangeIcon={this.changeIcon}
-        teamArray={teamArray}
-        addCurrentId={addCurrentId}
+        draggableTeamArray={teamMemberTeamArray}
+        draggableAddCurrentId={teamMemberAddCurrentId}
       >
         <View style={styles.user}>
           <TouchableOpacity
             onPress={() => {
-              selectTeamMember(item.id);
+              teamMemberSelectTeamMember(teamMemberItem.id);
               // use setState callback to make component run changeIcon synchronously
               this.setState({}, () => {
-                this.changeIcon(item.id);
+                this.changeIcon(teamMemberItem.id);
               });
             }}
           >
@@ -57,7 +65,7 @@ export default class TeamMember extends Component<any, any> {
               color={`${this.state.iconColor}`}
             />
           </TouchableOpacity>
-          <Text style={styles.name}>{item.client.name}</Text>
+          <Text style={styles.name}>{teamMemberItem.name}</Text>
         </View>
         <Text style={styles.countText}>5</Text>
       </Draggable>

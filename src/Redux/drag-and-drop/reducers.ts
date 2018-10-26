@@ -1,14 +1,11 @@
 import { Action } from './actions';
-import { ActionTypes } from './types';
+import { ActionTypes, IDragDropProps } from './types';
 import { ISuperQueueProps } from '../../React/screens/SupervisorQueueScreen';
 
-export const initialState: ISuperQueueProps = {
-  teamMembers: [],
-  error: ''
-};
+export const initialState: IDragDropProps = { teamMembers: [] };
 
 export const reducer = (
-  state: ISuperQueueProps = initialState,
+  state: IDragDropProps = initialState,
   action: Action
 ) => {
   const { teamMembers } = state;

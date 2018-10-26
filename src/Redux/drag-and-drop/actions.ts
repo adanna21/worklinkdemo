@@ -1,8 +1,4 @@
-import {
-  ActionTypes,
-  IToggleTeamMemberAction
-  // IRemoveTeamMemberAction
-} from './types';
+import { ActionTypes, IToggleTeamMemberAction } from './types';
 
 export const toggleTeamMember = (memberId: string): IToggleTeamMemberAction => {
   return {
@@ -10,12 +6,5 @@ export const toggleTeamMember = (memberId: string): IToggleTeamMemberAction => {
     payload: { memberId }
   };
 };
-
-// export const removeTeamMember = (memberId: string): IRemoveTeamMemberAction => {
-//   return {
-//     type: ActionTypes.REMOVE_TEAM_MEMBER,
-//     payload: { memberId }
-//   };
-// };
 
 export type Action = IToggleTeamMemberAction;

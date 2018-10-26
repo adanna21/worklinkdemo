@@ -1,9 +1,9 @@
 import {
   ActionTypes,
-  ILogin,
-  ISaveUserInAsync,
+  ILoginAction,
+  ISetSavedUserStateAction,
   IUserLogin,
-  ILogout
+  ILogoutAction
 } from './types';
 import { setItem, getItem, removeItem } from '../helpers/async-storage';
 import { Dispatch } from 'redux';
@@ -21,7 +21,9 @@ export const saveUserInAsync = (user: IUserLogin) => {
       .catch(() => dispatch(setSavedUserState(false)));
   };
 };
-const setSavedUserState = (savedUserState: boolean): ISaveUserInAsync => ({
+const setSavedUserState = (
+  savedUserState: boolean
+): ISetSavedUserStateAction => ({
   type: ActionTypes.SET_SAVED_USER_STATE,
   userSaved: savedUserState
 });
@@ -60,7 +62,7 @@ export const setLoggedInState = (
   loggedInState: boolean,
   user: IWorker[] | string | null,
   username: string
-): ILogin => {
+): ILoginAction => {
   return {
     type: ActionTypes.LOG_IN,
     loggedIn: loggedInState,
@@ -80,8 +82,8 @@ export const logout = (username: string) => {
       .catch(() => dispatch(setLoggedOutState(true)));
   };
 };
-export const setLoggedOutState = (loggedInState: boolean): ILogout => ({
+export const setLoggedOutState = (loggedInState: boolean): ILogoutAction => ({
   type: ActionTypes.LOGOUT,
   loggedIn: loggedInState
 });
-export type Actions = ILogin | ISaveUserInAsync | ILogout;
+export type Actions = ILoginAction | ISetSavedUserStateAction | ILogoutAction;

@@ -16,60 +16,102 @@ import Client from '../../../common/AppBody/WorkOrder/Client';
 import ViewMore from '../../../common/AppBody/WorkOrder/ViewMore';
 import Avatar from '../../../common/AppBody/WorkOrder/Avatar';
 import WorkOrderOffline from './WorkOrderOffline';
-export default class SuperWorkOrderList extends Component<any, any> {
-  state = {
-    isReady: false
-  };
+import { IInitialDataProps } from '../../../../Redux/data-management/initialData/types';
+import { NavigationScreenProp } from 'react-navigation';
+
+export interface ISuperWorkOrderListProps {
+  initialData: IInitialDataProps;
+  navigation: NavigationScreenProp<any, any>;
+  droppedInZone: () => void;
+}
+
+export default class SuperWorkOrderList extends Component<
+  ISuperWorkOrderListProps,
+  any
+> {
+  componentDidMount() {
+    const {
+      initialData: { workOrders }
+    } = this.props;
+    console.log('super work', workOrders);
+  }
+  // ====================================================== //
+  // ======= Render Placeholder If Data Is NOT Loaded ===== //
+  // ====================================================== //
   renderOffline = () => {
-    const { isReady } = this.state;
+    const {
+      initialData: { loading }
+    } = this.props;
     return (
       <View>
-        <WorkOrderOffline isReady={isReady} />
-        <WorkOrderOffline isReady={isReady} />
-        <WorkOrderOffline isReady={isReady} />
-        <WorkOrderOffline isReady={isReady} />
+        <WorkOrderOffline isReady={loading} />
+        <WorkOrderOffline isReady={loading} />
+        <WorkOrderOffline isReady={loading} />
+        <WorkOrderOffline isReady={loading} />
       </View>
     );
   };
+
+  // =============================================== //
+  // ======= Render FlatList If Data Is Loaded ===== //
+  // =============================================== //
+  renderFlatList = () => {
+    const {
+      initialData: { workOrders }
+    } = this.props;
+
+    return (
+      <FlatList
+        data={workOrders}
+        extraData={[this.props, this.state]}
+        renderItem={({ item }) => (
+          <SuperWorkOrderCard droppedInZone={this.props.droppedInZone}>
+            <WorkOrderDetails>
+              <Status>
+                <StatusText>{item.status.toLocaleUpperCase()}</StatusText>
+                <StatusIndicator />
+              </Status>
+              <WorkCode>
+                <WorkCodeText>{item.workCode}</WorkCodeText>
+                <WorkCodeId>{item.id}</WorkCodeId>
+              </WorkCode>
+              <Location>
+                <LocationText>
+                  Service Location: {item.serviceLocation}
+                </LocationText>
+                <Client>Client: {item.client.name}</Client>
+              </Location>
+              <ViewMore onViewMore={this.onViewMore} item={item} />
+            </WorkOrderDetails>
+            <Avatar>
+              <Text>JJ</Text>
+            </Avatar>
+          </SuperWorkOrderCard>
+        )}
+        keyExtractor={item => item.id}
+      />
+    );
+  };
+
+  // =============================================== //
+  // =====   Show WorkOrder Details OnPress    ===== //
+  // =============================================== //
   onViewMore = (workOrder: IWorkOrder) => {
     this.props.navigation.navigate('Details', {
       ...workOrder
     });
   };
 
+  // =============================================== //
+  // =================== Main Render =============== //
+  // =============================================== //
   render() {
+    const {
+      initialData: { loading }
+    } = this.props;
     return (
       <WorkOrderContainer>
-        {this.renderOffline()}
-        {/* <FlatList
-          data={workOrders}
-          extraData={[this.props, this.state]}
-          renderItem={({ item }) => (
-            <SuperWorkOrderCard droppedInZone={this.props.droppedInZone}>
-              <WorkOrderDetails>
-                <Status>
-                  <StatusText>{item.status.toLocaleUpperCase()}</StatusText>
-                  <StatusIndicator />
-                </Status>
-                <WorkCode>
-                  <WorkCodeText>{item.workCode}</WorkCodeText>
-                  <WorkCodeId>{item.id}</WorkCodeId>
-                </WorkCode>
-                <Location>
-                  <LocationText>
-                    Service Location: {item.serviceLocation}
-                  </LocationText>
-                  <Client>Client: {item.client.name}</Client>
-                </Location>
-                <ViewMore onViewMore={this.onViewMore} item={item} />
-              </WorkOrderDetails>
-              <Avatar>
-                <Text>JJ</Text>
-              </Avatar>
-            </SuperWorkOrderCard>
-          )}
-          keyExtractor={item => item.id}
-        /> */}
+        {loading ? this.renderOffline() : this.renderFlatList()}
       </WorkOrderContainer>
     );
   }

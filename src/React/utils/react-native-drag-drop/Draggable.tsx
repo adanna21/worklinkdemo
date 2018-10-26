@@ -6,10 +6,10 @@ import { ITeamMember } from '../../../Redux/drag-and-drop/types';
 interface IDraggableProps {
   itemId: string;
   data: any;
-  teamArray: ITeamMember[];
-  addCurrentId(id: IDraggableProps['itemId']): void;
-  draggableSelectTeamMember(id: IDraggableProps['itemId']): void;
-  draggableChangeIcon(id: IDraggableProps['itemId']): void;
+  draggableTeamArray?: ITeamMember[];
+  draggableAddCurrentId?: (id: IDraggableProps['itemId']) => void;
+  draggableSelectTeamMember?: (id: IDraggableProps['itemId']) => void;
+  draggableChangeIcon?: (id: IDraggableProps['itemId']) => void;
   style: any;
   disabled?(): void;
   dragOn: string;
@@ -17,7 +17,7 @@ interface IDraggableProps {
   activeOpacity: any;
 }
 
-class Draggable extends Component<IDraggableProps, any> {
+export default class Draggable extends Component<IDraggableProps, any> {
   displayName: string;
   private wrapper: React.RefObject<TouchableOpacity>;
 
@@ -44,17 +44,17 @@ class Draggable extends Component<IDraggableProps, any> {
       itemId,
       children,
       data,
-      teamArray,
-      addCurrentId
+      draggableTeamArray,
+      draggableAddCurrentId
     } = this.props;
     if (!disabled)
       this.context.dragContext.onDrag(itemId, this.wrapper, children, data);
 
     // if there are no items in the teamArray then you can add one by dragging
-    if (teamArray.length === 0) {
+    if (draggableTeamArray.length === 0) {
       // if only one teamMember is dragged then add them to teamArray
       this.props.draggableSelectTeamMember(itemId);
-      addCurrentId(itemId);
+      draggableAddCurrentId(itemId);
       this.setState({}, () => {
         // change icon after item added to teamArray
         this.props.draggableChangeIcon(itemId);
@@ -94,4 +94,4 @@ class Draggable extends Component<IDraggableProps, any> {
   }
 }
 
-export default Draggable;
+// export default Draggable;

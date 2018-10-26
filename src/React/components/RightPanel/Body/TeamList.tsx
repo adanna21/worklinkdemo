@@ -7,27 +7,65 @@ import {
   FlatList,
   TextInput
 } from 'react-native';
-import { workOrders } from '../../../../data';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import TeamMember from './TeamMember';
 import TeamMemberOffline from './TeamMemberOffline';
+import { IInitialDataProps } from '../../../../Redux/data-management/initialData/types';
+import { ITeamMember } from '../../../../Redux/drag-and-drop/types';
 
-export default class TeamList extends Component<any, any> {
-  state = {
-    isReady: false
-  };
+export interface ITeamListProps {
+  initialData: IInitialDataProps;
+  // scrollEnabled: boolean;
+  teamArray: ITeamMember[];
+  addCurrentId: (id: string) => void;
+  selectTeamMember: (memberId: string) => void;
+  currentId: string;
+}
+export default class TeamList extends Component<ITeamListProps, any> {
   renderOffline = () => {
-    const { isReady } = this.state;
+    const {
+      initialData: { loading }
+    } = this.props;
     return (
       <View style={styles.teamContainer}>
-        <TeamMemberOffline isReady={isReady} />
-        <TeamMemberOffline isReady={isReady} />
-        <TeamMemberOffline isReady={isReady} />
-        <TeamMemberOffline isReady={isReady} />
+        <TeamMemberOffline isReady={loading} />
+        <TeamMemberOffline isReady={loading} />
+        <TeamMemberOffline isReady={loading} />
+        <TeamMemberOffline isReady={loading} />
       </View>
     );
   };
+  // =============================================== //
+  // ======= Render FlatList If Data Is Loaded ===== //
+  // =============================================== //
+  renderFlatList = () => {
+    const {
+      initialData: { employees }
+    } = this.props;
+
+    return (
+      <FlatList
+        // scrollEnabled={this.props.scrollEnabled}
+        style={styles.teamContainer}
+        data={employees}
+        extraData={this.props}
+        renderItem={({ item }) => (
+          <TeamMember
+            teamMemberItem={item}
+            teamMemberSelectTeamMember={this.props.selectTeamMember}
+            teamMemberTeamArray={this.props.teamArray}
+            teamMemberAddCurrentId={this.props.addCurrentId}
+            // currentId={this.props.currentId}
+          />
+        )}
+        keyExtractor={item => item.id}
+      />
+    );
+  };
   render() {
+    const {
+      initialData: { loading }
+    } = this.props;
     return (
       <View style={styles.container}>
         <View style={styles.teamSearch}>
@@ -42,23 +80,8 @@ export default class TeamList extends Component<any, any> {
             <Icon name="search" size={18} color="#BDBDBD" />
           </View>
         </View>
-        {this.renderOffline()}
-        {/* <FlatList
-          scrollEnabled={this.props.scrollEnabled}
-          style={styles.teamContainer}
-          data={workOrders}
-          extraData={this.props}
-          renderItem={({ item }) => (
-            <TeamMember
-              item={item}
-              selectTeamMember={this.props.selectTeamMember}
-              teamArray={this.props.teamArray}
-              addCurrentId={this.props.addCurrentId}
-              currentId={this.props.currentId}
-            />
-          )}
-          keyExtractor={item => item.id}
-        /> */}
+        {loading ? this.renderOffline() : this.renderFlatList()}
+
         <View style={styles.addGroups}>
           <TouchableOpacity style={styles.addGroupButton}>
             <Text style={styles.addGroupText}>+ Add Groups or People</Text>

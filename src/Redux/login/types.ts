@@ -13,19 +13,19 @@ export enum ActionTypes {
   LOGOUT = '@@login/LOGOUT'
 }
 
-export interface ILogin {
+export interface ILoginAction {
   type: ActionTypes.LOG_IN;
   loggedIn: boolean;
   user: IWorker[] | string | null;
   username: string;
 }
 
-export interface ISaveUserInAsync {
+export interface ISetSavedUserStateAction {
   type: ActionTypes.SET_SAVED_USER_STATE;
   userSaved: boolean;
 }
 
-export interface ILogout {
+export interface ILogoutAction {
   type: ActionTypes.LOGOUT;
   loggedIn: boolean;
   // user: null;

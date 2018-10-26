@@ -12,7 +12,7 @@
       "clientDescription": "goes here, doesn't exceed two lines",
       "notes": "notes go here",
       "client": {
-        "name": "Alex Warren",
+        "name": "Stannis Barathean",
         "netId": "ja123",
         "phoneNumber": "6187891234",
         "email": "ja123@nyu.edu"
@@ -37,7 +37,7 @@
       "clientDescription": "goes here, doesn't exceed two lines",
       "notes": "notes go here",
       "client": {
-        "name": "Alex Warren",
+        "name": "Cersai Lanister",
         "netId": "ja123",
         "phoneNumber": "6187891234",
         "email": "ja123@nyu.edu"
@@ -61,7 +61,7 @@
       "clientDescription": "goes here, doesn't exceed two lines",
       "notes": "notes go here",
       "client": {
-        "name": "Alex Warren",
+        "name": "Jamie Lanister",
         "netId": "ja123",
         "phoneNumber": "6187891234",
         "email": "ja123@nyu.edu"
@@ -85,7 +85,7 @@
       "clientDescription": "goes here, doesn't exceed two lines",
       "notes": "notes go here",
       "client": {
-        "name": "Alex Warren",
+        "name": "Daenerys Targaryen",
         "netId": "ja123",
         "phoneNumber": "6187891234",
         "email": "ja123@nyu.edu"
@@ -105,11 +105,11 @@
       "shop": "HVAC",
       "workCode": "HVAC - Too Hot",
       "clientSchedule": "10/15/2018",
-      "workDescription": "goes here, doesn't exceed two lines",
+      "workDescription": "goes here, the north remembers",
       "clientDescription": "goes here, doesn't exceed two lines",
       "notes": "notes go here",
       "client": {
-        "name": "Alex Warren",
+        "name": "Catelyn Stark",
         "netId": "ja123",
         "phoneNumber": "6187891234",
         "email": "ja123@nyu.edu"
@@ -133,7 +133,7 @@
       "clientDescription": "goes here, doesn't exceed two lines",
       "notes": "notes go here",
       "client": {
-        "name": "Alex Warren",
+        "name": "Edard Stark",
         "netId": "ja123",
         "phoneNumber": "6187891234",
         "email": "ja123@nyu.edu"

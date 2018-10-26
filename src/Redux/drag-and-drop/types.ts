@@ -15,6 +15,9 @@ export interface IToggleTeamMemberAction {
   payload: { memberId: string };
 }
 
+export interface IDragDropProps {
+  teamMembers: ITeamMember[];
+}
 // export interface IRemoveTeamMemberAction {
 //   type: ActionTypes.REMOVE_TEAM_MEMBER;
 //   payload: { memberId: string };

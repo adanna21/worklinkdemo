@@ -14,20 +14,25 @@ import { NavigationScreenProp } from 'react-navigation';
 import { DragContainer } from '../utils/react-native-drag-drop';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
 import { IState } from '../../../src/Redux';
 import { ITeamMember } from '../../../src/Redux/drag-and-drop/types';
 import { toggleTeamMember } from '../../Redux/drag-and-drop/actions';
+import { fetchInitialData } from '../../Redux/data-management/initialData/actions';
+import { IInitialDataProps } from '../../Redux/data-management/initialData/types';
+import { Actions } from '../../../src/Redux/data-management/initialData/actions';
 
 export interface ISuperQueueNavProps {
   navigation: NavigationScreenProp<any, any>;
 }
 
 export interface ISuperQueueProps {
-  teamMembers: ITeamMember[];
-  error: string;
+  dragDrop: { teamMembers: ITeamMember[] };
+  initialData: IInitialDataProps;
 }
 export interface ISuperQueueDispatchProps {
-  onTeamMemberClicked(memberId: string): void;
+  onTeamMemberClicked: (memberId: string) => void;
+  getInitialData(): void;
 }
 
 export type Props = ISuperQueueProps &
@@ -64,14 +69,21 @@ export class SupervisorQueueScreen extends Component<Props, State> {
   //   this.setState({ scrollEnabled: visible });
   // };
   componentDidMount() {
-    const teamArray = this.props.teamMembers;
-    console.log('teamArray', teamArray);
+    this.props.getInitialData();
+    console.log('teamArray', this.props.dragDrop.teamMembers);
+    console.log('employees', this.props.initialData.employees);
+    console.log('workOrders', this.props);
   }
   isDroppedInZone = () => {
     this.setState({ droppedInZone: true });
   };
   render() {
-    const { teamMembers, onTeamMemberClicked, navigation } = this.props;
+    const {
+      dragDrop: { teamMembers },
+      onTeamMemberClicked,
+      navigation,
+      initialData
+    } = this.props;
     const { currentId } = this.state;
     return (
       <DragContainer
@@ -105,6 +117,7 @@ export class SupervisorQueueScreen extends Component<Props, State> {
               <SuperWorkOrderList
                 navigation={navigation}
                 droppedInZone={this.isDroppedInZone}
+                initialData={initialData}
               />
             </LeftBody>
           </LeftPanel>
@@ -121,6 +134,7 @@ export class SupervisorQueueScreen extends Component<Props, State> {
                 teamArray={teamMembers}
                 addCurrentId={this.addCurrentId}
                 currentId={this.state.currentId}
+                initialData={initialData}
               />
             </RightBody>
           </RightPanel>
@@ -131,12 +145,21 @@ export class SupervisorQueueScreen extends Component<Props, State> {
 }
 
 const mapStateToProps = (state: IState) => {
-  return state.dragDrop;
+  const stateData = {
+    dragDrop: state.dragDrop,
+    initialData: state.initialData
+  };
+  return stateData;
 };
-const mapDispatchToProps = (dispatch: Dispatch): ISuperQueueDispatchProps => ({
+
+const mapDispatchToProps = (
+  dispatch: ThunkDispatch<IState, void, Actions> & Dispatch
+): ISuperQueueDispatchProps => ({
   onTeamMemberClicked: (memberId: string) =>
-    dispatch(toggleTeamMember(memberId))
+    dispatch(toggleTeamMember(memberId)),
+  getInitialData: () => dispatch(fetchInitialData())
 });
+
 export default connect(
   mapStateToProps,
   mapDispatchToProps
