@@ -72,7 +72,6 @@ export class SupervisorQueueScreen extends Component<Props, State> {
     this.props.getInitialData();
     console.log('teamArray', this.props.dragDrop.teamMembers);
     console.log('employees', this.props.initialData.employees);
-    console.log('workOrders', this.props);
   }
   isDroppedInZone = () => {
     this.setState({ droppedInZone: true });
