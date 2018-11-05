@@ -2,10 +2,9 @@ import { IWorkOrder, IWorker } from '../../../data';
 
 // Constants
 export enum ActionTypes {
-  GET_INITIAL_DATA_BEGIN = '@@initialData/GET_INITIAL_DATA_BEGIN',
-  GET_INITIAL_DATA_SUCCESS = '@@initialData/GET_INITIAL_DATA_SUCCESS',
-  GET_INITIAL_DATA_FAILURE = '@@initialData/GET_INITIAL_DATA_FAILURE',
-  CHANGE_FILTER = '@@initialData/CHANGE_FILTER'
+  GET_INITIAL_DATA_BEGIN = '@@data/GET_INITIAL_DATA_BEGIN',
+  GET_INITIAL_DATA_SUCCESS = '@@data/GET_INITIAL_DATA_SUCCESS',
+  GET_INITIAL_DATA_FAILURE = '@@data/GET_INITIAL_DATA_FAILURE'
 }
 
 export interface IGetInitialDataBeginAction {
@@ -26,16 +25,10 @@ export interface IInitialDataProps {
   workOrders: IWorkOrder[];
   employees: IWorker[];
   loading: boolean;
-  filters: IFilter[];
   error: any;
 }
 
 export interface IInitialApiData {
   workOrders: IWorkOrder[];
   employees: IWorker[];
-}
-
-export interface IFilter {
-  id: 'completed' | 'unassigned' | 'on hold';
-  inuse: boolean;
 }

@@ -5,11 +5,6 @@ export const initialState: IInitialDataProps = {
   workOrders: [],
   employees: [],
   loading: false,
-  filters: [
-    { id: 'completed', inuse: false },
-    { id: 'unassigned', inuse: false },
-    { id: 'on hold', inuse: false }
-  ],
   error: null
 };
 

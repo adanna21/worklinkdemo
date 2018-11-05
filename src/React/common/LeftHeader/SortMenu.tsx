@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import Menu, { MenuItem } from 'react-native-material-menu';
 
-interface IDropDown {
-  handleLogout?(): void;
+interface ISortMenu {
+  // handleLogout?(): void;
 }
 
-export default class DropDown extends Component<IDropDown, any> {
+export default class SortMenu extends Component<ISortMenu, any> {
   _menu: any = null;
 
   setMenuRef = (ref: any) => {
@@ -25,22 +25,17 @@ export default class DropDown extends Component<IDropDown, any> {
       <Menu
         ref={this.setMenuRef}
         button={
-          <Icon
-            name="settings"
-            size={20}
-            color="#FFF"
-            onPress={this.showMenu}
-          />
+          <Icon name="sort" size={20} color="#757575" onPress={this.showMenu} />
         }
       >
-        <MenuItem onPress={this.hideMenu}>Menu item 1</MenuItem>
+        <MenuItem onPress={this.hideMenu}>Newest To Oldest</MenuItem>
         <MenuItem
           onPress={() => {
             this.hideMenu();
-            this.props.handleLogout();
+            // this.props.handleLogout();
           }}
         >
-          LogOut
+          Oldest To Newest
         </MenuItem>
       </Menu>
     );

@@ -38,7 +38,6 @@ export default class TeamMember extends Component<ITeamMemberProps, any> {
       teamMemberSelectTeamMember,
       teamMemberTeamArray,
       teamMemberAddCurrentId
-      // currentId
     } = this.props;
     return (
       <Draggable

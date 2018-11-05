@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { StyleSheet, Text, View } from 'react-native';
+import FilterMenu from './FilterMenu';
+import SortMenu from './SortMenu';
 
 export default class FilterSort extends Component {
   render() {
     return (
       <View style={styles.icons}>
-        <TouchableOpacity style={styles.filter}>
+        <View style={styles.filter}>
           <Text style={styles.iconText}>Filter</Text>
-          <Icon name="filter" size={20} color="#757575" />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.sort}>
+          <FilterMenu />
+        </View>
+        <View style={styles.sort}>
           <Text style={styles.iconText}>Sort</Text>
-          <Icon name="sort" size={20} color="#757575" />
-        </TouchableOpacity>
+          <SortMenu />
+        </View>
       </View>
     );
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text, FlatList, View } from 'react-native';
-import { workOrders, IWorkOrder } from '../../../../data';
+import { IWorkOrder } from '../../../../data';
 import WorkOrderContainer from '../../../common/AppBody/WorkOrder/WorkOrderContainer';
 import SuperWorkOrderCard from '../../../common/AppBody/WorkOrder/SuperWorkOrderCard';
 import WorkOrderDetails from '../../../common/AppBody/WorkOrder/WorkOrderDetails';

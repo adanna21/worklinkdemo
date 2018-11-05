@@ -1,8 +1,38 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { StyleSheet, View, Text } from 'react-native';
 
-export default class OrderDetail extends Component<any, any> {
+export default class HistoryCard extends Component<any, any> {
+  convertTime = (timestamp: Date) => {
+    const time = new Date(timestamp);
+    // hours
+    const hours = time.getHours();
+    let hoursString = hours.toString();
+    if (hours < 10) hoursString = '0' + hours;
+    // minutes
+    const minutes = time.getMinutes();
+    let minutesString = minutes.toString();
+    if (minutes < 10) {
+      minutesString = '0' + minutes;
+    }
+
+    let timeOfDay = hours < 12 ? 'AM' : 'PM';
+
+    const newTime =
+      time.getMonth() +
+      1 +
+      '/' +
+      time.getDate() +
+      '/' +
+      time.getFullYear() +
+      ', ' +
+      hoursString +
+      ':' +
+      minutesString +
+      ' ' +
+      timeOfDay;
+
+    return newTime;
+  };
   render() {
     const { history } = this.props.navigation.state.params;
 
@@ -14,9 +44,9 @@ export default class OrderDetail extends Component<any, any> {
             <View style={styles.avatar}>
               <Text style={styles.avatarText}>JJ</Text>
             </View>
-            <Text style={styles.event}>{history.event.description}</Text>
+            <Text style={styles.event}>{history[0].description}</Text>
           </View>
-          <Text style={styles.time}>{history.event.time}</Text>
+          <Text style={styles.time}>{this.convertTime(history[0].time)}</Text>
         </View>
       </View>
     );

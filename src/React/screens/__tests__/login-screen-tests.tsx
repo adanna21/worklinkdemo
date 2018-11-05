@@ -81,16 +81,16 @@ describe('Login Screen', () => {
       expect(render.state('password')).toEqual('thisisus');
     });
   });
-  // it('onClick function is called with passed counter value', () => {
-  //   const fn = jest.fn();
-  //   const component = shallow(
-  //     <LoginButton handleLogin={fn} navigation={navigation} loggedIn={false} />
-  //     // <Button onClick={fn} label="this is test label" />
-  //   ).dive();
+  it('onPress function is called', () => {
+    const fn = jest.fn();
+    const component = shallow(
+      <LoginButton handleLogin={fn} navigation={navigation} loggedIn={false} />
+      // <Button onClick={fn} label="this is test label" />
+    ).dive();
 
-  //   component.find('text').simulate('onPress');
+    component.find('text').simulate('onPress');
 
-  //   expect(component.state('loggedIn')).toBe(true);
-  //   expect(fn.mock.calls[0][0]).toBe(1);
-  // });
+    expect(component.state('loggedIn')).toBe(true);
+    expect(fn.mock.calls[0][0]).toBe(1);
+  });
 });
