@@ -1,6 +1,7 @@
 // import { workers, workOrders } from '../../data';
 import { workOrders, employees } from '../initialData.json';
 import * as initialData from '../initialData.json';
+import { IInitialApiData } from '../data-management/initialData/types.js';
 
 export const fetchWorkersApi = () => {
   return Promise.resolve(employees);
@@ -11,7 +12,7 @@ export const fetchWorkOrdersApi = () => {
 };
 
 export const fetchApiData = () => {
-  const data = {
+  const data: IInitialApiData = {
     employees: initialData.employees,
     workOrders: initialData.workOrders
   };

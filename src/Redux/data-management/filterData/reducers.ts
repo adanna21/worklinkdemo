@@ -1,38 +1,38 @@
 import { Actions } from './actions';
-import { ActionTypes, IInitialDataProps } from './types';
+import { ActionTypes, IFilterByStatusProps } from './types';
 
-export const initialState: IInitialDataProps = {
-  workOrders: [],
-  employees: [],
-  loading: false,
-  error: null
+export const initialState: IFilterByStatusProps = {
+  filters: [
+    { id: 'completed', inuse: false },
+    { id: 'unassigned', inuse: false },
+    { id: 'on hold', inuse: false },
+    { id: 'assigned', inuse: false }
+  ],
+  sortBy: null
+  // filteredWorkOrders: []
 };
 
 export const reducer = (
-  state: IInitialDataProps = initialState,
+  state: IFilterByStatusProps = initialState,
   action: Actions
 ) => {
-  const BEGIN = ActionTypes.GET_INITIAL_DATA_BEGIN;
-  const SUCCESS = ActionTypes.GET_INITIAL_DATA_SUCCESS;
-  const FAILURE = ActionTypes.GET_INITIAL_DATA_FAILURE;
+  const FILTER = ActionTypes.CHANGE_FILTER_BY_STATUS;
+  const SORT = ActionTypes.SORT_BY;
   switch (action.type) {
-    case BEGIN:
+    case FILTER:
+      const status = action.payload.statusId.toString();
+      const newFilters = state.filters.map(item => {
+        if (item.id.toString() === status) item.inuse = !item.inuse;
+        return item;
+      });
       return {
         ...state,
-        loading: true
+        filters: newFilters
       };
-    case SUCCESS:
+    case SORT:
       return {
         ...state,
-        workOrders: action.payload.initialData.workOrders,
-        employees: action.payload.initialData.employees,
-        loading: false
-      };
-    case FAILURE:
-      return {
-        ...state,
-        error: action.payload.error,
-        loading: false
+        sortBy: action.payload.sortBy
       };
     default:
       return state;

@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import FilterMenu from './FilterMenu';
 import SortMenu from './SortMenu';
+import { ISuperWorkOrderHeader } from '../../components/LeftPanel/Header/SuperWorkOrderHeader';
 
-export default class FilterSort extends Component {
+export default class FilterSort extends Component<ISuperWorkOrderHeader, any> {
   render() {
     return (
       <View style={styles.icons}>
         <View style={styles.filter}>
           <Text style={styles.iconText}>Filter</Text>
-          <FilterMenu />
+          <FilterMenu
+            changeWorkOrderFilter={this.props.changeWorkOrderFilter}
+          />
         </View>
         <View style={styles.sort}>
           <Text style={styles.iconText}>Sort</Text>

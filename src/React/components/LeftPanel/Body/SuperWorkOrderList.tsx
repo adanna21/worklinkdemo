@@ -23,6 +23,7 @@ export interface ISuperWorkOrderListProps {
   initialData: IInitialDataProps;
   navigation: NavigationScreenProp<any, any>;
   droppedInZone: () => void;
+  filteredWorkOrders: IWorkOrder[];
 }
 
 export default class SuperWorkOrderList extends Component<
@@ -40,8 +41,12 @@ export default class SuperWorkOrderList extends Component<
   // ====================================================== //
   renderOffline = () => {
     const {
-      initialData: { loading }
+      initialData: { loading },
+      filteredWorkOrders
     } = this.props;
+    // const stillLoading = () => {
+    //   if (filteredWorkOrders.length > 0) return true;
+    // };
     return (
       <View>
         <WorkOrderOffline isReady={loading} />
@@ -57,12 +62,12 @@ export default class SuperWorkOrderList extends Component<
   // =============================================== //
   renderFlatList = () => {
     const {
-      initialData: { workOrders }
+      filteredWorkOrders
     } = this.props;
 
     return (
       <FlatList
-        data={workOrders}
+        data={filteredWorkOrders}
         extraData={[this.props, this.state]}
         renderItem={({ item }) => (
           <SuperWorkOrderCard droppedInZone={this.props.droppedInZone}>

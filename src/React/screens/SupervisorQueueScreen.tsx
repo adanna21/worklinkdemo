@@ -6,7 +6,7 @@ import LeftBody from '../common/AppBody/LeftBody';
 import RightPanel from '../common/AppBody/RightPanel';
 import RightHeader from '../common/AppBody/RightHeader';
 import RightBody from '../common/AppBody/RightBody';
-import WorkOrderHeader from '../components/LeftPanel/Header/SuperWorkOrderHeader';
+import SuperWorkOrderHeader from '../components/LeftPanel/Header/SuperWorkOrderHeader';
 import ActionHeader from '../components/RightPanel/Header/ActionHeader';
 import SuperWorkOrderList from '../components/LeftPanel/Body/SuperWorkOrderList';
 import TeamList from '../components/RightPanel/Body/TeamList';
@@ -21,6 +21,12 @@ import { toggleTeamMember } from '../../Redux/drag-and-drop/actions';
 import { fetchInitialData } from '../../Redux/data-management/initialData/actions';
 import { IInitialDataProps } from '../../Redux/data-management/initialData/types';
 import { Actions } from '../../../src/Redux/data-management/initialData/actions';
+import { selectFilteredWorkOrders } from '../../Redux/selectors/filterSelectors';
+import { changeFilterByStatus } from '../../Redux/data-management/filterData/actions';
+import {
+  IStatus,
+  IFilterByStatusProps
+} from '../../Redux/data-management/filterData/types';
 
 export interface ISuperQueueNavProps {
   navigation: NavigationScreenProp<any, any>;
@@ -33,11 +39,13 @@ export interface ISuperQueueProps {
 export interface ISuperQueueDispatchProps {
   onTeamMemberClicked: (memberId: string) => void;
   getInitialData(): void;
+  changeWorkOrderFilter: (statusId: string) => void;
 }
 
 export type Props = ISuperQueueProps &
   ISuperQueueNavProps &
-  ISuperQueueDispatchProps;
+  ISuperQueueDispatchProps &
+  IFilterByStatusProps;
 
 interface State {
   currentId: string | null;
@@ -45,13 +53,6 @@ interface State {
 }
 
 export class SupervisorQueueScreen extends Component<Props, State> {
-  // constructor(props: Props) {
-  //   super(props);
-  //   this.state = {
-  //     currentId: null,
-  //     droppedInZone: false
-  //   };
-  // }
   state: State = {
     currentId: null,
     droppedInZone: false
@@ -81,7 +82,8 @@ export class SupervisorQueueScreen extends Component<Props, State> {
       dragDrop: { teamMembers },
       onTeamMemberClicked,
       navigation,
-      initialData
+      initialData,
+      filteredWorkOrders
     } = this.props;
     const { currentId } = this.state;
     return (
@@ -110,13 +112,18 @@ export class SupervisorQueueScreen extends Component<Props, State> {
         ======== */}
           <LeftPanel>
             <LeftHeader>
-              <WorkOrderHeader>My HVAC Queue</WorkOrderHeader>
+              <SuperWorkOrderHeader
+                changeWorkOrderFilter={this.props.changeWorkOrderFilter}
+              >
+                My HVAC Queue
+              </SuperWorkOrderHeader>
             </LeftHeader>
             <LeftBody>
               <SuperWorkOrderList
                 navigation={navigation}
                 droppedInZone={this.isDroppedInZone}
                 initialData={initialData}
+                filteredWorkOrders={filteredWorkOrders}
               />
             </LeftBody>
           </LeftPanel>
@@ -146,7 +153,8 @@ export class SupervisorQueueScreen extends Component<Props, State> {
 const mapStateToProps = (state: IState) => {
   const stateData = {
     dragDrop: state.dragDrop,
-    initialData: state.initialData
+    initialData: state.initialData,
+    filteredWorkOrders: selectFilteredWorkOrders(state)
   };
   return stateData;
 };
@@ -156,7 +164,9 @@ const mapDispatchToProps = (
 ): ISuperQueueDispatchProps => ({
   onTeamMemberClicked: (memberId: string) =>
     dispatch(toggleTeamMember(memberId)),
-  getInitialData: () => dispatch(fetchInitialData())
+  getInitialData: () => dispatch(fetchInitialData()),
+  changeWorkOrderFilter: (statusId: string) =>
+    dispatch(changeFilterByStatus(statusId))
 });
 
 export default connect(

@@ -36,13 +36,38 @@ export default class FilterMenu extends Component<IFilterMenu, any> {
           />
         }
       >
-        <MenuItem onPress={() => {}} checkBox={true}>
+        <MenuItem
+          onPress={() => {
+            // console.log('event', e);
+
+            this.props.changeWorkOrderFilter('unassigned');
+          }}
+          checkBox={true}
+        >
           UNASSIGNED
         </MenuItem>
-        <MenuItem onPress={() => {}} checkBox={true}>
+        <MenuItem
+          onPress={() => {
+            this.props.changeWorkOrderFilter('assigned');
+          }}
+          checkBox={true}
+        >
+          ASSIGNED
+        </MenuItem>
+        <MenuItem
+          onPress={() => {
+            this.props.changeWorkOrderFilter('on hold');
+          }}
+          checkBox={true}
+        >
           ON HOLD
         </MenuItem>
-        <MenuItem onPress={() => {}} checkBox={true}>
+        <MenuItem
+          onPress={() => {
+            this.props.changeWorkOrderFilter('completed');
+          }}
+          checkBox={true}
+        >
           COMPLETED
         </MenuItem>
         {/* <MenuItem

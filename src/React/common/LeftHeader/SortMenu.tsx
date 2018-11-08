@@ -20,6 +20,9 @@ export default class SortMenu extends Component<ISortMenu, any> {
   showMenu = () => {
     this._menu.show();
   };
+
+  sorBy = () => {};
+
   render() {
     return (
       <Menu

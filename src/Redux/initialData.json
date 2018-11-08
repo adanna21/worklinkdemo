@@ -53,7 +53,7 @@
       "status": "on hold",
       "id": "180000989",
       "serviceLocation": "10 Astor Place, Room 722 New York, NY",
-      "assignedTo": [],
+      "assignedTo": ["94848305"],
       "shop": "HVAC",
       "workCode": "HVAC - Too Hot",
       "clientSchedule": "10/15/2018",
@@ -194,7 +194,7 @@
       ]
     },
     {
-      "status": "assigned",
+      "status": "completed",
       "id": "180000995",
       "serviceLocation": "10 Astor Place, Room 722 New York, NY",
       "assignedTo": ["94848302", "94848304"],

@@ -20,6 +20,7 @@ export const reducer = (
   const BEGIN = ActionTypes.GET_INITIAL_DATA_BEGIN;
   const SUCCESS = ActionTypes.GET_INITIAL_DATA_SUCCESS;
   const FAILURE = ActionTypes.GET_INITIAL_DATA_FAILURE;
+  const FILTER = ActionTypes.CHANGE_FILTER;
   switch (action.type) {
     case BEGIN:
       return {
@@ -38,6 +39,15 @@ export const reducer = (
         ...state,
         error: action.payload.error,
         loading: false
+      };
+    case FILTER:
+      const status = action.payload.filter.id;
+      const newFilters = state.filters.map(item => {
+        if (item.id === status) !item.inuse;
+      });
+      return {
+        ...state,
+        filters: newFilters
       };
     default:
       return state;

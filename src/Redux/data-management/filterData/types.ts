@@ -1,34 +1,31 @@
-import { IWorkOrder, IWorker } from '../../../data';
+import { IWorkOrder } from '../../../data';
+import { string } from 'prop-types';
 
 // Constants
 export enum ActionTypes {
-  GET_INITIAL_DATA_BEGIN = '@@data/GET_INITIAL_DATA_BEGIN',
-  GET_INITIAL_DATA_SUCCESS = '@@data/GET_INITIAL_DATA_SUCCESS',
-  GET_INITIAL_DATA_FAILURE = '@@data/GET_INITIAL_DATA_FAILURE'
+  CHANGE_FILTER_BY_STATUS = '@@filterData/CHANGE_FILTER_BY_STATUS',
+  SORT_BY = '@@filterData/SORT_BY'
 }
 
-export interface IGetInitialDataBeginAction {
-  type: ActionTypes.GET_INITIAL_DATA_BEGIN;
+export interface IStatus {
+  id: 'completed' | 'unassigned' | 'on hold' | 'assigned';
+  inuse: boolean;
 }
 
-export interface IGetInitialDataSuccessAction {
-  type: ActionTypes.GET_INITIAL_DATA_SUCCESS;
-  payload: { initialData: IInitialDataProps };
+export interface ISortBy {
+  sortBy: 'asc_date' | 'desc_date';
+}
+export interface IFilterByStatusProps {
+  filters: IStatus[];
+  // filteredWorkOrders: IWorkOrder[];
+  sortBy: ISortBy;
+}
+export interface IChangeFilterByStatusAction {
+  type: ActionTypes.CHANGE_FILTER_BY_STATUS;
+  payload: { statusId: string };
 }
 
-export interface IGetInitialDataFailureAction {
-  type: ActionTypes.GET_INITIAL_DATA_FAILURE;
-  payload: { error: any };
-}
-
-export interface IInitialDataProps {
-  workOrders: IWorkOrder[];
-  employees: IWorker[];
-  loading: boolean;
-  error: any;
-}
-
-export interface IInitialApiData {
-  workOrders: IWorkOrder[];
-  employees: IWorker[];
+export interface ISortByAction {
+  type: ActionTypes.SORT_BY;
+  payload: { sortBy: ISortBy };
 }

@@ -3,10 +3,13 @@ import {
   IGetInitialDataBeginAction,
   IGetInitialDataSuccessAction,
   IGetInitialDataFailureAction,
-  IInitialApiData
+  IInitialApiData,
+  IChangeFilterAction,
+  IFilter
 } from './types';
 import { fetchApiData } from '../../helpers/mockApi';
 import { Dispatch } from 'redux';
+import { type } from 'os';
 
 // thunk action creator
 export const fetchInitialData = () => {
@@ -36,7 +39,13 @@ export const getInitialDataError = (error: any) => ({
   payload: { error }
 });
 
+export const changeFilter = (filter: IFilter) => ({
+  type: ActionTypes.CHANGE_FILTER,
+  payload: { filter }
+});
+
 export type Actions =
   | IGetInitialDataBeginAction
   | IGetInitialDataSuccessAction
-  | IGetInitialDataFailureAction;
+  | IGetInitialDataFailureAction
+  | IChangeFilterAction;

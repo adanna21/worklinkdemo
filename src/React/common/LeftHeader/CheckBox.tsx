@@ -23,6 +23,9 @@ export default class CheckBox extends Component<ICheckBox, State> {
   state: State = {
     checked: false
   };
+  componentWillUnmount() {
+    console.log("i'm out!");
+  }
   render() {
     const { checked } = this.state;
     const color = {

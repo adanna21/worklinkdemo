@@ -39,3 +39,8 @@ export interface IFilter {
   id: 'completed' | 'unassigned' | 'on hold';
   inuse: boolean;
 }
+
+export interface IChangeFilterAction {
+  type: ActionTypes.CHANGE_FILTER;
+  payload: { filter: IFilter };
+}

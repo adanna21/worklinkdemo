@@ -4,8 +4,15 @@ import LeftContainer from '../../../common/LeftHeader/LeftContainer';
 import LeftTitle from '../../../common/LeftHeader/LeftTitle';
 import FilterSort from '../../../common/LeftHeader/FilterSort';
 import CheckBox from '../../../common/LeftHeader/CheckBox';
+import { IStatus } from '../../../../Redux/data-management/filterData/types';
 
-export default class SuperWorkOrderHeader extends Component {
+export interface ISuperWorkOrderHeader {
+  changeWorkOrderFilter: (statusId: string) => void;
+}
+export default class SuperWorkOrderHeader extends Component<
+  ISuperWorkOrderHeader,
+  any
+> {
   render() {
     return (
       <LeftContainer>
@@ -18,9 +25,10 @@ export default class SuperWorkOrderHeader extends Component {
             labelFontSize={12}
             iconFontSize={20}
             onPress={() => {}}
+            checked={false}
           />
         </LeftTitle>
-        <FilterSort />
+        <FilterSort changeWorkOrderFilter={this.props.changeWorkOrderFilter} />
       </LeftContainer>
     );
   }

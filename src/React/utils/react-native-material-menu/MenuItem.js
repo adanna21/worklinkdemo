@@ -21,12 +21,17 @@ function MenuItem({
   ...props
 }) {
   return (
-    <TouchableHighlight
+    // <TouchableHighlight
+    //   {...props}
+    //   disabled={disabled}
+    //   onPress={onPress}
+    //   style={[styles.container, style]}
+    //   underlayColor={underlayColor}
+    // >
+    <View
       {...props}
       disabled={disabled}
-      onPress={onPress}
-      style={[styles.container, style]}
-      underlayColor={underlayColor}
+      style={[styles.container, style, checkBox && { paddingLeft: '5%' }]}
     >
       {checkBox ? (
         <CheckBox
@@ -36,22 +41,32 @@ function MenuItem({
           labelFontSize={14}
           iconFontSize={25}
           style={[disabled && { color: disabledTextColor }, textStyle]}
-          onPress={() => {}}
+          onPress={onPress}
         />
       ) : (
-        <Text
-          ellipsizeMode={Platform.OS === 'ios' ? 'clip' : 'tail'}
-          numberOfLines={1}
-          style={[
-            styles.title,
-            disabled && { color: disabledTextColor },
-            textStyle
-          ]}
+        <TouchableHighlight
+          {...props}
+          disabled={disabled}
+          onPress={onPress}
+          // style={[styles.container, style]}
+          style={styles.touchable}
+          underlayColor={underlayColor}
         >
-          {children}
-        </Text>
+          <Text
+            ellipsizeMode={Platform.OS === 'ios' ? 'clip' : 'tail'}
+            numberOfLines={1}
+            style={[
+              styles.title,
+              disabled && { color: disabledTextColor },
+              textStyle
+            ]}
+          >
+            {children}
+          </Text>
+        </TouchableHighlight>
       )}
-    </TouchableHighlight>
+    </View>
+    // </TouchableHighlight>
   );
 }
 
@@ -79,13 +94,18 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'flex-start',
     maxWidth: 248,
-    minWidth: 124,
-    paddingLeft: '5%'
+    minWidth: 124
   },
   title: {
     fontSize: 14,
     fontWeight: '400',
     paddingHorizontal: 16
+  },
+  touchable: {
+    height: 48,
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    width: '100%'
   }
 });
 
