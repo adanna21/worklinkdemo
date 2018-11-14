@@ -6,10 +6,20 @@ export default class HistoryCard extends Component<any, any> {
     const time = new Date(timestamp);
     // hours
     const hours = time.getHours();
+    console.log('hours', hours);
     let hoursString = hours.toString();
-    if (hours < 10) hoursString = '0' + hours;
+    // if (hours > 0 && hours <= 9) {
+    //   hoursString = '0' + hours;
+    // } else
+    if (hours > 12) {
+      hoursString = '' + (hours - 12);
+    } else if (hours == 0) {
+      hoursString = '12';
+    }
+
     // minutes
     const minutes = time.getMinutes();
+    console.log('minutes', minutes);
     let minutesString = minutes.toString();
     if (minutes < 10) {
       minutesString = '0' + minutes;

@@ -1,6 +1,3 @@
-import { IWorkOrder } from '../../../data';
-import { string } from 'prop-types';
-
 // Constants
 export enum ActionTypes {
   CHANGE_FILTER_BY_STATUS = '@@filterData/CHANGE_FILTER_BY_STATUS',
@@ -12,13 +9,15 @@ export interface IStatus {
   inuse: boolean;
 }
 
-export interface ISortBy {
-  sortBy: 'asc_date' | 'desc_date';
-}
+// export interface ISortBy {
+//   sortBy: 'asc_date' | 'desc_date';
+// }
+export type SortByType = 'asc_date' | 'desc_date';
 export interface IFilterByStatusProps {
   filters: IStatus[];
   // filteredWorkOrders: IWorkOrder[];
-  sortBy: ISortBy;
+  sortBy: SortByType;
+  sorting: boolean;
 }
 export interface IChangeFilterByStatusAction {
   type: ActionTypes.CHANGE_FILTER_BY_STATUS;
@@ -27,5 +26,5 @@ export interface IChangeFilterByStatusAction {
 
 export interface ISortByAction {
   type: ActionTypes.SORT_BY;
-  payload: { sortBy: ISortBy };
+  payload: { sortBy: SortByType };
 }

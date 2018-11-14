@@ -15,7 +15,7 @@ interface IClient {
 }
 
 interface IEvent {
-  time: number;
+  time: Date | number;
   description: string;
 }
 export interface IWorkOrder {

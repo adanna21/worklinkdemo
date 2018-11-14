@@ -4,10 +4,11 @@ import LeftContainer from '../../../common/LeftHeader/LeftContainer';
 import LeftTitle from '../../../common/LeftHeader/LeftTitle';
 import FilterSort from '../../../common/LeftHeader/FilterSort';
 import CheckBox from '../../../common/LeftHeader/CheckBox';
-import { IStatus } from '../../../../Redux/data-management/filterData/types';
+import { SortByType } from '../../../../Redux/data-management/filterData/types';
 
 export interface ISuperWorkOrderHeader {
   changeWorkOrderFilter: (statusId: string) => void;
+  changeSortBy: (sortByString: SortByType) => void;
 }
 export default class SuperWorkOrderHeader extends Component<
   ISuperWorkOrderHeader,
@@ -25,10 +26,12 @@ export default class SuperWorkOrderHeader extends Component<
             labelFontSize={12}
             iconFontSize={20}
             onPress={() => {}}
-            checked={false}
           />
         </LeftTitle>
-        <FilterSort changeWorkOrderFilter={this.props.changeWorkOrderFilter} />
+        <FilterSort
+          changeWorkOrderFilter={this.props.changeWorkOrderFilter}
+          changeSortBy={this.props.changeSortBy}
+        />
       </LeftContainer>
     );
   }

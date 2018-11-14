@@ -1,7 +1,8 @@
 import {
   ActionTypes,
   IChangeFilterByStatusAction,
-  ISortByAction
+  ISortByAction,
+  SortByType
 } from './types';
 
 export const changeFilterByStatus = (statusId: string) => ({
@@ -9,9 +10,9 @@ export const changeFilterByStatus = (statusId: string) => ({
   payload: { statusId }
 });
 
-export const sortBy = (sort: string) => ({
+export const sortBy = (sortBy: SortByType) => ({
   type: ActionTypes.SORT_BY,
-  payload: { sort }
+  payload: { sortBy }
 });
 
 export type Actions = IChangeFilterByStatusAction | ISortByAction;

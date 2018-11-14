@@ -1,6 +1,54 @@
 {
   "workOrders": [
     {
+      "status": "assigned",
+      "id": "180000994",
+      "serviceLocation": "10 Astor Place, Room 722 New York, NY",
+      "assignedTo": ["94848302", "94848304"],
+      "shop": "HVAC",
+      "workCode": "HVAC - Too Hot",
+      "clientSchedule": "10/15/2018",
+      "workDescription": "goes here, doesn't exceed two lines",
+      "clientDescription": "goes here, doesn't exceed two lines",
+      "notes": "notes go here",
+      "client": {
+        "name": "Alex Warren",
+        "netId": "ja123",
+        "phoneNumber": "6187891234",
+        "email": "ja123@nyu.edu"
+      },
+      "history": [
+        {
+          "time": "2018-11-02T21:20:22.000Z",
+          "description": "received work order"
+        }
+      ]
+    },
+    {
+      "status": "completed",
+      "id": "180000995",
+      "serviceLocation": "10 Astor Place, Room 722 New York, NY",
+      "assignedTo": ["94848302", "94848304"],
+      "shop": "HVAC",
+      "workCode": "HVAC - Too Hot",
+      "clientSchedule": "10/15/2018",
+      "workDescription": "goes here, doesn't exceed two lines",
+      "clientDescription": "goes here, doesn't exceed two lines",
+      "notes": "notes go here",
+      "client": {
+        "name": "Alex Warren",
+        "netId": "ja123",
+        "phoneNumber": "6187891234",
+        "email": "ja123@nyu.edu"
+      },
+      "history": [
+        {
+          "time": "2018-11-09T21:20:22.000Z",
+          "description": "received work order"
+        }
+      ]
+    },
+    {
       "status": "unassigned",
       "id": "180000987",
       "serviceLocation": "10 Astor Place, Room 722 New York, NY",
@@ -19,7 +67,7 @@
       },
       "history": [
         {
-          "time": 1539612000000,
+          "time": "2018-11-02T15:20:22.000Z",
           "description": "received work order"
         }
       ]
@@ -44,7 +92,7 @@
       },
       "history": [
         {
-          "time": 1539703800000,
+          "time": "2018-11-05T15:20:22.000Z",
           "description": "received work order"
         }
       ]
@@ -68,7 +116,7 @@
       },
       "history": [
         {
-          "time": 539696600000,
+          "time": "2018-11-05T14:20:22.000Z",
           "description": "received work order"
         }
       ]
@@ -92,7 +140,7 @@
       },
       "history": [
         {
-          "time": 1539783000000,
+          "time": "2018-11-06T14:20:22.000Z",
           "description": "received work order"
         }
       ]
@@ -116,7 +164,7 @@
       },
       "history": [
         {
-          "time": 1539797400000,
+          "time": "2018-11-07T14:20:22.000Z",
           "description": "received work order"
         }
       ]
@@ -140,7 +188,7 @@
       },
       "history": [
         {
-          "time": 1539538200000,
+          "time": "2018-10-31T14:20:22.000Z",
           "description": "received work order"
         }
       ]
@@ -164,55 +212,7 @@
       },
       "history": [
         {
-          "time": 1539520200000,
-          "description": "received work order"
-        }
-      ]
-    },
-    {
-      "status": "assigned",
-      "id": "180000994",
-      "serviceLocation": "10 Astor Place, Room 722 New York, NY",
-      "assignedTo": ["94848302", "94848304"],
-      "shop": "HVAC",
-      "workCode": "HVAC - Too Hot",
-      "clientSchedule": "10/15/2018",
-      "workDescription": "goes here, doesn't exceed two lines",
-      "clientDescription": "goes here, doesn't exceed two lines",
-      "notes": "notes go here",
-      "client": {
-        "name": "Alex Warren",
-        "netId": "ja123",
-        "phoneNumber": "6187891234",
-        "email": "ja123@nyu.edu"
-      },
-      "history": [
-        {
-          "time": 1539516600000,
-          "description": "received work order"
-        }
-      ]
-    },
-    {
-      "status": "completed",
-      "id": "180000995",
-      "serviceLocation": "10 Astor Place, Room 722 New York, NY",
-      "assignedTo": ["94848302", "94848304"],
-      "shop": "HVAC",
-      "workCode": "HVAC - Too Hot",
-      "clientSchedule": "10/15/2018",
-      "workDescription": "goes here, doesn't exceed two lines",
-      "clientDescription": "goes here, doesn't exceed two lines",
-      "notes": "notes go here",
-      "client": {
-        "name": "Alex Warren",
-        "netId": "ja123",
-        "phoneNumber": "6187891234",
-        "email": "ja123@nyu.edu"
-      },
-      "history": [
-        {
-          "time": 1539862200000,
+          "time": "2018-10-30T14:20:22.000Z",
           "description": "received work order"
         }
       ]

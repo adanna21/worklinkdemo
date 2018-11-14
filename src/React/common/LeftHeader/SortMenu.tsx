@@ -21,8 +21,6 @@ export default class SortMenu extends Component<ISortMenu, any> {
     this._menu.show();
   };
 
-  sorBy = () => {};
-
   render() {
     return (
       <Menu
@@ -31,11 +29,18 @@ export default class SortMenu extends Component<ISortMenu, any> {
           <Icon name="sort" size={20} color="#757575" onPress={this.showMenu} />
         }
       >
-        <MenuItem onPress={this.hideMenu}>Newest To Oldest</MenuItem>
         <MenuItem
           onPress={() => {
+            this.props.changeSortBy('desc_date');
             this.hideMenu();
-            // this.props.handleLogout();
+          }}
+        >
+          Newest To Oldest
+        </MenuItem>
+        <MenuItem
+          onPress={() => {
+            this.props.changeSortBy('asc_date');
+            this.hideMenu();
           }}
         >
           Oldest To Newest

@@ -22,11 +22,15 @@ import { fetchInitialData } from '../../Redux/data-management/initialData/action
 import { IInitialDataProps } from '../../Redux/data-management/initialData/types';
 import { Actions } from '../../../src/Redux/data-management/initialData/actions';
 import { selectFilteredWorkOrders } from '../../Redux/selectors/filterSelectors';
-import { changeFilterByStatus } from '../../Redux/data-management/filterData/actions';
 import {
-  IStatus,
-  IFilterByStatusProps
+  changeFilterByStatus,
+  sortBy
+} from '../../Redux/data-management/filterData/actions';
+import {
+  IFilterByStatusProps,
+  SortByType
 } from '../../Redux/data-management/filterData/types';
+import { IWorkOrder } from '../../data';
 
 export interface ISuperQueueNavProps {
   navigation: NavigationScreenProp<any, any>;
@@ -40,12 +44,16 @@ export interface ISuperQueueDispatchProps {
   onTeamMemberClicked: (memberId: string) => void;
   getInitialData(): void;
   changeWorkOrderFilter: (statusId: string) => void;
+  changeSortBy: (sortByString: SortByType) => void;
 }
-
+export interface IFilterSortProps {
+  filteredWorkOrders: IWorkOrder[];
+}
 export type Props = ISuperQueueProps &
   ISuperQueueNavProps &
   ISuperQueueDispatchProps &
-  IFilterByStatusProps;
+  IFilterByStatusProps &
+  IFilterSortProps;
 
 interface State {
   currentId: string | null;
@@ -114,6 +122,7 @@ export class SupervisorQueueScreen extends Component<Props, State> {
             <LeftHeader>
               <SuperWorkOrderHeader
                 changeWorkOrderFilter={this.props.changeWorkOrderFilter}
+                changeSortBy={this.props.changeSortBy}
               >
                 My HVAC Queue
               </SuperWorkOrderHeader>
@@ -166,7 +175,8 @@ const mapDispatchToProps = (
     dispatch(toggleTeamMember(memberId)),
   getInitialData: () => dispatch(fetchInitialData()),
   changeWorkOrderFilter: (statusId: string) =>
-    dispatch(changeFilterByStatus(statusId))
+    dispatch(changeFilterByStatus(statusId)),
+  changeSortBy: (sortByString: SortByType) => dispatch(sortBy(sortByString))
 });
 
 export default connect(

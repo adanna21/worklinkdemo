@@ -9,7 +9,6 @@ import {
 } from './types';
 import { fetchApiData } from '../../helpers/mockApi';
 import { Dispatch } from 'redux';
-import { type } from 'os';
 
 // thunk action creator
 export const fetchInitialData = () => {

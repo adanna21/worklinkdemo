@@ -8,7 +8,8 @@ export const initialState: IFilterByStatusProps = {
     { id: 'on hold', inuse: false },
     { id: 'assigned', inuse: false }
   ],
-  sortBy: null
+  sortBy: null,
+  sorting: false
   // filteredWorkOrders: []
 };
 
@@ -30,9 +31,18 @@ export const reducer = (
         filters: newFilters
       };
     case SORT:
+      const sortBy = action.payload.sortBy;
+      let sorting;
+      if (sortBy === 'asc_date') {
+        sorting = !state.sorting;
+        console.log('sorting', sorting);
+      } else if (sortBy === 'desc_date') {
+        sorting = !state.sorting;
+      }
       return {
         ...state,
-        sortBy: action.payload.sortBy
+        sortBy: sortBy,
+        sorting: sorting
       };
     default:
       return state;

@@ -16,7 +16,7 @@ export default class FilterSort extends Component<ISuperWorkOrderHeader, any> {
         </View>
         <View style={styles.sort}>
           <Text style={styles.iconText}>Sort</Text>
-          <SortMenu />
+          <SortMenu changeSortBy={this.props.changeSortBy} />
         </View>
       </View>
     );
