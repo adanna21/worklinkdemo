@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import AddImage from './AddImage';
 
 export default class ServiceDescription extends Component<any, any> {
   render() {
@@ -32,9 +33,10 @@ export default class ServiceDescription extends Component<any, any> {
             <Icon name="image" size={18} color="#424242" />
             <Text style={styles.imageText}>PNG_01</Text>
           </View>
-          <TouchableOpacity>
+          {/* <TouchableOpacity>
             <Text style={styles.add}>+ Add notes or photos</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
+          <AddImage />
         </View>
       </View>
     );
@@ -89,9 +91,5 @@ const styles = StyleSheet.create({
   },
   imageText: {
     color: '#424242'
-  },
-  add: {
-    color: '#424242',
-    fontWeight: 'bold'
   }
 });
