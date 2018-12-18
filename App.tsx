@@ -4,6 +4,7 @@ import { StyleSheet, StatusBar, SafeAreaView } from 'react-native';
 import MainNavigator from './src/config/navigation';
 import store from './src/Redux';
 import NavigationService from './src/config/navigation/NavigationService';
+import {NYU_VIOLET} from 'react-native-dotenv';
 
 export default class App extends Component {
   // navigatorRef: RefObject<NavigationContainerComponent> = React.createRef();
@@ -12,7 +13,7 @@ export default class App extends Component {
       <Provider store={store}>
         {/* SafeAreaView background must be colored to see status bar */}
         <SafeAreaView
-          style={[styles.container, { backgroundColor: '#590889' }]}
+          style={[styles.container, { backgroundColor: NYU_VIOLET }]}
         >
           <StatusBar barStyle="light-content" />
           <MainNavigator

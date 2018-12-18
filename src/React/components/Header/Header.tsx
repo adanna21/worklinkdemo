@@ -8,6 +8,7 @@ import { IState } from '../../../../src/Redux';
 import { ILogInProps } from '../../../React/screens/LoginScreen';
 import { Actions } from '../../../../src/Redux/login/actions';
 import { logout } from '../../../Redux/login/actions';
+import { NYU_VIOLET } from 'react-native-dotenv';
 
 export interface ILogoutDispatchProps {
   onLogout(username: string): void;
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
     // height: 60,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#590889',
+    backgroundColor: NYU_VIOLET,
     paddingTop: '1%',
     paddingBottom: '1%'
     // paddingLeft: 15,
