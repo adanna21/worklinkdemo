@@ -9,6 +9,7 @@ import Unassigned from '../../React/screens/UnassignedScreen';
 import OrderDetail from '../../React/screens/OrderDetail';
 import Notices from '../../React/screens/Notices';
 import Header from '../../React/components/Header/Header';
+import { NYU_VIOLET } from 'react-native-dotenv';
 
 // Stack Nav for Supervisor screens
 const EmployeeWorkOrderListStack = createStackNavigator(
@@ -56,13 +57,13 @@ const EmployeeTabNavigator = createMaterialTopTabNavigator(
   },
   {
     tabBarOptions: {
-      activeTintColor: '#590889',
+      activeTintColor: NYU_VIOLET,
       inactiveTintColor: '#233e4a',
       style: {
         backgroundColor: 'white'
       },
       indicatorStyle: {
-        backgroundColor: '#590889'
+        backgroundColor: NYU_VIOLET
       },
       showIcon: true
     },
@@ -98,7 +99,7 @@ const EmployeeMainStack = createStackNavigator(
       headerForceInset: { top: 'never', bottom: 'never' },
       headerStyle: {
         height: 60,
-        backgroundColor: '#590889'
+        backgroundColor: NYU_VIOLET
       },
       headerTitle: <Header />
     }

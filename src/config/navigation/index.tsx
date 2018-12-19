@@ -2,6 +2,7 @@ import { createStackNavigator, createSwitchNavigator } from 'react-navigation';
 import EmployeeMainStack from './EmployeeNav';
 import LoginScreen from '../../React/screens/LoginScreen';
 import SuperMainStack from './SuperNav';
+import { NYU_VIOLET } from 'react-native-dotenv';
 
 const AuthStack = createStackNavigator(
   { Login: LoginScreen },
@@ -17,7 +18,7 @@ const AuthStack = createStackNavigator(
       headerTitleStyle: {
         fontWeight: 'bold',
         fontSize: 25,
-        color: '#590889'
+        color: NYU_VIOLET
       }
     }
   }

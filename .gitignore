@@ -57,3 +57,7 @@ buck-out/
 
 third-party/
 .jest/
+
+#Config
+.env
+.env.production
